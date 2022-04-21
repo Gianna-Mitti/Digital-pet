@@ -1,1 +1,49 @@
 DIGITAL PET 20/04/2022 
+----------------------
+ENTIDADES
+1) Usuario
+Atributos:
+a) id
+b) nombre
+c) apellido
+d) mail
+e) tel (teléfono fijo/cel)
+f) contra
+g) ArrayList<Mascota> mascotas
+------------------------------
+2) Mascota
+Atributos:
+a) id
+b) nombre
+c) fechaNac (estimado)
+d) sexo
+e) especie (enum)
+f) raza
+g) ArrayList<Vacuna> aplicadas;
+h) ArrayList<Vacuna> pendientes;
+i) Usuario;
+-------------------------------
+3) Vacuna
+Atributos:
+a) id (lote)
+b) tipo
+c) String edadAplicacion; 
+d) Boolean refuerzo
+
+
+Especie {
+Gato, Perro, Ave, Roedor...}
+
+ServicioVacuna {
+public queVacunas() {
+if (especie.equals(gato) -->
+ ArrayList<String> vacunasGatos = ("parvovirus", "hepatitis", "covid");
+	Vacuna vac = new Vac();
+	vac.tipo = vacunaGatos;
+
+	if gato.edad.equals(6meses)
+
+	12 --> 1 año
+	 0-6sem - <8sem - <12sem - 16sem - 20sem - >1 año 
+
+--Método para calcular la edad con la fecha actual y la fecha de nacimiento.
