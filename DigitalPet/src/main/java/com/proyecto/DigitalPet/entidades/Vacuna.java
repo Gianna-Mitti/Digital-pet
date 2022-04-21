@@ -1,0 +1,31 @@
+package com.proyecto.DigitalPet.entidades;
+
+import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import org.hibernate.annotations.GenericGenerator;
+
+    @Entity
+public class Vacuna {
+
+    @Id
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
+private String id;
+private String tipoVac;
+private Date fechaAplicacion;
+private String edadAplicacion;
+private Boolean refuerzo;
+
+    public Vacuna() {
+    }
+
+    public Vacuna(String id, String tipoVac, Date fechaAplicacion, String edadAplicacion, Boolean refuerzo) {
+        this.id = id;
+        this.tipoVac = tipoVac;
+        this.fechaAplicacion = fechaAplicacion;
+        this.edadAplicacion = edadAplicacion;
+        this.refuerzo = refuerzo;
+    }
+}
