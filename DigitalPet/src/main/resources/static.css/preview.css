@@ -1,0 +1,110 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Quicksand', sans-serif;
+    margin: 0;
+}
+
+/*header*/ 
+header {
+    height: 100vh;
+    background-image: url(./layouts/banner.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.off-btn {
+    display: none;
+}
+
+.topnav {
+    width: 100%;
+    display: inline-flex;
+    justify-content: flex-end;
+    background-color: #B9EDE9;
+    overflow: hidden;
+}
+.topnav a {
+    width: auto;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1em;
+    color: #08423E;
+    padding: 2vh 2vw;
+    border: none;
+}
+.topnav a:hover {
+    color: #DB4800;
+}
+.topnav a.active {
+    background-color: #D6DB2E;
+    color: #fff;
+}
+
+.login {
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+
+
+.title {
+    letter-spacing: -2;
+    font-size: 15vw;
+    font-weight: 200;
+    text-align: center;
+    color: #7E18DB;
+}
+.title span {
+    font-family: 'Pacifico', cursive;
+    font-size: 20vw;
+    color: #D6DB2E;
+}
+@media screen and (max-width: 1024px) {
+    /*header*/
+    .off-btn {
+        display: block;
+        color: #D6DB2E;
+        font-size: 1.5em;
+        padding: 16px;
+        cursor: pointer;
+    }
+    .off-menu {
+        position: fixed;
+        display: inline-block;
+        z-index: 1000;
+    }
+    
+    .topnav {
+        display: none;
+        position: absolute;
+    }
+    .topnav a {
+        display: block;
+        width: 100%;
+        text-align: center;
+        text-decoration: none;
+        font-size: 1em;
+        color: #7E18DB;
+        padding: 2vh 2vw;
+    }
+    .topnav a:hover {
+    color: #DB4800;
+    }
+    .topnav a.active {
+        background-color: #7E18DB;
+        color: #fff;
+    }
+
+    .off-menu:hover {
+        height: 100%;
+        background-color: #B9EDE9;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    }
+    
+    .off-menu:hover .off-btn, .off-menu:hover .topnav {
+        display: block;
+        width: 45vw;
+        color: #fff;
+    }
+}
