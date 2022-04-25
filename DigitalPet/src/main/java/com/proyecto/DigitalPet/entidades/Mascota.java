@@ -8,6 +8,8 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -23,14 +25,15 @@ private String sexo;
     @Enumerated(EnumType.STRING)
 private Especie especie;
 //private Raza raza;
+@OneToMany
 private ArrayList<Vacuna> vacAplicadas;
+@OneToMany
 private ArrayList<Vacuna> vacPendientes;
-private Usuario usuario;
 
     public Mascota() {
     }
 
-    public Mascota(String id, String nombre, Date fechaNac, String sexo, Especie especie, ArrayList<Vacuna> vacAplicadas, ArrayList<Vacuna> vacPendientes, Usuario usuario) {
+    public Mascota(String id, String nombre, Date fechaNac, String sexo, Especie especie, ArrayList<Vacuna> vacAplicadas, ArrayList<Vacuna> vacPendientes) {
         this.id = id;
         this.nombre = nombre;
         this.fechaNac = fechaNac;
@@ -38,6 +41,61 @@ private Usuario usuario;
         this.especie = especie;
         this.vacAplicadas = vacAplicadas;
         this.vacPendientes = vacPendientes;
-        this.usuario = usuario;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public Date getFechaNac() {
+        return fechaNac;
+    }
+
+    public void setFechaNac(Date fechaNac) {
+        this.fechaNac = fechaNac;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public Especie getEspecie() {
+        return especie;
+    }
+
+    public void setEspecie(Especie especie) {
+        this.especie = especie;
+    }
+
+    public ArrayList<Vacuna> getVacAplicadas() {
+        return vacAplicadas;
+    }
+
+    public void setVacAplicadas(ArrayList<Vacuna> vacAplicadas) {
+        this.vacAplicadas = vacAplicadas;
+    }
+
+    public ArrayList<Vacuna> getVacPendientes() {
+        return vacPendientes;
+    }
+
+    public void setVacPendientes(ArrayList<Vacuna> vacPendientes) {
+        this.vacPendientes = vacPendientes;
+    }   
 }
