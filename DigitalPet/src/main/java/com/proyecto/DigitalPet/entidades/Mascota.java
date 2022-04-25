@@ -30,12 +30,10 @@ private ArrayList<Vacuna> vacAplicadas;
 @OneToMany
 private ArrayList<Vacuna> vacPendientes;
 
-private Usuario usuario;
-
     public Mascota() {
     }
 
-    public Mascota(String id, String nombre, Date fechaNac, String sexo, Especie especie, ArrayList<Vacuna> vacAplicadas, ArrayList<Vacuna> vacPendientes, Usuario usuario) {
+    public Mascota(String id, String nombre, Date fechaNac, String sexo, Especie especie, ArrayList<Vacuna> vacAplicadas, ArrayList<Vacuna> vacPendientes) {
         this.id = id;
         this.nombre = nombre;
         this.fechaNac = fechaNac;
@@ -43,7 +41,6 @@ private Usuario usuario;
         this.especie = especie;
         this.vacAplicadas = vacAplicadas;
         this.vacPendientes = vacPendientes;
-        this.usuario = usuario;
     }
 
     public String getId() {
@@ -100,15 +97,5 @@ private Usuario usuario;
 
     public void setVacPendientes(ArrayList<Vacuna> vacPendientes) {
         this.vacPendientes = vacPendientes;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-    
-    
+    }   
 }
