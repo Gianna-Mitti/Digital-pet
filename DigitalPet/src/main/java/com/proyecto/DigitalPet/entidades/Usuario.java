@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -20,6 +21,7 @@ private String apellido;
 private String mail;
 private Long tel;
 private String contra;
+@OneToMany
 private ArrayList<Mascota> mascotas; 
 
     public Usuario() {
