@@ -20,20 +20,20 @@ private String apellido;
     @Column(unique = true)
 private String mail;
 private Long tel;
-private String contra;
+private String clave;
 @OneToMany
 private ArrayList<Mascota> mascotas; 
 
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre, String apellido, String mail, Long tel, String contra, ArrayList<Mascota> mascotas) {
+    public Usuario(String id, String nombre, String apellido, String mail, Long tel, String clave, ArrayList<Mascota> mascotas) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
         this.tel = tel;
-        this.contra = contra;
+        this.clave = clave;
         this.mascotas = mascotas;
     }
 
@@ -77,12 +77,12 @@ private ArrayList<Mascota> mascotas;
         this.tel = tel;
     }
 
-    public String getContra() {
-        return contra;
+    public String getClave() {
+        return clave;
     }
 
-    public void setContra(String contra) {
-        this.contra = contra;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 
     public ArrayList<Mascota> getMascotas() {
