@@ -24,7 +24,7 @@
 			<div class="form-group" id="group-name">
 				<label for="name" class="form-label">Nombre<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<input type="text" class="form-input" name="name" id="name" placeholder="Elsa">
+					<input th:value="${usuario.nombre}" type="text" class="form-input" name="name" id="name" placeholder="Elsa">
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 				<p class="form-input-error">Campo obligatorio.</p>
@@ -33,7 +33,7 @@
 			<div class="form-group" id="group-surname">
 				<label for="surname" class="form-label">Apellido<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<input type="text" class="form-input" name="surname" id="surname" placeholder="Bor de L'ncuentro">
+					<input th:value="${usuario.apellido}" type="text" class="form-input" name="surname" id="surname" placeholder="Bor de L'ncuentro">
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 				<p class="form-input-error">Campo obligatorio.</p>
@@ -42,7 +42,7 @@
 			<div class="form-group form-group-long" id="group-phone">
 				<label for="phone" class="form-label">Teléfono</label>
 				<div class="form-group-input">
-					<input type="text" class="form-input" name="phone" id="phone" placeholder="41234567">
+					<input th:value="${usuario.tel}" type="text" class="form-input" name="phone" id="phone" placeholder="41234567">
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 				<p class="form-input-error">El teléfono solo puede contener números y el máximo son 14 dígitos.</p>
@@ -51,12 +51,13 @@
 			<div class="form-group form-group-long" id="group-mail">
 				<label for="mail" class="form-label">Mail<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<input type="email" class="form-input" name="mail" id="mail" placeholder="email@ejemplo.com">
+					<input th:value="${usuario.mail}" type="email" class="form-input" name="mail" id="mail" placeholder="email@ejemplo.com">
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 				<p class="form-input-error">El mail solo puede contener letras, números, puntos, guiones y guion bajo.</p>
 			</div>
 
+            <!--TODO: Cómo permitimos el cambio de contraseña??-->
 			<div class="form-group" id="group-password">
 				<label for="password" class="form-label">Contraseña<span class="warn">*</span></label>
 				<div class="form-group-input">
