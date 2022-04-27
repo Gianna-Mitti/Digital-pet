@@ -10,7 +10,9 @@ import com.proyecto.DigitalPet.repositorios.UsuarioRepo;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,6 +47,7 @@ public class MascotaServ {
         }
     }
 
+    @Transactional
     public Mascota crear(String idUsuario, String nombre, Date fechaNac, String sexo, Especie especie) throws ErrorServicio {
 
         Optional<Usuario> rta = usuarioRepo.findById(idUsuario);
@@ -76,32 +79,114 @@ public class MascotaServ {
         }
     }
 
+    //El método "cargarVacunas", también sirve para MODIFICAR las vacunas.
+    @Transactional
     public Mascota cargarVacunas(String idUsuario, String idMascota, ArrayList<Vacuna> vacAplicadas) throws ErrorServicio {
-        Optional<Usuario> rta = usuarioRepo.findById(idUsuario);      
+        Optional<Mascota> rta = mascotaRepo.findById(idMascota);
 
-        Optional<Mascota> rta2 = mascotaRepo.findPetByUser(idMascota, idUsuario);
+        if (rta.isPresent()) {
+            Mascota mascota = rta.get();
 
-        if (rta2.isPresent() && rta.isPresent()) {
-            Mascota mascota = rta2.get();
+            if (mascota.getUsuario().getId().equals(idUsuario)) {
 
-            int i = 0;
-            Vacuna vacAplicada;
-            Vacuna aux;
+                int i = 0;
+                Vacuna vacAplicada;
+                Vacuna aux;
 
-            Iterator<Vacuna> it = mascota.getVacPendientes().iterator();
-            while (it.hasNext()) {
-                vacAplicada = vacAplicadas.get(i);
-                aux = it.next();
-                if (aux.getTipoVac().equals(vacAplicada.getTipoVac()) && aux.getRefuerzo().toString().equals("FALSE")) {
-                    it.remove();
+                Iterator<Vacuna> it = mascota.getVacPendientes().iterator();
+                while (it.hasNext()) {
+                    vacAplicada = vacAplicadas.get(i);
+                    aux = it.next();
+                    if (aux.getTipoVac().equals(vacAplicada.getTipoVac()) && aux.getRefuerzo().toString().equals("FALSE")) {
+                        it.remove();
+                    }
+                    i++;
                 }
-                i++;
+                return mascotaRepo.save(mascota);
+            } else {
+                throw new ErrorServicio("Usted no puede acceder a los datos de esta mascota.");
             }
-
-            return mascotaRepo.save(mascota);
         } else {
-            throw new ErrorServicio("No se pudo registrar la mascota correctamente.");
+            throw new ErrorServicio("No se han podido cargar las vacunas de la mascota correctamente.");
         }
     }
 
+    @Transactional
+    public Mascota editar(String idUsuario, String idMascota, String nombre, Date fechaNac, String sexo, Especie especie) throws ErrorServicio {
+        Optional<Mascota> rta = mascotaRepo.findById(idMascota);
+
+        if (rta.isPresent()) {
+            validator(nombre, fechaNac, sexo);
+            Mascota mascota = rta.get();
+
+            if(mascota.getUsuario().getId().equals(idUsuario)) {
+
+            mascota.setNombre(nombre);
+            mascota.setFechaNac(fechaNac);
+            mascota.setSexo(sexo);
+            mascota.setEspecie(especie);
+
+            return mascotaRepo.save(mascota);
+            } else {
+                throw new ErrorServicio("Usted no puede acceder a los datos de esta mascota.");
+            }
+        } else {
+            throw new ErrorServicio("No se encontró la mascota que está tratando de modificar.");
+        }
+    }
+
+    @Transactional
+    public Mascota eliminar(String id, String idUsuario) throws ErrorServicio {
+        Optional<Mascota> rta = mascotaRepo.findById(id);
+
+        if (rta.isPresent()) {
+            Mascota mascota = rta.get();
+
+            if (mascota.getUsuario().getId().equals(idUsuario)){
+
+            mascota.setAlta(Boolean.FALSE);
+            return mascotaRepo.save(mascota);
+            } else {
+                throw new ErrorServicio("Usted no tiene permisos suficientes.");
+            }
+        } else {
+            throw new ErrorServicio("No se encontró la mascota que está intentando dar de baja.");
+        }
+    }
+
+    @Transactional
+    public Mascota habilitar(String id, String idUsuario) throws ErrorServicio {
+        Optional<Mascota> rta = mascotaRepo.findById(id);
+
+        if (rta.isPresent()) {
+            Mascota mascota = rta.get();
+
+            if (mascota.getUsuario().getId().equals(idUsuario)){
+
+                mascota.setAlta(Boolean.TRUE);
+            return mascotaRepo.save(mascota);
+            } else {
+                throw new ErrorServicio("Usted no tiene permisos suficientes.");
+            }
+        } else {
+            throw new ErrorServicio("No se encontró la mascota que está intentando dar de alta.");
+        }
+    }
+
+    public Mascota buscarMxId(String id) throws ErrorServicio {
+        Optional<Mascota> rta = mascotaRepo.findById(id);
+
+        if (rta.isPresent()) {
+            Mascota mascota = rta.get();
+            return mascota;
+        } else {
+            throw new ErrorServicio("No se encontró la mascota.");
+        }
+    }
+
+    public List<Mascota> listarMascotas(String idU) throws ErrorServicio {
+
+        List<Mascota> mascotas = mascotaRepo.findPetsByUser(idU);
+        return mascotas;
+    }
 }

@@ -1,11 +1,9 @@
 package com.proyecto.DigitalPet.entidades;
 
-import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -21,20 +19,17 @@ private String apellido;
 private String mail;
 private Long tel;
 private String clave;
-@OneToMany
-private ArrayList<Mascota> mascotas; 
 
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre, String apellido, String mail, Long tel, String clave, ArrayList<Mascota> mascotas) {
+    public Usuario(String id, String nombre, String apellido, String mail, Long tel, String clave) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
         this.tel = tel;
         this.clave = clave;
-        this.mascotas = mascotas;
     }
 
     public String getId() {
@@ -83,13 +78,5 @@ private ArrayList<Mascota> mascotas;
 
     public void setClave(String clave) {
         this.clave = clave;
-    }
-
-    public ArrayList<Mascota> getMascotas() {
-        return mascotas;
-    }
-
-    public void setMascotas(ArrayList<Mascota> mascotas) {
-        this.mascotas = mascotas;
     }
 }
