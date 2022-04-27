@@ -31,7 +31,7 @@ public class UsuarioServ {
         usuario.setApellido(apellido);
         usuario.setMail(mail);
         String encriptada = new BCryptPasswordEncoder().encode(clave);
-        usuario.setContra(encriptada);
+        usuario.setClave(encriptada);
         return usuarioRepo.save(usuario);
     }
     
