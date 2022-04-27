@@ -1,6 +1,5 @@
 package com.proyecto.DigitalPet.entidades;
 
-import java.util.ArrayList;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,20 +18,18 @@ private String apellido;
     @Column(unique = true)
 private String mail;
 private Long tel;
-private String contra;
-private ArrayList<Mascota> mascotas; 
+private String clave;
 
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre, String apellido, String mail, Long tel, String contra, ArrayList<Mascota> mascotas) {
+    public Usuario(String id, String nombre, String apellido, String mail, Long tel, String clave) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
         this.tel = tel;
-        this.contra = contra;
-        this.mascotas = mascotas;
+        this.clave = clave;
     }
 
     public String getId() {
@@ -75,19 +72,11 @@ private ArrayList<Mascota> mascotas;
         this.tel = tel;
     }
 
-    public String getContra() {
-        return contra;
+    public String getClave() {
+        return clave;
     }
 
-    public void setContra(String contra) {
-        this.contra = contra;
-    }
-
-    public ArrayList<Mascota> getMascotas() {
-        return mascotas;
-    }
-
-    public void setMascotas(ArrayList<Mascota> mascotas) {
-        this.mascotas = mascotas;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
 }

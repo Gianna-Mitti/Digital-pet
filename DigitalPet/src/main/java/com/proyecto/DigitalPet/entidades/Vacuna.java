@@ -28,4 +28,44 @@ private Boolean refuerzo;
         this.edadAplicacion = edadAplicacion;
         this.refuerzo = refuerzo;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTipoVac() {
+        return tipoVac;
+    }
+
+    public void setTipoVac(String tipoVac) {
+        this.tipoVac = tipoVac;
+    }
+
+    public Date getFechaAplicacion() {
+        return fechaAplicacion;
+    }
+
+    public void setFechaAplicacion(Date fechaAplicacion) {
+        this.fechaAplicacion = fechaAplicacion;
+    }
+
+    public String getEdadAplicacion() {
+        return edadAplicacion;
+    }
+
+    public void setEdadAplicacion(String edadAplicacion) {
+        this.edadAplicacion = edadAplicacion;
+    }
+
+    public Boolean getRefuerzo() {
+        return refuerzo;
+    }
+
+    public void setRefuerzo(Boolean refuerzo) {
+        this.refuerzo = refuerzo;
+    }
 }
