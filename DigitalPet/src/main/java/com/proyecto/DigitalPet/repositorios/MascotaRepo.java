@@ -19,5 +19,5 @@ public interface MascotaRepo extends JpaRepository<Mascota, String>{
     public List<Mascota> buscarxId(@Param("id")String id);
     
 @Query("SELECT m FROM Mascota m WHERE m.usuario.id = :id")
-    public List<Mascota> findByUser(@Param("id")String id);
+    public List<Mascota> findPetsByUser(@Param("id")String id);
 }
