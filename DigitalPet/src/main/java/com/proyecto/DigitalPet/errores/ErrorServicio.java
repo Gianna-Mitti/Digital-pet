@@ -1,12 +1,7 @@
 package com.proyecto.DigitalPet.errores;
 
 public class ErrorServicio extends Exception {
-<<<<<<< HEAD
 
-public ErrorServicio(String msg) {
-    super(msg);
-}
-=======
     public ErrorServicio(String msg) {
         super (msg);
     }
