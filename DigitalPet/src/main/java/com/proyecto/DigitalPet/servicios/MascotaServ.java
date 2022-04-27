@@ -9,6 +9,7 @@ import com.proyecto.DigitalPet.repositorios.MascotaRepo;
 import com.proyecto.DigitalPet.repositorios.UsuarioRepo;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,7 +79,7 @@ public class MascotaServ {
     public Mascota cargarVacunas(String idUsuario, String idMascota, ArrayList<Vacuna> vacAplicadas) throws ErrorServicio {
         Optional<Usuario> rta = usuarioRepo.findById(idUsuario);      
 
-        Optional<Mascota> rta2 = mascotaRepo.findPetByUser(idUsuario, idMascota);
+        Optional<Mascota> rta2 = mascotaRepo.findPetByUser(idMascota, idUsuario);
 
         if (rta2.isPresent() && rta.isPresent()) {
             Mascota mascota = rta2.get();
