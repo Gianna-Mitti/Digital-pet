@@ -19,7 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 public UsuarioServ usuarioServ;
 
 @Autowired
-public void ConfigureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
     auth
             .userDetailsService(usuarioServ)
             .passwordEncoder(new BCryptPasswordEncoder());
