@@ -3,12 +3,21 @@ package com.proyecto.DigitalPet.servicios;
 import com.proyecto.DigitalPet.entidades.Usuario;
 import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.repositorios.UsuarioRepo;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
  *
@@ -120,4 +129,24 @@ if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
         }
     }
 
+    public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
+       Usuario entidad = (Usuario) usuarioRepo.buscarxMail(mail);
+       
+       if(entidad != null) {
+         List<GrantedAuthority> permisos = new ArrayList<>();
+         
+         GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" /*+ entidad.getRol()*/);
+         permisos.add(p1);
+         
+         ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+         HttpSession session = attr.getRequest().getSession(true);
+         session.setAttribute("usuariosesion", entidad);
+         
+         User user = new User(/*entidad.getMail(), entidad.getClave(), permisos*/);
+         return (UserDetails) user;
+       } else {
+           return null;
+       }
+    }
+    
 }
