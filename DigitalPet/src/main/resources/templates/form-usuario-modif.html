@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro usuario</title>
+    <title>Editar usuario</title>
 
     <script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -17,14 +17,14 @@
     <main class="form-bg">
         <h1 class="form-title">Digital <span><br>Pet</span></h1>
 
-        <h2 class="form-subtitle">Registro</h2>
+        <h2 class="form-subtitle">Editar información de usuario</h2>
 		
 
 		<form th:action="@{/usuario/modificar/__${usuario.id}__}" method="POST" class="form" id="form">
 			<div class="form-group" id="group-name">
 				<label for="name" class="form-label">Nombre<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<input th:value="${usuario.nombre}" type="text" class="form-input" name="name" id="name" placeholder="Elsa">
+					<input th:value="${usuario.nombre}" type="text" class="form-input" name="nombre" id="name" placeholder="Elsa">
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 				<p class="form-input-error">Campo obligatorio.</p>
@@ -33,7 +33,7 @@
 			<div class="form-group" id="group-surname">
 				<label for="surname" class="form-label">Apellido<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<input th:value="${usuario.apellido}" type="text" class="form-input" name="surname" id="surname" placeholder="Bor de L'ncuentro">
+					<input th:value="${usuario.apellido}" type="text" class="form-input" name="apellido" id="surname" placeholder="Bor de L'ncuentro">
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 				<p class="form-input-error">Campo obligatorio.</p>
@@ -42,7 +42,7 @@
 			<div class="form-group form-group-long" id="group-phone">
 				<label for="phone" class="form-label">Teléfono</label>
 				<div class="form-group-input">
-					<input th:value="${usuario.tel}" type="text" class="form-input" name="phone" id="phone" placeholder="41234567">
+					<input th:value="${usuario.tel}" type="text" class="form-input" name="tel" id="phone" placeholder="41234567">
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 				<p class="form-input-error">El teléfono solo puede contener números y el máximo son 14 dígitos.</p>
@@ -57,32 +57,16 @@
 				<p class="form-input-error">El mail solo puede contener letras, números, puntos, guiones y guion bajo.</p>
 			</div>
 
-            <!--TODO: Cómo permitimos el cambio de contraseña??-->
-			<div class="form-group" id="group-password">
-				<label for="password" class="form-label">Contraseña<span class="warn">*</span></label>
+			<div class="form-group form-group-long" id="group-password">
+				<label for="password" class="form-label">Ingrese su contraseña actual para confirmar los cambios<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<input type="password" class="form-input" name="password" id="password">
+					<input type="password" class="form-input" name="clave" id="password">
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
-				<p class="form-input-error">La contraseña debe ser de 4 a 12 dígitos.</p>
+				<p class="form-input-error">Ingrese su contraseña actual</p>
 			</div>
 
-			<div class="form-group" id="group-passwordi">
-				<label for="passwordi" class="form-label">Repetir Contraseña</label>
-				<div class="form-group-input">
-					<input type="password" class="form-input" name="passwordi" id="passwordi">
-					<i class="form-validate-state fas fa-times-circle"></i>
-				</div>
-				<p class="form-input-error">Ambas contraseñas deben ser iguales.</p>
-			</div>
-
-			<div class="form-group form-group-long" id="group-terms">
-				<label class="form-label">
-					<input class="form-check" type="checkbox" name="terms" id="terms" value="acepto">
-					He leído y acepto los <!--TODO: reformular advertencia-->
-					<a style="text-decoration: underline;" onclick="return confirm('Guarda con lo que ponés papafrita');" >Terminos y Condiciones</a><span class="warn">*</span>
-				</label>
-			</div>
+			
 
             <p><span class="warn">*</span>Campo obligatorio</p>
 <!--
@@ -101,6 +85,7 @@
 					</div>
 				</div>
 -->
+	<!--errorClave??-->
 			<div th:if="${error}!=null" class="form-message form-group-long">
 				<h1>Error:</h1>
 				<p th:text="${error}"><i class="fas fa-exclamation-triangle"></i></p>
