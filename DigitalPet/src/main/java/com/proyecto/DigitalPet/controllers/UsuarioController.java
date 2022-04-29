@@ -1,11 +1,7 @@
 package com.proyecto.DigitalPet.controllers;
 
-import com.proyecto.DigitalPet.entidades.Mascota;
-import com.proyecto.DigitalPet.enums.Especie;
-import com.proyecto.DigitalPet.servicios.MascotaServ;
+
 import com.proyecto.DigitalPet.servicios.UsuarioServ;
-import java.util.Date;
-import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
