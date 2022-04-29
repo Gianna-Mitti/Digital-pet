@@ -199,4 +199,24 @@ public class MascotaServ {
             throw new ErrorServicio("No se encontraron mascotas asociadas a este usuario.");
         }
     }
+    
+        @Transactional(readOnly = true)
+    public List<Vacuna> listarVacAp(String id) throws ErrorServicio {
+        if(id != null) {
+        List<Vacuna> vacs = mascotaRepo.listVacAp(id);
+        return vacs;    
+        } else {
+            throw new ErrorServicio("No se encontró esta mascota.");
+        }
+    }
+    
+            @Transactional(readOnly = true)
+    public List<Vacuna> listarVacPend(String id) throws ErrorServicio {
+        if(id != null) {
+        List<Vacuna> vacs = mascotaRepo.listVacPend(id);
+        return vacs;    
+        } else {
+            throw new ErrorServicio("No se encontró esta mascota.");
+        }
+    }
 }

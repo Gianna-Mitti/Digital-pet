@@ -129,21 +129,20 @@ if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
         }
     }
 
-    
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
        Usuario entidad = (Usuario) usuarioRepo.buscarxMail(mail);
        
        if(entidad != null) {
          List<GrantedAuthority> permisos = new ArrayList<>();
          
-//         GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + entidad.getRol());
-//         permisos.add(p1);
+         GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" /*+ entidad.getRol()*/);
+         permisos.add(p1);
          
          ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
          HttpSession session = attr.getRequest().getSession(true);
          session.setAttribute("usuariosesion", entidad);
          
-         User user = new User(entidad.getMail(), entidad.getClave(), permisos);
+         User user = new User(/*entidad.getMail(), entidad.getClave(), permisos*/);
          return (UserDetails) user;
        } else {
            return null;
