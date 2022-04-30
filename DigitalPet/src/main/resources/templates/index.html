@@ -19,7 +19,7 @@
             <span class="off-btn"><i class="fas fa-bars"></i></span>
             
             <nav class="topnav">
-                <a class="active" href="./">Home</a>
+                <a class="active" href="/">Home</a>
                 <a href="#">About us</a>
                 <a href="#">Info</a>
                 <!-- Log in -->
@@ -28,29 +28,29 @@
                         Log-in
                     </a>
 
-                    <div class="dropdown-menu" id="dropdownMenuButton">
+                    <div th:action="@{/usuario/}" method="POST" class="dropdown-menu" id="dropdownMenuButton">
                         <form class="px-4 py-3">
                           <div class="mb-3">
-                            <label for="exampleDropdownFormEmail1" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@ejemplo.com">
+                            <label for="mail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="mail" name="mail" placeholder="email@ejemplo.com">
                           </div>
                           <div class="mb-3">
-                            <label for="exampleDropdownFormPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Contraseña">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="clave" placeholder="Contraseña">
                           </div>
                           <div class="mb-3">
                             <div class="form-check">
                               <input type="checkbox" class="form-check-input" id="dropdownCheck">
                               <label class="form-check-label" for="dropdownCheck">
-                                Recordarme
+                                Recordarme <!--Esto es facha nomás-->
                               </label>
                             </div>
                           </div>
                           <button type="submit" class="btn btn-primary">Sign in</button>
                         </form>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Sign up</a>
-                        <a class="dropdown-item" href="#">Recuperar contraseña</a>
+                        <a class="dropdown-item" th:href="@{/usuario/registro}">Sign up</a>
+                        <a class="dropdown-item" href="#">Recuperar contraseña</a> <!--Esto es facha nomás-->
                       </div>
                 </span>
             </nav>
