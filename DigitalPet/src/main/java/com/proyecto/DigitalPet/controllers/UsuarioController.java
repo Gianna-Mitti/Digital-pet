@@ -1,6 +1,7 @@
 package com.proyecto.DigitalPet.controllers;
 
 
+import com.proyecto.DigitalPet.entidades.Usuario;
 import com.proyecto.DigitalPet.servicios.UsuarioServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +22,15 @@ public class UsuarioController {
 @Autowired
 private UsuarioServ usuarioServ;
 
+    @GetMapping("/list-usuario/{id}")
+    public String lista(@PathVariable String id, ModelMap modelo) {
 
+        Usuario usuario = usuarioServ.getOne(id);
+
+        modelo.addAttribute("usuario", usuario);
+
+        return "perfil.html";
+    }
 
     @Transactional
     @GetMapping("/registro")

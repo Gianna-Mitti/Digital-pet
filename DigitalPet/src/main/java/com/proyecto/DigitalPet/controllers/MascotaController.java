@@ -24,7 +24,7 @@ public class MascotaController {
     @Autowired
     private MascotaServ mascotaServ;
     
-    @GetMapping("/list-mascotas")
+    @GetMapping("/list-mascotas/{id}")
     public String lista(ModelMap modelo) {
 
         List<Mascota> listaM = mascotaServ.findAll();

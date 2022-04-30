@@ -15,15 +15,15 @@ public class Usuario {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-private String id;
-private String nombre;
-private String apellido;
+    private String id;
+    private String nombre;
+    private String apellido;
     @Column(unique = true)
-private String mail;
-private Long tel;
-private String clave;
-@Enumerated(EnumType.STRING)
-private Role role;
+    private String mail;
+    private Long tel;
+    private String clave;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public Usuario() {
     }
@@ -95,4 +95,6 @@ private Role role;
     }
 
     
+
+
 }
