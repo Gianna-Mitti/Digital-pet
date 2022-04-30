@@ -1,7 +1,7 @@
 package com.proyecto.DigitalPet.servicios;
 
 import com.proyecto.DigitalPet.entidades.Vacuna;
-import com.proyecto.DigitalPet.repositorios.VacunaRepo;
+//import com.proyecto.DigitalPet.repositorios.VacunaRepo;
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,11 +10,11 @@ import org.springframework.stereotype.Service;
 public class VacunaServ {
 
 @Autowired
-    private VacunaRepo vacunaRepo;
+    //private VacunaRepo vacunaRepo;
 
     public ArrayList<Vacuna> vacCanino() {
         Vacuna vac = new Vacuna();
-        ArrayList<Vacuna> vacunas = new ArrayList();
+        ArrayList<Vacuna> vacunas = new ArrayList<Vacuna>();
         
             vac.setTipoVac("Parvovirus");
             vac.setEdadAplicacion("6-8sem");
@@ -46,7 +46,7 @@ public class VacunaServ {
 
     public ArrayList<Vacuna> vacFelino() {
         Vacuna vac = new Vacuna();
-        ArrayList<Vacuna> vacunas = new ArrayList();
+        ArrayList<Vacuna> vacunas = new ArrayList<Vacuna>();
         
             vac.setTipoVac("Clamidiosis");
             vac.setEdadAplicacion("9sem");

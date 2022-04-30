@@ -63,6 +63,7 @@ public class MascotaServ {
             mascota.setFechaNac(fechaNac);
             mascota.setSexo(sexo);
             mascota.setEspecie(especie);
+            mascota.setUsuario(usuario);
 
             switch (mascota.getEspecie().toString()) {
                 case "CANINO":
