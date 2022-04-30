@@ -6,6 +6,9 @@ import com.proyecto.DigitalPet.repositorios.UsuarioRepo;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
  * @author Usuario
  */
 @Service
-public class UsuarioServ {
+public class UsuarioServ implements UserDetailsService{
 
     @Autowired
     private UsuarioRepo usuarioRepo;
@@ -118,6 +121,11 @@ if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
         if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
             throw new ErrorServicio("La clave del usuario no puede estar vacia, y debe tener mas de 6 digitos.");
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
