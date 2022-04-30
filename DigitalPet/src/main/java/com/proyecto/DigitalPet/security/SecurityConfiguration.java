@@ -26,6 +26,7 @@ public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
             
 }
 
+@Override
     public void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().sameOrigin().and()
                 .authorizeRequests()

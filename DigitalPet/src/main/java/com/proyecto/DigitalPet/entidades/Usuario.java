@@ -2,9 +2,12 @@ package com.proyecto.DigitalPet.entidades;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.context.annotation.Role;
 
 @Entity
 public class Usuario {
@@ -19,17 +22,20 @@ private String apellido;
 private String mail;
 private Long tel;
 private String clave;
+@Enumerated(EnumType.STRING)
+private Role role;
 
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre, String apellido, String mail, Long tel, String clave) {
+    public Usuario(String id, String nombre, String apellido, String mail, Long tel, String clave, Role role) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.mail = mail;
         this.tel = tel;
         this.clave = clave;
+        this.role = role;
     }
 
     public String getId() {
@@ -79,4 +85,17 @@ private String clave;
     public void setClave(String clave) {
         this.clave = clave;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public void setRole(com.proyecto.DigitalPet.enums.Role role) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }

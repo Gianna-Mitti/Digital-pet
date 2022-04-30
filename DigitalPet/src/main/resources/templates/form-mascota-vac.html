@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registro Vacunas</title>
+
+	<script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
+		rel="stylesheet">
+	<link rel="stylesheet" href="../static.css/index.css">
+	<link rel="stylesheet" href="../static.css/forms.css">
+</head>
+
+<body class="form-page">
+	<main class="form-bg">
+		<h1 class="form-title">Digital <span><br>Pet</span></h1>
+
+		<h2 class="form-subtitle">Registro</h2>
+
+		<form th:action="@{/Vacunas/registro}" method="POST" class="form" id="form">
+			<!--  -->
+			<div class="form-group form-group-long" id="group-vacunasAplicadas">
+				<label for="vacunasAplicadas" class="form-label">Seleccione las vacunas que la mascota tiene aplicadas</label>
+				<div class="form-group-input">
+					<ul class="form-select">
+						<li><a>Seleccionar vacunas</a>
+							<ul>
+								<li class="form-option">
+									<input type="checkbox"> Ninguna
+								</li>
+								<li>
+									<input type="checkbox" th:value="${mascota.vacPendientes.tipo}" name="vacAplicadas">
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<p><span class="warn">*</span>Campo obligatorio</p>
+			<!--
+			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+				<div class="card-body">
+					<h5 class="card-title">Éxito</h5>
+					<p class="card-text" th:text="${exito}"></p>
+				</div>
+			</div>
+-->
+			<!--
+				<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+					<div class="card-body">
+						<h5 class="card-title">Error</h5>
+						<p class="card-text" th:text="${error}"></p>
+					</div>
+				</div>
+-->
+			<div th:if="${error}!=null" class="form-message form-group-long">
+				<h1>Error:</h1>
+				<p th:text="${error}"><i class="fas fa-exclamation-triangle"></i></p>
+			</div>
+
+			<div class="form-group form-group-btn-submit">
+				<button type="submit" class="form-btn">Enviar</button>
+			</div>
+		</form>
+		<div class="form-footer">
+			<nav>
+				<ul>
+					<li><a href="./">Home</a></li>
+					<li><a href="#">About us</a></li>
+					<li><a href="#">Info</a></li>
+				</ul>
+			</nav>
+			<div>
+				<a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+				<a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+				<a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+			</div>
+		</div>
+	</main>
+
+	<script src="../static.js/forms.js"></script>
+</body>
+
+</html>
