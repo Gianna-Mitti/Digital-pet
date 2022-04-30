@@ -54,7 +54,7 @@ private UsuarioServ usuarioServ;
     public String modificar (@PathVariable String id, ModelMap modelo){
         modelo.put("usuario", usuarioServ.getOne(id));
         
-        return "form-usuario-modific.html";
+        return "form-usuario-modif.html";
     }
  
     @PostMapping("/modificar/{id}")
