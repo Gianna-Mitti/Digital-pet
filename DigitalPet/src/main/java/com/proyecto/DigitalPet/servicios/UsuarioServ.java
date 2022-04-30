@@ -1,6 +1,7 @@
 package com.proyecto.DigitalPet.servicios;
 
 import com.proyecto.DigitalPet.entidades.Usuario;
+import com.proyecto.DigitalPet.enums.Role;
 import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.repositorios.UsuarioRepo;
 import java.util.ArrayList;
@@ -8,11 +9,11 @@ import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -40,6 +41,7 @@ public class UsuarioServ implements UserDetailsService{
         usuario.setMail(mail);
         String encriptada = new BCryptPasswordEncoder().encode(clave);
         usuario.setClave(encriptada);
+        usuario.setRole(Role.USER);
         return usuarioRepo.save(usuario);
     }
 
@@ -130,13 +132,14 @@ if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
         }
     }
 
+    @Override
     public UserDetails loadUserByUsername(String mail) throws UsernameNotFoundException {
        Usuario entidad = (Usuario) usuarioRepo.buscarxMail(mail);
        
        if(entidad != null) {
          List<GrantedAuthority> permisos = new ArrayList<>();
          
-         GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" /*+ entidad.getRol()*/);
+         GrantedAuthority p1 = new SimpleGrantedAuthority("ROLE_" + entidad.getRole());
          permisos.add(p1);
          
          ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
