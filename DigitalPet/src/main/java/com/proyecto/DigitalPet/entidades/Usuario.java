@@ -1,5 +1,6 @@
 package com.proyecto.DigitalPet.entidades;
 
+import com.proyecto.DigitalPet.enums.Role;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,7 +8,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import org.hibernate.annotations.GenericGenerator;
-import org.springframework.context.annotation.Role;
 
 @Entity
 public class Usuario {
@@ -94,8 +94,5 @@ private Role role;
         this.role = role;
     }
 
-    public void setRole(com.proyecto.DigitalPet.enums.Role role) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
 }
