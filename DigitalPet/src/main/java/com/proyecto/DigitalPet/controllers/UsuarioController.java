@@ -1,6 +1,5 @@
 package com.proyecto.DigitalPet.controllers;
 
-
 import com.proyecto.DigitalPet.entidades.Usuario;
 import com.proyecto.DigitalPet.servicios.UsuarioServ;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-    /*
 
-*/
 @Controller
 @RequestMapping("/usuario")
 public class UsuarioController {
@@ -36,7 +33,7 @@ private UsuarioServ usuarioServ;
     @GetMapping("/registro")
     public String registrar(){
         
-        return "form-usuario";
+        return "form-usuario.html";
     }
     
     @PostMapping("/registro")      
@@ -49,7 +46,7 @@ private UsuarioServ usuarioServ;
         }catch (Exception e){
             modelo.put("error", "No se ha registrado correctamente");
 
-            return "form-usuario.html";
+            return "index.html";
         }
     } 
     
