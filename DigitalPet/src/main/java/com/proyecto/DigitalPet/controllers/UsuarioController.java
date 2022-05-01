@@ -53,7 +53,7 @@ private UsuarioServ usuarioServ;
     @GetMapping("/modificar/{id}")
     public String modificar (@PathVariable String id, ModelMap modelo){
         modelo.put("usuario", usuarioServ.getOne(id));
-        
+            
         return "form-usuario-modif.html";
     }
  
@@ -66,7 +66,7 @@ private UsuarioServ usuarioServ;
             
         }catch (Exception e){
             modelo.put("error", "No se ha modificado correctamente");
-            return "form-usuario-modific.html";
+            return "form-usuario-modif.html";
             
         }
     }
