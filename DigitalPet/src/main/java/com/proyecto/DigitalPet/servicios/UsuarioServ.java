@@ -35,12 +35,14 @@ public class UsuarioServ implements UserDetailsService{
     public Usuario registrar(String nombre, String apellido, String mail, Long tel, String clave) throws ErrorServicio {
         validator(nombre, apellido, mail, clave);
         Usuario usuario = new Usuario();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setTel(tel);
         usuario.setMail(mail);
-        String encriptada = new BCryptPasswordEncoder().encode(clave);
-        usuario.setClave(encriptada);
+//        String encriptada = new BCryptPasswordEncoder().encode(clave);
+        usuario.setClave(encoder.encode(clave));
+//        usuario.setClave(encriptada);
         usuario.setRole(Role.USER);
         return usuarioRepo.save(usuario);
     }
