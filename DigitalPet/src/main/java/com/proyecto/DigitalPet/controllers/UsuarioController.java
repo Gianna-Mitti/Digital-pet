@@ -46,7 +46,7 @@ private UsuarioServ usuarioServ;
         }catch (Exception e){
             modelo.put("error", "No se ha registrado correctamente");
 
-            return "index.html";
+            return "form-usuario.html";
         }
     } 
     
