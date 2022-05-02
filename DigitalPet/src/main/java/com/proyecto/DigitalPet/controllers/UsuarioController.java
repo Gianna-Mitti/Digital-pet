@@ -37,7 +37,7 @@ private UsuarioServ usuarioServ;
     }
     
     @PostMapping("/registro")      
-    public String registrar (ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam Long tel, @RequestParam String clave){
+    public String registrar (ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave){
       try{
           usuarioServ.registrar(nombre, apellido, mail, tel, clave);
           modelo.put("exito", "Registro exitoso");
