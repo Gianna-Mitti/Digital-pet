@@ -4,7 +4,7 @@ const inputs = document.querySelectorAll('#form input');
 const expressions = {
 	name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
 	surname: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-	phone:/^\d{7,10}$/,
+	phone:/^\d{0, 14}$/,
 	mail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	password: /^.{4,12}$/,
 }
