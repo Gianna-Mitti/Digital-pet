@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro mascota</title>
+    <title>Registro Mascota</title>
 
     <script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static.css/index.css">
-	<link rel="stylesheet" href="../static.css/forms.css">
+	<link rel="stylesheet" href="../static.css/form-mascota.css">
 </head>
 <body class="form-page">
     <main class="form-bg">
@@ -24,53 +24,58 @@
 			<div class="form-group" id="group-name">
 				<label for="name" class="form-label">Nombre<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<input type="text" class="form-input" name="nombre" id="name" placeholder="Elsa">
+					<input type="text" class="form-input" name="name" id="name" placeholder="Pichicha">
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 				<p class="form-input-error">Campo obligatorio.</p>
 			</div>
 
             <div class="form-group" id="group-birth">
-				<label for="birth" class="form-label">Fecha de nacimiento</label>
+				<label for="birth" class="form-label">Fecha de nacimiento<span class="warn">*</span></label>
 				<div class="form-group-input">
 						<input type="date" class="form-input" name="fechaNac" id="birth">
+						<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 			</div>
 
-			<div class="form-group" id="group-terms">
+			<div class="form-group-long" id="group-terms">
 				<label class="form-label">
 					<input class="form-check" type="radio" name="sexo" id="terms">
 					Macho<span class="warn">*</span>
+					<i class="form-validate-state fas fa-times-circle"></i>
 				</label>
                 <label class="form-label">
 					<input class="form-check" type="radio" name="sexo" id="terms">
 					Hembra<span class="warn">*</span>
+					<i class="form-validate-state fas fa-times-circle"></i>
 				</label>
 			</div>
 
 			<div class="form-group" id="group-especie">
-				<label for="especie" class="form-label">Especie</label>
+				<label for="especie" class="form-label">Especie<span class="warn">*</span></label>
 				<div class="form-group-input">
 					<select class="form-input" name="especie" id="especie" aria-placeholder="Seleccione...">
 						<option selected>Especie</option>
 						<option value="caba">Gato</option>
 						<option value="zona norte">Perro</option>
 					  </select>
+					  <i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 			</div>
 
 			<div class="form-group" id="group-vacAplicadas">
-				<label for="vacAplicadas" class="form-label">Vacunas</label>
+				<label for="vacAplicadas" class="form-label">Vacunas<span class="warn">*</span></label>
 				<div class="form-group-input">
 					<select class="form-input" name="vacAplicadas" id="vacAplicadas" aria-placeholder="Seleccione...">
 						<option selected>Vacunas</option>
 						<option value="caba">Gato</option>
 						<option value="zona norte">Perro</option>
 					  </select>
+					  <i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 			</div>
             
-            <p><span class="warn">*</span>Campo obligatorio</p>
+			<p><span class="warn">*</span>Campo obligatorio</p>
 <!--
 			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
 				<div class="card-body">
@@ -112,6 +117,6 @@
 		</div>
 	</main>
 
-	<script src="../static.js/forms.js"></script>
+	<script src="../static.js/forms-mascota.js"></script>
 </body>
 </html>

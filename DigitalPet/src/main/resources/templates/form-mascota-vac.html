@@ -23,14 +23,17 @@
 			<div class="form-group form-group-long" id="group-vacunasAplicadas">
 				<label for="vacunasAplicadas" class="form-label">Seleccione las vacunas que la mascota tiene aplicadas</label>
 				<div class="form-group-input">
-					<select class="form-input" name="vacAplicadas" id="vacunasAplicadas" placeholder="Seleccione..." multiple, autofocus>
+					<select class="form-input" name="vacAplicadas" id="vacunasAplicadas" placeholder="Seleccione...">
                         <option selected>Ninguna</option>
-						<option th:value="${mascota.vacPendientes.tipo}" name="vacAplicadas">acá van las demás vacunas que todavía no están pero en breve van a estar</option> <!--  -->
+						<option th:value="${mascota.vacPendientes.tipo}" name="vacAplicadas">acá van las demás vacunas que todavía no están pero en breve van a estar</option> 
+						<option>Ninguna</option>
+						<option>Ninguna</option>
+						<option>Ninguna</option>
+						<option>Ninguna</option>
 					  </select>
 				</div>
 			</div>
 
-            <p><span class="warn">*</span>Campo obligatorio</p>
 <!--
 			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
 				<div class="card-body">
