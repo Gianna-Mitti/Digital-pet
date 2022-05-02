@@ -18,7 +18,7 @@ const fields = {
 }
 
 const validateForm = (e) => {
-	switch (e.target.name) {
+	switch (e.target.id) {
 		case "name":
 			validateField(expressions.name, e.target, 'name');
 		break;
