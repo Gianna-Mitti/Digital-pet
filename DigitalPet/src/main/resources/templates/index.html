@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -19,8 +19,13 @@
             <span class="off-btn"><i class="fas fa-bars"></i></span>
             
             <nav class="topnav">
+<<<<<<< HEAD
                 <a class="active" href="./">Home</a>
                 <a href="#"></a>
+=======
+                <a class="active" href="/">Home</a>
+                <a href="#">About us</a>
+>>>>>>> 2b51165c206e9315a37ce47e9f44061390c349ea
                 <a href="#">Info</a>
                 <!-- Log in -->
                 <span class=""> 
@@ -28,29 +33,34 @@
                         Log-in
                     </a>
 
-                    <div class="dropdown-menu" id="dropdownMenuButton">
+                    <div th:action="@{/usuario/}" method="POST" class="dropdown-menu" id="dropdownMenuButton">
                         <form class="px-4 py-3">
                           <div class="mb-3">
-                            <label for="exampleDropdownFormEmail1" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="exampleDropdownFormEmail1" placeholder="email@ejemplo.com">
+                            <label for="mail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="mail" name="mail" placeholder="email@ejemplo.com">
                           </div>
                           <div class="mb-3">
-                            <label for="exampleDropdownFormPassword1" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="exampleDropdownFormPassword1" placeholder="Contraseña">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="clave" placeholder="Contraseña">
                           </div>
                           <div class="mb-3">
                             <div class="form-check">
                               <input type="checkbox" class="form-check-input" id="dropdownCheck">
                               <label class="form-check-label" for="dropdownCheck">
-                                Recordarme
+                                Recordarme <!--Esto es facha nomás-->
                               </label>
                             </div>
                           </div>
                           <button type="submit" class="btn btn-primary">Sign in</button>
                         </form>
                         <div class="dropdown-divider"></div>
+<<<<<<< HEAD
                         <a class="dropdown-item" href="./form-usuario.html">Sign up</a>
                         <a class="dropdown-item" href="#">Recuperar contraseña</a>
+=======
+                        <a class="dropdown-item" th:href="@{/usuario/registro}">Sign up</a>
+                        <a class="dropdown-item" href="#">Recuperar contraseña</a> <!--Esto es facha nomás-->
+>>>>>>> 2b51165c206e9315a37ce47e9f44061390c349ea
                       </div>
                 </span>
             </nav>

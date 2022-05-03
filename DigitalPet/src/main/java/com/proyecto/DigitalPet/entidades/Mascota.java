@@ -3,6 +3,7 @@ package com.proyecto.DigitalPet.entidades;
 import com.proyecto.DigitalPet.enums.Especie;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,9 +28,9 @@ public class Mascota {
 //private Raza raza;
     private Boolean alta;
     @OneToMany
-    private ArrayList<Vacuna> vacAplicadas;
+    private List<Vacuna> vacAplicadas;
     @OneToMany
-    private ArrayList<Vacuna> vacPendientes;
+    private List<Vacuna> vacPendientes;
     @ManyToOne
     private Usuario usuario;
 
@@ -96,7 +97,7 @@ public class Mascota {
         this.alta = alta;
     }
 
-    public ArrayList<Vacuna> getVacAplicadas() {
+    public List<Vacuna> getVacAplicadas() {
         return vacAplicadas;
     }
 
@@ -104,7 +105,7 @@ public class Mascota {
         this.vacAplicadas = vacAplicadas;
     }
 
-    public ArrayList<Vacuna> getVacPendientes() {
+    public List<Vacuna> getVacPendientes() {
         return vacPendientes;
     }
 

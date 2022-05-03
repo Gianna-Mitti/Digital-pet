@@ -6,21 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Mascota</title>
 
-    <script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Registro mascota</title>
+
+	<script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static.css/index.css">
-	<link rel="stylesheet" href="../static.css/form-mascota.css">
+    <link rel="stylesheet" href="../static/static.css/index.css">
+	<link rel="stylesheet" href="../static/static.css/forms.css">
 </head>
-<body class="form-page">
-    <main class="form-bg">
-        <h1 class="form-title">Digital <span><br>Pet</span></h1>
 
-        <h2 class="form-subtitle">Registro</h2>
-		
+<body class="form-page">
+	<main class="form-bg">
+		<h1 class="form-title">Digital <span><br>Pet</span></h1>
+
+		<h2 class="form-subtitle">Registro</h2>
+
 
 		<form th:action="@{/mascota/registro}" method="POST" class="form" id="form">
+
 			<div class="form-group" id="group-name">
 				<label for="name" class="form-label">Nombre<span class="warn">*</span></label>
 				<div class="form-group-input">
@@ -30,22 +38,30 @@
 				<p class="form-input-error">Campo obligatorio.</p>
 			</div>
 
-            <div class="form-group" id="group-birth">
+            <!-- <div class="form-group" id="group-birth">
 				<label for="birth" class="form-label">Fecha de nacimiento<span class="warn">*</span></label>
 				<div class="form-group-input">
-						<input type="date" class="form-input" name="fechaNac" id="birth">
+						<input type="date" class="form-input" name="date" id="fechaNac" required/>
 						<i class="form-validate-state fas fa-times-circle"></i>
+				</div>
+			</div> -->
+
+			<div class="form-group" id="group-birth">
+				<label for="birth" class="form-label">Fecha de nacimiento<span class="warn">*</span></label>
+					<div class="form-group-input">
+				  <input type="date" class="form-input" name="date" id="fechaNac" name="date" min="1990-01-01" max="2022-05-02" required/>
+				  <i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 			</div>
 
-			<div class="form-group-long" id="group-terms">
+			<div class="form-group-long" id="group-sexo">
 				<label class="form-label">
-					<input class="form-check" type="radio" name="sexo" id="terms">
+					<input class="form-check" type="radio" name="sexo" id="sexo">
 					Macho<span class="warn">*</span>
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</label>
                 <label class="form-label">
-					<input class="form-check" type="radio" name="sexo" id="terms">
+					<input class="form-check" type="radio" name="sexo" id="sexo">
 					Hembra<span class="warn">*</span>
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</label>
@@ -73,6 +89,7 @@
 					  </select>
 					  <i class="form-validate-state fas fa-times-circle"></i>
 				</div>
+				<p class="form-input-error">Campo obligatorio.</p>
 			</div>
             
 			<p><span class="warn">*</span>Campo obligatorio</p>
@@ -84,7 +101,7 @@
 				</div>
 			</div>
 -->
-<!--
+			<!--
 				<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
 					<div class="card-body">
 						<h5 class="card-title">Error</h5>
@@ -98,16 +115,17 @@
 			</div>
 
 			<div class="form-group form-group-btn-submit">
+				
 				<button type="submit" class="form-btn">Enviar</button>
 			</div>
 		</form>
-        <div class="form-footer">
+		<div class="form-footer">
 			<nav>
 				<ul>
 					<li><a href="./">Home</a></li>
 					<li><a href="#">About us</a></li>
 					<li><a href="#">Info</a></li>
-				  </ul>
+				</ul>
 			</nav>
 			<div>
 				<a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
@@ -117,6 +135,7 @@
 		</div>
 	</main>
 
-	<script src="../static.js/forms-mascota.js"></script>
+	<script src="../static/static.js/form-mascota.js"></script>
 </body>
+
 </html>

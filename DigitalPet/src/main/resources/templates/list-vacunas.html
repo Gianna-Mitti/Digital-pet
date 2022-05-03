@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -88,13 +88,13 @@
                         <th scope="col">Refuerzo</th>
                     </tr>
                 </thead>
-                <tbody th:each="vacunaAp : ${vacunasAp}">
+                <tbody th:each="vacunaPend : ${vacunasPend}">
                     <tr>
-                        <td th:text="${vacunaAp.tipo}"></td>
-                        <td th:text="${vacunaAp.edadAplicacion}"></td>
+                        <td th:text="${vacunaPend.tipo}"></td>
+                        <td th:text="${vacunaPend.edadAplicacion}"></td>
                         <td>
-                            <i th:if="${vacunaAp.refuerzo}" class="fa fa-circle text-success"></i>
-                            <i th:unless="${vacunaAp.refuerzo}" class="fa fa-circle" style="color:red;"></i>
+                            <i th:if="${vacunaPend.refuerzo}" class="fa fa-circle text-success"></i>
+                            <i th:unless="${vacunaPend.refuerzo}" class="fa fa-circle" style="color:red;"></i>
                         </td>
                     </tr>
 

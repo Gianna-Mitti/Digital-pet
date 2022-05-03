@@ -3,8 +3,8 @@ const inputs = document.querySelectorAll('#form input');
 
 const expressions = {
 	name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-	surname: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-	phone:/^\d{7,10}$/,
+	surname: /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,40}$/,
+	phone:/^\d{0,14}$/,
 	mail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
 	password: /^.{4,12}$/,
 }
@@ -87,8 +87,8 @@ inputs.forEach((input) => {
 	input.addEventListener('blur', validateForm);
 });
 /*
-form.addEventListener('submit', (e) => {
 	const terms = document.getElementById('terms');
+form.addEventListener('submit', () => {
 	if(!(fields.name && fields.surname && fields.mail && fields.password && terms.checked) ){
 		e.preventDefault();
 		document.getElementById('form-message').classList.add('form-message-active');

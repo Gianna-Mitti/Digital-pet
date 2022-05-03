@@ -19,28 +19,29 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter{
 public UsuarioServ usuarioServ;
 
 @Autowired
-public void ConfigureGlobal(AuthenticationManagerBuilder auth) throws Exception{
+public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
     auth
             .userDetailsService(usuarioServ)
             .passwordEncoder(new BCryptPasswordEncoder());
             
 }
 
+@Override
     public void configure(HttpSecurity http) throws Exception {
         http.headers().frameOptions().sameOrigin().and()
                 .authorizeRequests()
                 .antMatchers("/css/*", "/js/*", "/img/*", "/**")
                 .permitAll()
              .and().formLogin()
-                .loginPage("/login") //TODO REVISAR HTML
+                .loginPage("/login")
                 .loginProcessingUrl("/logincheck")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/index?login")
+                .usernameParameter("mail")
+                .passwordParameter("clave")
+                .defaultSuccessUrl("/perfil?login")
                 .permitAll()
             .and().logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/index?logout")
                 .permitAll();
     }    
 }

@@ -12,9 +12,9 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class MascotaServ {
@@ -63,6 +63,7 @@ public class MascotaServ {
             mascota.setFechaNac(fechaNac);
             mascota.setSexo(sexo);
             mascota.setEspecie(especie);
+            mascota.setUsuario(usuario);
 
             switch (mascota.getEspecie().toString()) {
                 case "CANINO":
@@ -172,7 +173,8 @@ public class MascotaServ {
             throw new ErrorServicio("No se encontró la mascota que está intentando dar de alta.");
         }
     }
-
+    
+    @Transactional(readOnly = true)
     public Mascota buscarMxId(String id) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(id);
 
@@ -184,9 +186,38 @@ public class MascotaServ {
         }
     }
 
+        @Transactional(readOnly = true)
+    public List<Mascota> findAll() {
+        return mascotaRepo.findAll();
+    }
+    
+    @Transactional(readOnly = true)
     public List<Mascota> listarMascotas(String idU) throws ErrorServicio {
-
+        if(idU != null) {
         List<Mascota> mascotas = mascotaRepo.findPetsByUser(idU);
-        return mascotas;
+        return mascotas;    
+        } else {
+            throw new ErrorServicio("No se encontraron mascotas asociadas a este usuario.");
+        }
+    }
+    
+        @Transactional(readOnly = true)
+    public List<Vacuna> listarVacAp(String id) throws ErrorServicio {
+        if(id != null) {
+        List<Vacuna> vacs = mascotaRepo.listVacAp(id);
+        return vacs;    
+        } else {
+            throw new ErrorServicio("No se encontró esta mascota.");
+        }
+    }
+    
+            @Transactional(readOnly = true)
+    public List<Vacuna> listarVacPend(String id) throws ErrorServicio {
+        if(id != null) {
+        List<Vacuna> vacs = mascotaRepo.listVacPend(id);
+        return vacs;    
+        } else {
+            throw new ErrorServicio("No se encontró esta mascota.");
+        }
     }
 }

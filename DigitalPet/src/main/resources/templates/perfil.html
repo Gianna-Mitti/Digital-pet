@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -39,6 +39,10 @@
     </header>
 
     <main>
+        <div th:if="${exito}!=null" class="form-message form-group-long">
+            <h1>Exito:</h1>
+            <p th:text="${exito}"><i class="fas fa-exclamation-triangle"></i></p>
+        </div>
         <h2>Mis datos</h2>
 
         <section>
@@ -81,13 +85,17 @@
                             <i th:if="${mascota.alta}" class="fa fa-circle text-success"></i>
                             <i th:unless="${mascota.alta}" class="fa fa-circle" style="color:red;"></i>
                         </td>
-                        <td><a th:href="@({/vacuna/listarVac/__${mascota.id}__}"></a></td>
+                        <td><a th:href="@({/mascota/list-vacunas/__${mascota.id}__}"></a></td>
                         <td>
                             <a th:href="@{/mascota/habilitar/__${mascota.id}__}"><i class="fa fa-arrow-up"></i></a>
                             <a th:href="@{/mascota/eliminar/__${mascota.id}__}"><i class="fa fa-ban"></i></a>
                             <a th:href="@{/mascota/modificar/__${mascota.id}__}"><i class="fas fa-feather-alt"></i></a>
                         </td>
                     </tr>
+
+                    <div class="form-group form-group-btn-submit">
+                        <button th:href="@{/mascota/form-mascota/__${mascota.id}__} class="form-btn">Agregar mascota</button>
+                    </div>
 
                 </tbody>
             </table>

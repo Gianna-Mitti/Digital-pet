@@ -3,10 +3,7 @@ const inputs = document.querySelectorAll('#form input');
 
 const expressions = {
     name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-	fechaNac: /^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$/, /* validacion dd/mm/aaaa */
-	sexo:/^\d{7,10}$/,
-	especie: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	vacAplicadas: /^.{4,12}$/,
+	fechaNac: 
 }
 
 const fields = {
@@ -82,6 +79,8 @@ const validateField = (expression, input, field) => {
 		fields[field] = false;
 	}
 }
+
+
 // const validatePasswordi = () => {
 // 	const inputPassword = document.getElementById('password');
 // 	const inputPasswordi = document.getElementById('passwordi');
