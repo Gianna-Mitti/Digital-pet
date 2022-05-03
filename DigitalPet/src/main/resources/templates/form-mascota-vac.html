@@ -13,8 +13,8 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
 		rel="stylesheet">
-	<link rel="stylesheet" href="../static.css/index.css">
-	<link rel="stylesheet" href="../static.css/forms.css">
+		<link rel="stylesheet" href="../static/static.css/index.css">
+		<link rel="stylesheet" href="../static/static.css/forms.css">
 </head>
 
 <body class="form-page">
@@ -28,23 +28,22 @@
 			<div class="form-group form-group-long" id="group-vacunasAplicadas">
 				<label for="vacunasAplicadas" class="form-label">Seleccione las vacunas que la mascota tiene aplicadas</label>
 				<div class="form-group-input">
-					<ul class="form-select">
-						<li><a>Seleccionar vacunas</a>
-							<ul>
-								<li class="form-option">
-									<input type="checkbox"> Ninguna
-								</li>
-								<li>
-									<input type="checkbox" th:value="${mascota.vacPendientes.tipo}" name="vacAplicadas">
-								</li>
-							</ul>
-						</li>
-					</ul>
+					<select class="form-input" name="vacAplicadas" id="vacunasAplicadas" placeholder="Seleccione...">
+                        <option selected>Ninguna</option>
+						<option th:each="vacuna : ${vacunas}" th:value="${vacuna.id}" th:text="${vacuna.tipoVac}">acá van las demás vacunas que todavía no están pero en breve van a estar</option> 
+					  </select>
 				</div>
 			</div>
 
-			<p><span class="warn">*</span>Campo obligatorio</p>
-			<!--
+			<!-- <div>
+				<label>vacunas: </label> <br>
+                        <select class="form-group-input" name="vacPendientes">
+                            <option th:each="vacuna : ${vacunas}" th:value="${vacuna.id}" th:text="${vacuna.tipoVac}"></option>
+                        </select>
+            <br>
+
+			</div> -->
+<!--
 			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
 				<div class="card-body">
 					<h5 class="card-title">Éxito</h5>
@@ -85,7 +84,7 @@
 		</div>
 	</main>
 
-	<script src="../static.js/forms.js"></script>
+	<script src="../static/static.js/forms.js"></script>
 </body>
 
 </html>

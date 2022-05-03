@@ -54,7 +54,7 @@ header {
     border: none;
 }
 .topnav a:hover {
-    color: #DB4800;
+    background-color: #DB4800;
 }
 .topnav a.active {
     background-color: #D5DB18; /* A */

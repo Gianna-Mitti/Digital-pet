@@ -1,24 +1,32 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Mascota</title>
 
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registro mascota</title>
-
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
-		rel="stylesheet">
-	<link rel="stylesheet" href="../static.css/index.css">
-	<link rel="stylesheet" href="../static.css/forms.css">
+	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/static.css/index.css">
+	<link rel="stylesheet" href="../static/static.css/forms.css">
 </head>
 
 <body class="form-page">
 	<main class="form-bg">
+		<script>
+			$(document).ready(function(){
+				$(".chosen").chosen();
+		   });
+		</script>
 		<h1 class="form-title">Digital <span><br>Pet</span></h1>
 
 		<h2 class="form-subtitle">Registro</h2>
@@ -29,46 +37,68 @@
 			<div class="form-group" id="group-name">
 				<label for="name" class="form-label">Nombre<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<input type="text" class="form-input" name="nombre" id="name" placeholder="Chiquito">
+					<input type="text" class="form-input" name="name" id="name" placeholder="Pichicha">
 					<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 				<p class="form-input-error">Campo obligatorio.</p>
 			</div>
 
-			<div class="form-group" id="group-birth">
+            <!-- <div class="form-group" id="group-birth">
 				<label for="birth" class="form-label">Fecha de nacimiento<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<input type="date" class="form-input" name="fechaNac" id="birth">
+						<input type="date" class="form-input" name="date" id="fechaNac" required/>
+						<i class="form-validate-state fas fa-times-circle"></i>
 				</div>
-				<p class="form-input-error">Campo obligatorio.</p>
-			</div>
+			</div> -->
 
-			<div class="form-group" id="group-especie">
-				<label for="especie" class="form-label">Especie</label>
-				<div class="form-group-input">
-					<select class="form-input" name="especie" id="especie" aria-placeholder="Seleccione...">
-						<option selected>Especie</option>
-						<option value="gato">Gato</option>
-						<option value="perro">Perro</option>
-					</select>
+			<div class="form-group" id="group-birth">
+				<label for="birth" class="form-label">Fecha de nacimiento<span class="warn">*</span></label>
+					<div class="form-group-input">
+				  <input type="date" class="form-input" name="date" id="fechaNac" name="date" min="1990-01-01" max="2022-05-02" required/>
+				  <i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 			</div>
 
 			<div class="form-group" id="group-sexo">
-				<label class="form-label">Sexo<span class="warn">*</span></label>
-				<div class="form-group-input form-group-sexo">
-					<p style="font-weight: 600; padding-left: 18px;">
-						<input class="form-check" type="radio" name="sexo" id="sexo" value="macho"> Macho
-					</p>
-					<p style="font-weight: 600; padding-left: 18px;">
-						<input class="form-check" type="radio" name="sexo" id="sexo" value="hembra"> Hembra
-					</p>
-				</div>
-				<p class="form-input-error">Campo obligatorio.</p>
+				<label class="form-label">
+					<input class="form-check" type="radio" name="sexo" id="sexo">
+					Macho<span class="warn">*</span>
+					<i class="form-validate-state fas fa-times-circle"></i>
+				</label>
+                <label class="form-label">
+					<input class="form-check" type="radio" name="sexo" id="sexo">
+					Hembra<span class="warn">*</span>
+					<i class="form-validate-state fas fa-times-circle"></i>
+				</label>
 			</div>
 
-			<p class="form-group-long"><span class="warn">*</span>Campo obligatorio</p>
-			<!--
+			<div class="form-group" id="group-especie">
+				<label for="especie" class="form-label">Especie<span class="warn">*</span></label>
+				<div class="form-group-input-select">
+					<select class="form-input" name="especie" id="especie" aria-placeholder="Seleccione...">
+						<option selected>Especie</option>
+						<option value="FELINO">Gato</option>
+						<option value="CANINO">Perro</option>
+					  </select>
+					  <i class="form-validate-state fas fa-times-circle"></i>
+				</div>
+			</div>
+
+			<!-- <div class="form-group" id="group-vacAplicadas">
+				<label for="vacAplicadas" class="form-label">Vacunas<span class="warn">*</span></label>
+				<div class="form-group-input">
+					<select class="form-input" name="vacAplicadas" id="vacAplicadas" aria-placeholder="Seleccione..." multiple>
+						<option selected>Vacunas</option>
+						<option value="#">Gato</option>
+						<option value="#">Perro</option>
+					  </select>
+					  <i class="form-validate-state fas fa-times-circle"></i>
+				</div>
+				<p class="form-input-error">Campo obligatorio.</p>
+			</div> -->
+            
+			<p><span class="warn">*</span>Campo obligatorio</p>
+<!--
 			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
 				<div class="card-body">
 					<h5 class="card-title">Éxito</h5>
@@ -89,8 +119,7 @@
 				<p th:text="${error}"><i class="fas fa-exclamation-triangle"></i></p>
 			</div>
 
-			<div class="form-group form-group-btn-submit">
-				
+			<div class="form-group form-group-btn-submit">				
 				<button type="submit" class="form-btn">Enviar</button>
 			</div>
 		</form>
@@ -110,7 +139,7 @@
 		</div>
 	</main>
 
-	<script src="../static.js/forms.js"></script>
+	<script src="../static/static.js/form-mascota.js"></script>
 </body>
 
 </html>
