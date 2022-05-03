@@ -39,13 +39,15 @@ private UsuarioServ usuarioServ;
     @PostMapping("/registro")      
     public String registrar (ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave){
       try{
+          System.out.println(clave);
           usuarioServ.registrar(nombre, apellido, mail, tel, clave);
           modelo.put("exito", "Registro exitoso");
           return "perfil.html";
 
         }catch (Exception e){
             modelo.put("error", "No se ha registrado correctamente");
-
+            System.out.println(e.getMessage());
+                    
             return "form-usuario.html";
         }
     } 
