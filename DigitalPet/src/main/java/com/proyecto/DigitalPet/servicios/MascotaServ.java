@@ -98,10 +98,10 @@ public class MascotaServ {
                 while (it.hasNext()) {
                     vacAplicada = vacAplicadas.get(i);
                     aux = it.next();
-                    if (aux.getTipoVac().equals(vacAplicada.getTipoVac()) && aux.getRefuerzo().toString().equals("FALSE")) {
+                    if (aux.getTipoVac().equals(vacAplicada.getTipoVac()) && !aux.getRefuerzo()) {
                         it.remove();
-                    }else if(aux.getRefuerzo().toString().equals("TRUE")){
-                        
+                    }else if(aux.getTipoVac().equals(vacAplicada.getTipoVac())){
+                        aux.setFechaAplicacion(LocalDate.now());
                     }
                         
                     i++;
