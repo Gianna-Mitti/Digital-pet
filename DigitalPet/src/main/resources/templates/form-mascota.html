@@ -11,7 +11,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registro mascota</title>
-
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,11 @@
 
 <body class="form-page">
 	<main class="form-bg">
+		<script>
+			$(document).ready(function(){
+				$(".chosen").chosen();
+		   });
+		</script>
 		<h1 class="form-title">Digital <span><br>Pet</span></h1>
 
 		<h2 class="form-subtitle">Registro</h2>
@@ -54,7 +59,7 @@
 				</div>
 			</div>
 
-			<div class="form-group-long" id="group-sexo">
+			<div class="form-group" id="group-sexo">
 				<label class="form-label">
 					<input class="form-check" type="radio" name="sexo" id="sexo">
 					Macho<span class="warn">*</span>
@@ -69,7 +74,7 @@
 
 			<div class="form-group" id="group-especie">
 				<label for="especie" class="form-label">Especie<span class="warn">*</span></label>
-				<div class="form-group-input">
+				<div class="form-group-input-select">
 					<select class="form-input" name="especie" id="especie" aria-placeholder="Seleccione...">
 						<option selected>Especie</option>
 						<option value="caba">Gato</option>
@@ -82,7 +87,7 @@
 			<div class="form-group" id="group-vacAplicadas">
 				<label for="vacAplicadas" class="form-label">Vacunas<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<select class="form-input" name="vacAplicadas" id="vacAplicadas" aria-placeholder="Seleccione...">
+					<select class="form-input" name="vacAplicadas" id="vacAplicadas" aria-placeholder="Seleccione..." multiple>
 						<option selected>Vacunas</option>
 						<option value="caba">Gato</option>
 						<option value="zona norte">Perro</option>
@@ -116,7 +121,7 @@
 
 			<div class="form-group form-group-btn-submit">
 				
-				<button type="submit" class="form-btn">Enviar</button>
+				<button type="submit" class="form-btn" href="./">Enviar</button>
 			</div>
 		</form>
 		<div class="form-footer">

@@ -3,7 +3,6 @@ const inputs = document.querySelectorAll('#form input');
 
 const expressions = {
     name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-	fechaNac: 
 }
 
 const fields = {
@@ -13,34 +12,6 @@ const fields = {
 	especie: false,
 	vacAplicadas: false,
 }
-
-// opciones = document.getElementsByName("opciones");
- 
-// var especie = false;
-// for(var i=0; i<opciones.length; i++) {
-//   if(opciones[i].checked) {
-//     especie = true;
-//     break;
-//   }
-// }
- 
-// if(!especie) {
-//   return false;
-// }
-
-// let ano = document.getElementById("ano").value;
-// let mes = document.getElementById("mes").value;
-// let dia = document.getElementById("dia").value;
-
-// fechaNac = new Date(ano, mes, dia);
-// if(!isNaN(fechaNac)){
-// 	return false;
-// }
-
-// indice = document.getElementById("especie").selectedIndex;
-// if( indice == null || indice == 0 ) {
-//   return false;
-// }
 
 const validateForm = (e) => {
 	switch (e.target.id) {
