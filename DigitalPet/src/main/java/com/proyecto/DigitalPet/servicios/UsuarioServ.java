@@ -9,9 +9,9 @@ import java.util.List;
 import java.util.Optional;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -35,12 +35,14 @@ public class UsuarioServ implements UserDetailsService{
     public Usuario registrar(String nombre, String apellido, String mail, Long tel, String clave) throws ErrorServicio {
         validator(nombre, apellido, mail, clave);
         Usuario usuario = new Usuario();
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         usuario.setNombre(nombre);
         usuario.setApellido(apellido);
         usuario.setTel(tel);
         usuario.setMail(mail);
-        String encriptada = new BCryptPasswordEncoder().encode(clave);
-        usuario.setClave(encriptada);
+//        String encriptada = new BCryptPasswordEncoder().encode(clave);
+        usuario.setClave(encoder.encode(clave));
+//        usuario.setClave(encriptada);
         usuario.setRole(Role.USER);
         return usuarioRepo.save(usuario);
     }
@@ -146,7 +148,7 @@ if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
          HttpSession session = attr.getRequest().getSession(true);
          session.setAttribute("usuariosesion", entidad);
          
-         User user = new User(/*entidad.getMail(), entidad.getClave(), permisos*/);
+         User user = new User(entidad.getMail(), entidad.getClave(), permisos);
          return (UserDetails) user;
        } else {
            return null;

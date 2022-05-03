@@ -1,8 +1,8 @@
 package com.proyecto.DigitalPet.entidades;
 
 import com.proyecto.DigitalPet.enums.Especie;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -21,7 +21,7 @@ public class Mascota {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
     private String nombre;
-    private Date fechaNac;
+    private LocalDate fechaNac;
     private String sexo;
     @Enumerated(EnumType.STRING)
     private Especie especie;
@@ -37,7 +37,7 @@ public class Mascota {
     public Mascota() {
     }
 
-    public Mascota(String id, String nombre, Date fechaNac, String sexo, Especie especie, Boolean alta, ArrayList<Vacuna> vacAplicadas, ArrayList<Vacuna> vacPendientes, Usuario usuario) {
+    public Mascota(String id, String nombre, LocalDate fechaNac, String sexo, Especie especie, Boolean alta, ArrayList<Vacuna> vacAplicadas, ArrayList<Vacuna> vacPendientes, Usuario usuario) {
         this.id = id;
         this.nombre = nombre;
         this.fechaNac = fechaNac;
@@ -65,11 +65,11 @@ public class Mascota {
         this.nombre = nombre;
     }
 
-    public Date getFechaNac() {
+    public LocalDate getFechaNac() {
         return fechaNac;
     }
 
-    public void setFechaNac(Date fechaNac) {
+    public void setFechaNac(LocalDate fechaNac) {
         this.fechaNac = fechaNac;
     }
 
