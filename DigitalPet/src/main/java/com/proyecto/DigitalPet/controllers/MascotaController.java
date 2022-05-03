@@ -5,8 +5,8 @@ import com.proyecto.DigitalPet.entidades.Vacuna;
 import com.proyecto.DigitalPet.enums.Especie;
 import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.servicios.MascotaServ;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -40,7 +40,7 @@ public class MascotaController {
     }
 
 @PostMapping("/form-mascota/{id}")
-public String registrar(ModelMap model, @PathVariable String idU, @RequestParam String nombre, @RequestParam Date fechaNac, @RequestParam String sexo, @RequestParam Especie especie) throws Exception {
+public String registrar(ModelMap model, @PathVariable String idU, @RequestParam String nombre, @RequestParam LocalDate fechaNac, @RequestParam String sexo, @RequestParam Especie especie) throws Exception {
     
     try{
         mascotaServ.crear(idU, nombre, fechaNac, sexo, especie);
@@ -103,7 +103,7 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
     }
     
     @PostMapping("/modificar/{id}")
-    public String editar(@PathVariable String idUsuario, @PathVariable String idMascota, @RequestParam String nombre, @RequestParam Date fechaNac, @RequestParam String sexo, @RequestParam Especie especie, ModelMap modelo) throws Exception {
+    public String editar(@PathVariable String idUsuario, @PathVariable String idMascota, @RequestParam String nombre, @RequestParam LocalDate fechaNac, @RequestParam String sexo, @RequestParam Especie especie, ModelMap modelo) throws Exception {
 
         try {
             mascotaServ.editar(idUsuario, idMascota, nombre, fechaNac, sexo, especie);
