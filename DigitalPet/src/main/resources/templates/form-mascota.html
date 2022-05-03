@@ -77,14 +77,14 @@
 				<div class="form-group-input-select">
 					<select class="form-input" name="especie" id="especie" aria-placeholder="Seleccione...">
 						<option selected>Especie</option>
-						<option value="#">Gato</option>
-						<option value="#">Perro</option>
+						<option value="FELINO">Gato</option>
+						<option value="CANINO">Perro</option>
 					  </select>
 					  <i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 			</div>
 
-			<div class="form-group" id="group-vacAplicadas">
+			<!-- <div class="form-group" id="group-vacAplicadas">
 				<label for="vacAplicadas" class="form-label">Vacunas<span class="warn">*</span></label>
 				<div class="form-group-input">
 					<select class="form-input" name="vacAplicadas" id="vacAplicadas" aria-placeholder="Seleccione..." multiple>
@@ -95,7 +95,7 @@
 					  <i class="form-validate-state fas fa-times-circle"></i>
 				</div>
 				<p class="form-input-error">Campo obligatorio.</p>
-			</div>
+			</div> -->
             
 			<p><span class="warn">*</span>Campo obligatorio</p>
 <!--
@@ -119,9 +119,8 @@
 				<p th:text="${error}"><i class="fas fa-exclamation-triangle"></i></p>
 			</div>
 
-			<div class="form-group form-group-btn-submit">
-				
-				<button type="submit" class="form-btn" href="./">Enviar</button>
+			<div class="form-group form-group-btn-submit">				
+				<button type="submit" class="form-btn">Enviar</button>
 			</div>
 		</form>
 		<div class="form-footer">
