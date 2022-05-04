@@ -19,7 +19,7 @@ public class UsuarioController {
 @Autowired
 private UsuarioServ usuarioServ;
 
-    @GetMapping("/list-usuario/{id}")
+    @GetMapping("/perfil/{id}")
     public String lista(@PathVariable String id, ModelMap modelo) {
 
         Usuario usuario = usuarioServ.getOne(id);
@@ -41,7 +41,7 @@ private UsuarioServ usuarioServ;
       try{
           usuarioServ.registrar(nombre, apellido, mail, tel, clave);
           modelo.put("exito", "Registro exitoso");
-          return "perfil.html";
+          return "index.html";
 
         }catch (Exception e){
             modelo.put("error", e.getMessage());
