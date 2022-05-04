@@ -1,0 +1,294 @@
+.form-title {
+    font-size: 15vw;
+    font-weight: 300;
+    text-align: center;
+	line-height: 5vw;
+    color: #D5DB2E;
+}
+
+.form-title span {
+    font-family: 'Pacifico', cursive;
+    font-size: 10vw;
+    color: #fff;
+}
+
+.form-subtitle {
+	padding: 2vh 2vw;
+    font-size: 3.5vw;
+    font-weight: 200;
+    text-align: center;
+    line-height: 8vw;
+    color: #7E18DB;
+}
+
+.form-page {
+    background-image: url(../);
+    background-size: cover;
+    background-repeat: no-repeat;
+	background-position: right;
+}
+
+.form-bg {
+	background-color: #B9EDE9;
+	width: 70vw;
+	margin: auto;
+	padding: 5%;
+}
+
+.form {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 20px;
+}
+
+.form-label {
+	display: block;
+	font-weight: 700;
+	padding: 10px;
+	cursor: pointer;
+}
+
+.form-label span {
+	color: #ED5628;
+}
+
+.warn {
+    font-weight: 700;
+    padding: 10px;
+    color: #ED5628;
+}
+
+.form-group-input {
+	position: relative;
+}
+
+.form-group-input-select {
+	margin:20px auto 40px auto;	
+	border:1px solid #d9d9d9;
+	height:30px;
+	overflow: hidden;
+	width: 230px;
+	position:relative;
+ }
+ .select {
+	background: transparent;
+	border: none;
+	font-size: 14px;
+	height: 30px;
+	padding: 5px;
+	width: 250px;
+ }
+ .select:focus{ outline: none;}
+ 
+ .form-group-input-select::after{
+	 content:"\025be";
+	 display:table-cell;
+	 padding-top:7px;
+	 text-align:center;
+	 width:30px;
+	 height:30px;
+	 background-color:#d9d9d9;
+	 position:absolute;
+	 top:0;
+	 right:0px;	
+	 pointer-events: none;
+ }
+
+
+.form-input {
+	width: 100%;
+	background: #fff;
+	border: 3px solid transparent;
+	border-radius: 3px;
+	height: 45px;
+	line-height: 45px;
+	padding: 0 40px 0 10px;
+	transition: .3s ease all;
+}
+
+.form-input:focus {
+	border: 3px solid #0075FF;
+	outline: none;
+	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
+}
+
+ul {
+	list-style:none;
+}
+
+.form-select {
+	height: 45px;
+	line-height: 45px;
+	width: 80%;
+	background: #DB5F23;
+	color: #fff;
+	font-weight: bold;
+	text-align: center;
+	padding: 0;
+	margin: auto;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .1s ease all;
+}
+
+.form-select:hover {
+	box-shadow: 3px 0px 30px rgba(163, 163, 163, 1);
+}
+.form-select li ul {
+	display:none;
+	position:absolute;
+}
+.form-select li:hover > ul {
+	background-color: #fff;
+	color: #000;
+	display:block;
+	width: 80%;
+	text-align: start;
+}
+
+.form-input-error {
+	font-size: 12px;
+	margin-bottom: 0;
+	display: none;
+}
+
+.form-input-error-active {
+	display: block;
+}
+
+.form-validate-state {
+	position: absolute;
+	right: 10px;
+	bottom: 15px;
+	z-index: 100;
+	font-size: 16px;
+	opacity: 0;
+}
+
+.form-group-long, .form-group-btn-submit {
+	grid-column: span 2;
+}
+
+.form-group-terms,
+.form-group-btn-submit {
+	grid-column: span 2;
+}
+
+.form-message {
+	height: 45px;
+	line-height: 45px;
+	background: #F66060;
+	padding: 0 15px;
+	border-radius: 3px;
+	display: none;
+}
+
+.form-message-active {
+	display: block;
+}
+
+.form-message p {
+	margin: 0;
+}
+
+.form-group-btn-submit {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.form-btn, .back-btn {
+	height: 45px;
+	line-height: 45px;
+	width: 30%;
+	background: #000;
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	border-radius: 3px;
+	cursor: pointer;
+	transition: .1s ease all;
+}
+
+.form-btn:hover, .backbtn:hover {
+	box-shadow: 3px 0px 30px rgba(163,163,163, 1);
+}
+
+.form-message-succes {
+	font-size: 2.5vw;
+	color: #119200;
+	display: none;
+}
+
+.form-message-succes-active {
+	display: block;
+}
+
+.form-group-right .form-validate-state {
+	color: #1ed12d;
+	opacity: 1;
+}
+
+.form-group-wrong .form-label {
+	color: #bb2929;
+}
+
+.form-group-wrong .form-validate-state {
+	color: #bb2929;
+	opacity: 1;
+}
+
+.form-group-wrong .form-input {
+	border: 3px solid #bb2929;
+}
+
+/*footer forms*/
+.form-footer a {
+	padding: 2vh 2vw;
+	text-decoration: none;
+	color: #000;
+}
+
+.form-footer>div {
+	width: 100%;
+	text-align: center;
+}
+
+.form-footer ul {
+	display: flex;
+	justify-content: space-around;
+    list-style-type: none;
+    margin: 0;
+    padding: 2vh 2vw;
+}
+
+.form-footer a:hover {
+	color: #ED5628;
+}
+
+@media screen and (max-width: 1024px) {
+	.form-bg {
+		width: 90vw;
+	}
+
+	.form {
+		grid-template-columns: 1fr;
+	}
+
+	.form-group-long,
+	.form-message,
+	.form-group-btn-submit {
+		grid-column: 1;
+	}
+
+	.form-select,
+	.form-select li:hover > ul,
+	.form-btn {
+		width: 100%;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	/*sin cambios*/
+}
