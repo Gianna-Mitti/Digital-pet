@@ -5,6 +5,7 @@ import com.proyecto.DigitalPet.entidades.Vacuna;
 import com.proyecto.DigitalPet.enums.Especie;
 import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.servicios.MascotaServ;
+import com.proyecto.DigitalPet.servicios.VacunaServ;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,7 @@ public class MascotaController {
     private MascotaServ mascotaServ;
 
     @Autowired 
-    private VacunasServ vacunasServ;
+    private VacunaServ vacunasServ;
     
     @GetMapping("/list-mascotas/{id}")
     public String lista(ModelMap modelo) {
@@ -57,10 +58,10 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
 }
     
     @GetMapping("/form-mascota-vac/{id}")
-    public String cargarVac(@PathVariable String idMascota, ModelMap model) throws ErrorServicio {
+    public String cargarVac(@PathVariable String idMascota, @RequestParam Especie especie, ModelMap model) throws ErrorServicio, Exception {
         model.put("mascota", mascotaServ.buscarMxId(idMascota));
-        List<Vacuna> v = vacunasServ.findAll();
-        modelo.put("vacunas", v);
+        List<Vacuna> v = vacunasServ.findAll(especie);
+        model.put("vacunas", v);
 
         return "form-mascota-vac.html";
     }
