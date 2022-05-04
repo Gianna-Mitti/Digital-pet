@@ -23,9 +23,6 @@ public class MascotaController {
 
     @Autowired
     private MascotaServ mascotaServ;
-
-    @Autowired 
-    private VacunasServ vacunasServ;
     
     @GetMapping("/list-mascotas/{id}")
     public String lista(ModelMap modelo) {
@@ -48,7 +45,7 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
     try{
         mascotaServ.crear(idU, nombre, fechaNac, sexo, especie);
         model.put("exito", "La mascota ha sido registrada exitosamente");
-        return "perfil.html";
+        return "redirect:/form-mascota-vac.html";
     } catch (Exception e) {
 //        e.printStackTrace();
         model.put("error", e.getMessage());
@@ -59,9 +56,6 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
     @GetMapping("/form-mascota-vac/{id}")
     public String cargarVac(@PathVariable String idMascota, ModelMap model) throws ErrorServicio {
         model.put("mascota", mascotaServ.buscarMxId(idMascota));
-        List<Vacuna> v = vacunasServ.findAll();
-        modelo.put("vacunas", v);
-
         return "form-mascota-vac.html";
     }
 

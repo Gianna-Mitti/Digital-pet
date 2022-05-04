@@ -79,6 +79,7 @@
 	box-shadow: 3px 0px 30px rgba(163, 163, 163, 0.4);
 }
 
+
 ul {
 	list-style:none;
 }
@@ -221,9 +222,9 @@ ul {
 .form-footer ul {
 	display: flex;
 	justify-content: space-around;
-    list-style-type: none;
-    margin: 0;
-    padding: 2vh 2vw;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 .form-footer a:hover {

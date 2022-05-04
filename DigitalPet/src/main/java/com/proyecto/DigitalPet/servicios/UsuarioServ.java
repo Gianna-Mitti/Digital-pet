@@ -114,23 +114,23 @@ if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
     public void validator(String nombre, String apellido, String mail, String clave) throws ErrorServicio {
 
         if (nombre == null || nombre.trim().isEmpty()) {
-            throw new ErrorServicio("El nombre del usuario no puede estar vacio.");
+            throw new ErrorServicio("El nombre del usuario no puede estar vacío.");
         }
 
         if (apellido == null || apellido.trim().isEmpty()) {
-            throw new ErrorServicio("El apellido del usuario no puede estar vacio.");
+            throw new ErrorServicio("El apellido del usuario no puede estar vacío.");
         }
 
         if (mail == null || mail.trim().isEmpty()) {
-            throw new ErrorServicio("El mail del usuario no puede estar vacio.");
+            throw new ErrorServicio("El mail del usuario no puede estar vacío.");
         }
 
         if (usuarioRepo.buscarxMail(mail) != null) {
-            throw new ErrorServicio("El mail ya esta registrado en la base de datos.");
+            throw new ErrorServicio("Ya existe un usuario registrado con ese e-mail.");
         }
 
         if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
-            throw new ErrorServicio("La clave del usuario no puede estar vacia, y debe tener mas de 6 digitos.");
+            throw new ErrorServicio("La clave del usuario no puede estar vacía, y debe tener mas de 6 digitos.");
         }
     }
 

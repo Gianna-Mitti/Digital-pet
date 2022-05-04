@@ -111,22 +111,4 @@ public class VacunaServ {
         return vacunas;
     }
     
-@Transactional(readOnly = true)
-    public List<Vacuna> findAll(Especie especie) {
-         switch(especie){
-    case "FELINO": {
-    
-        return List <Vacuna> vacGatos = vacFelino();
-        break;
-    
-    case "CANINO": {
-        return List <Vacuna> vacPerros = vacCanino();
-        break;
-    }
-    }
-
-    }
-
-}
-
 }
