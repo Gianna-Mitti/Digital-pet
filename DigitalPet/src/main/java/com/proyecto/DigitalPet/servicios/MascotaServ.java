@@ -7,8 +7,8 @@ import com.proyecto.DigitalPet.enums.Especie;
 import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.repositorios.MascotaRepo;
 import com.proyecto.DigitalPet.repositorios.UsuarioRepo;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
@@ -28,7 +28,7 @@ public class MascotaServ {
     @Autowired
     private VacunaServ vacunaServ;
 
-    public void validator(String nombre, Date fechaNac, String sexo) throws ErrorServicio {
+    public void validator(String nombre, LocalDate fechaNac, String sexo) throws ErrorServicio {
 
         if (nombre == null || nombre.isEmpty()) {
             throw new ErrorServicio("El nombre no puede estar vacío.");
@@ -48,7 +48,7 @@ public class MascotaServ {
     }
 
     @Transactional
-    public Mascota crear(String idUsuario, String nombre, Date fechaNac, String sexo, Especie especie) throws ErrorServicio {
+    public Mascota crear(String idUsuario, String nombre, LocalDate fechaNac, String sexo, Especie especie) throws ErrorServicio {
 
         Optional<Usuario> rta = usuarioRepo.findById(idUsuario);
 
@@ -100,7 +100,10 @@ public class MascotaServ {
                     aux = it.next();
                     if (aux.getTipoVac().equals(vacAplicada.getTipoVac()) && aux.getRefuerzo().toString().equals("FALSE")) {
                         it.remove();
+                    }else if(aux.getRefuerzo().toString().equals("TRUE")){
+                        
                     }
+                        
                     i++;
                 }
                 return mascotaRepo.save(mascota);
@@ -113,7 +116,7 @@ public class MascotaServ {
     }
 
     @Transactional
-    public Mascota editar(String idUsuario, String idMascota, String nombre, Date fechaNac, String sexo, Especie especie) throws ErrorServicio {
+    public Mascota editar(String idUsuario, String idMascota, String nombre, LocalDate fechaNac, String sexo, Especie especie) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(idMascota);
 
         if (rta.isPresent()) {
