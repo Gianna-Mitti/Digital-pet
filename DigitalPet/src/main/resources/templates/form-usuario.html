@@ -19,9 +19,12 @@
 
         <h2 class="form-subtitle">Registro</h2>
 		
-		<div th:if="${error}!=null" class="form-message form-group-long">
-			<h5>Error:</h5>
-			<p th:text="${error}"><i class="fas fa-exclamation-triangle"></i></p>
+		
+		<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+			<div class="card-body">
+				<h5 class="card-title">Error</h5>
+				<p class="card-text" th:text="${error}"></p>
+			</div>
 		</div>
 
 		<form th:action="@{/usuario/registro}" method="POST" class="form" id="form">
@@ -97,12 +100,6 @@
 			</div>
 -->
 <!--
-				<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
-					<div class="card-body">
-						<h5 class="card-title">Error</h5>
-						<p class="card-text" th:text="${error}"></p>
-					</div>
-				</div>
 -->
 			
 
