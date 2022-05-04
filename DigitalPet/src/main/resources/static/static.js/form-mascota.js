@@ -3,18 +3,18 @@ const inputs = document.querySelectorAll('#form input');
 
 const expressions = {
     name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-	fechaNac: /^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$/, /* validacion dd/mm/aaaa */
-	sexo:/^\d{7,10}$/,
-	especie: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	vacAplicadas: /^.{4,12}$/,
+	//fechaNac: /^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$/, /* validacion dd/mm/aaaa */
+	//sexo:/^(macho|hembra)*$/,
+	//especie: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+	//vacAplicadas: /^.{4,12}$/,
 }
 
 const fields = {
 	name: false,
-	fechaNac: false,
-	sexo: false,
-	especie: false,
-	vacAplicadas: false,
+	// fechaNac: false,
+	// sexo: false,
+	// especie: false,
+	// vacAplicadas: false,
 }
 
 // opciones = document.getElementsByName("opciones");
@@ -50,18 +50,18 @@ const validateForm = (e) => {
 		case "name":
 			validateField(expressions.name, e.target, 'name');
 		break;
-		case "fechaNac":
-			validateField(expressions.fechaNac, e.target, 'fechaNac');
-		break;
-		case "sexo":
-			validateField(expressions.sexo, e.target, 'sexo');
-		break;
-		case "especie":
-			validateField(expressions.especie, e.target, 'especie');
-		break;
-		case "vacAplicadas":
-			validateField(expressions.vacAplicadas, e.target, 'vacAplicadas');
-		break;
+		// case "fechaNac":
+		// 	validateField(expressions.fechaNac, e.target, 'fechaNac');
+		// break;
+		// case "sexo":
+		// 	validateField(expressions.sexo, e.target, 'sexo');
+		// break;
+		// case "especie":
+		// 	validateField(expressions.especie, e.target, 'especie');
+		// break;
+		// case "vacAplicadas":
+		// 	validateField(expressions.vacAplicadas, e.target, 'vacAplicadas');
+		// break;
 	}
 }
 
