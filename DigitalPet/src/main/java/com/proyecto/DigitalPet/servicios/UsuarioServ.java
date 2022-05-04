@@ -65,10 +65,10 @@ public class UsuarioServ implements UserDetailsService{
 
                 return usuarioRepo.save(usuario);
             }else{
-                throw new ErrorServicio("La clave es incorrecta");
+                throw new ErrorServicio("La clave es incorrecta.");
             }
         } else {
-            throw new ErrorServicio("No se ha modificado correctamente");
+            throw new ErrorServicio("No se han podido modificar sus datos correctamente.");
         }
     }
     @Transactional
@@ -83,10 +83,10 @@ public class UsuarioServ implements UserDetailsService{
                 usuario.setClave(encriptada);
                 return usuarioRepo.save(usuario);
             }else{
-                throw new ErrorServicio("La clave es incorrecta");
+                throw new ErrorServicio("La clave es incorrecta.");
             }
          }else{
-             throw new ErrorServicio("No se ha modificado correctamente");
+             throw new ErrorServicio("La clave no se ha modificado correctamente.");
          }
     }
     @Transactional
@@ -107,7 +107,7 @@ public class UsuarioServ implements UserDetailsService{
 
     public void validarClave(String clave) throws ErrorServicio {
 if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
-            throw new ErrorServicio("La clave del usuario no puede estar vacia, y debe tener mas de 6 digitos.");
+            throw new ErrorServicio("La clave del usuario no puede estar vacía, y debe contener más de 6 caracteres.");
         }
 }
 
@@ -130,7 +130,7 @@ if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
         }
 
         if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
-            throw new ErrorServicio("La clave del usuario no puede estar vacía, y debe tener mas de 6 digitos.");
+            throw new ErrorServicio("La clave del usuario no puede estar vacía, y debe contener más de 6 caracteres.");
         }
     }
 
