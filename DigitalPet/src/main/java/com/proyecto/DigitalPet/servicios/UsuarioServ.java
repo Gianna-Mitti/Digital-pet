@@ -106,7 +106,7 @@ public class UsuarioServ implements UserDetailsService{
     }
 
     public void validarClave(String clave) throws ErrorServicio {
-if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
+if (clave == null || clave.trim().isEmpty() || clave.length() < 6) {
             throw new ErrorServicio("La clave del usuario no puede estar vacía, y debe contener más de 6 caracteres.");
         }
 }
