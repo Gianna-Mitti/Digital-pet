@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/static.css/index.css">
+    <link rel="stylesheet" href="../static.css/index.css">
 </head>
 <body>
     <header>
@@ -22,6 +22,10 @@
                 <a class="active" href="/">Home</a>
                 <a href="#">About us</a>
                 <a href="#">Info</a>
+                <div sec:authorize="hasRole('USER')">
+                  <a th:href="@{/usuario/perfil/__${usuario.id}__}">Mi perfil</a>
+                </div>
+                
                 <!-- Log in -->
                 <span class=""> 
                     <a class="btn login" role="button" id="#dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
@@ -59,6 +63,12 @@
     </header>
 
     <main>
+      <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+        <div class="card-body">
+            <h5 class="card-title">Éxito</h5>
+            <p class="card-text" th:text="${exito}"></p>
+        </div>
+    </div>
 
     </main>
 

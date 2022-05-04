@@ -19,7 +19,7 @@ public class UsuarioController {
 @Autowired
 private UsuarioServ usuarioServ;
 
-    @GetMapping("/list-usuario/{id}")
+    @GetMapping("/perfil/{id}")
     public String lista(@PathVariable String id, ModelMap modelo) {
 
         Usuario usuario = usuarioServ.getOne(id);

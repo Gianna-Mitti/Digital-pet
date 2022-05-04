@@ -15,7 +15,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../static/static.css/index.css">
+    <link rel="stylesheet" href="../static.css/index.css">
 </head>
 
 <body>
@@ -28,8 +28,8 @@
                 <a href="#">About us</a>
                 <a href="#">Info</a>
                 
-                <span class="">
-                    <a class="btn login" role="button">
+                <span sec:authorize="isAuthenticated()">
+                    <a th:href="@{/logout}" class="btn login" role="button">
                         Log-out
                     </a>
                 </span>
@@ -39,12 +39,7 @@
     </header>
 
     <main>
-        <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
-            <div class="card-body">
-                <h5 class="card-title">Éxito</h5>
-                <p class="card-text" th:text="${exito}"></p>
-            </div>
-        </div>
+        
         <h2>Mis datos</h2>
 
         <section>
