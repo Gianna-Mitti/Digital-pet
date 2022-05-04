@@ -62,13 +62,12 @@ private UsuarioServ usuarioServ;
     public String modificar (ModelMap modelo, @PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam Long tel, @RequestParam String clave ){
         try{
             usuarioServ.modificar(id, nombre, apellido, mail, tel, clave);
-            modelo.put("exito", "Modificacion exitosa");
+            modelo.put("exito", "Modificó sus datos satisfactoriamente.");
             return "perfil.html";
             
         }catch (Exception e){
-            modelo.put("error", "No se ha modificado correctamente");
+            modelo.put("error", e.getMessage());
             return "form-usuario-modif.html";
-            
         }
     }
     
@@ -83,13 +82,12 @@ private UsuarioServ usuarioServ;
     public String modificarclave (ModelMap modelo, @PathVariable String id, @RequestParam String claveNueva, @RequestParam String claveAnterior ){
         try{
             usuarioServ.modificarClave(id, claveNueva, claveAnterior);
-            modelo.put("exito", "Modificacion exitosa");
+            modelo.put("exito", "Modificó su clave satisfactoriamente.");
             return "perfil.html";
             
         }catch (Exception e){
-            modelo.put("error", "No se ha modificado correctamente");
+            modelo.put("error", e.getMessage());
             return "form-usuario-modific.html";
-            
         }
     }
     }
