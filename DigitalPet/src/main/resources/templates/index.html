@@ -20,8 +20,8 @@
             
             <nav class="topnav">
                 <a class="active" href="/">Home</a>
-                <a href="#">About us</a>
-                <a href="#">Info</a>
+                <a href="#aboutUs">About us</a>
+                <a href="#info">Info</a>
                 <div sec:authorize="hasRole('USER')">
                   <a th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
                 </div>
@@ -71,6 +71,26 @@
             <p class="card-text" th:text="${exito}"></p>
         </div>
     </div>
+
+    <a name="aboutUs"></a>
+    <section>
+      <h2></h2>
+      <article>
+        <p>
+
+        </p>
+      </article>
+    </section>
+
+    <a name="info"
+    <section>
+      <h2></h2>
+      <article>
+        <p>
+
+        </p>
+      </article>
+    </section>
 
     </main>
 
