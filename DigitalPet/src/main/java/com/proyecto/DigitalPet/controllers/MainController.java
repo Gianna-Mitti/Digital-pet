@@ -24,7 +24,7 @@ public class MainController {
     public String login(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, ModelMap model) {
         if (error != null) {
             model.put("error", "Usuario/clave incorrectos.");
-            return "login.html";
+            return "index.html";
         }
         if (logout != null) {
             model.put("exito", "Ha salido de manera segura.");
