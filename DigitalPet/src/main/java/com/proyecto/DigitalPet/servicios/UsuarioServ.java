@@ -52,7 +52,7 @@ public class UsuarioServ implements UserDetailsService{
         Optional<Usuario> op = usuarioRepo.findById(id);
 
         if (op.isPresent()) {
-            Usuario usuario = op.get();
+            Usuario usuario = op.get();     //// Para hacer esta comparación, hay que desencriptar?? 
             if (clave.equals(usuario.getClave())) {
                 validator(nombre, apellido, mail, clave);
 

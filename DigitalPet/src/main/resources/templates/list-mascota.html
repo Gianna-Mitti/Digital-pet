@@ -15,7 +15,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../static.css/index.css">
+    <link rel="stylesheet" href="/../static.css/index.css">
 </head>
 
 <body>
@@ -80,14 +80,14 @@
                             <a th:href="@{/mascota/modificar/__${mascota.id}__}"><i class="fas fa-feather-alt"></i></a>
                         </td>
                     </tr>
-
-                    <div class="form-group form-group-btn-submit">
-                        <button class="form-btn">Agregar mascota</button>
-                    </div>
-
                 </tbody>
             </table>
         </div>
+
+        <div class="form-group form-group-btn-submit">
+            <a class="form-btn" th:href="@{/mascota/form-mascota/__${session.usuariosesion.id}__}">Agregar mascota</a>
+        </div>
+
     </main>
 
     <footer>
