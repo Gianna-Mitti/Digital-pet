@@ -1,6 +1,6 @@
 package com.proyecto.DigitalPet.entidades;
 
-import java.util.Date;
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,23 +14,33 @@ public class Vacuna {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
 private String id;
 private String tipoVac;
-private Date fechaAplicacion;
+private LocalDate fechaAplicacion;
 private String edadAplicacion;
+private LocalDate reAplicacion;
 private Boolean refuerzo;
 
     public Vacuna() {
     }
 
-    public Vacuna(String id, String tipoVac, Date fechaAplicacion, String edadAplicacion, Boolean refuerzo) {
+    public Vacuna(String id, String tipoVac, LocalDate fechaAplicacion, String edadAplicacion, LocalDate reAplicacion, Boolean refuerzo) {
         this.id = id;
         this.tipoVac = tipoVac;
         this.fechaAplicacion = fechaAplicacion;
         this.edadAplicacion = edadAplicacion;
+        this.reAplicacion = reAplicacion;
         this.refuerzo = refuerzo;
     }
 
     public String getId() {
         return id;
+    }
+
+    public LocalDate getReAplicacion() {
+        return reAplicacion;
+    }
+
+    public void setReAplicacion(LocalDate reAplicacion) {
+        this.reAplicacion = reAplicacion;
     }
 
     public void setId(String id) {
@@ -45,11 +55,11 @@ private Boolean refuerzo;
         this.tipoVac = tipoVac;
     }
 
-    public Date getFechaAplicacion() {
+    public LocalDate getFechaAplicacion() {
         return fechaAplicacion;
     }
 
-    public void setFechaAplicacion(Date fechaAplicacion) {
+    public void setFechaAplicacion(LocalDate fechaAplicacion) {
         this.fechaAplicacion = fechaAplicacion;
     }
 
@@ -68,4 +78,4 @@ private Boolean refuerzo;
     public void setRefuerzo(Boolean refuerzo) {
         this.refuerzo = refuerzo;
     }
-}
+    }

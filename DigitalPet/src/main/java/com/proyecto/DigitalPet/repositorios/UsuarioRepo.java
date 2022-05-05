@@ -6,7 +6,6 @@
 package com.proyecto.DigitalPet.repositorios;
 
 import com.proyecto.DigitalPet.entidades.Usuario;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -16,8 +15,8 @@ import org.springframework.stereotype.Repository;
 public interface UsuarioRepo extends JpaRepository <Usuario, String> {
     
 @Query("SELECT u FROM Usuario u WHERE u.id = :id")
-    public List<Usuario> buscarxId(@Param("id")String id);
+    public Usuario buscarxId(@Param("id")String id);
     
 @Query("SELECT u FROM Usuario u WHERE u.mail = :mail")
-    public List<Usuario> buscarxMail(@Param("mail")String mail);            
+    public Usuario buscarxMail(@Param("mail")String mail);            
 }
