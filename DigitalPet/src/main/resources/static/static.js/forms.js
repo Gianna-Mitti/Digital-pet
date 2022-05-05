@@ -6,7 +6,7 @@ const expressions = {
 	surname: /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,40}$/,
 	phone:/^\d{0,14}$/,
 	mail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	password: /^.{4,12}$/,
+	password: /^.{6,12}$/,
 }
 
 const fields = {

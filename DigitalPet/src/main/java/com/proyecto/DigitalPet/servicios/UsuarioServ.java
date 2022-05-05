@@ -52,7 +52,7 @@ public class UsuarioServ implements UserDetailsService{
         Optional<Usuario> op = usuarioRepo.findById(id);
 
         if (op.isPresent()) {
-            Usuario usuario = op.get();
+            Usuario usuario = op.get();     //// Para hacer esta comparación, hay que desencriptar?? 
             if (clave.equals(usuario.getClave())) {
                 validator(nombre, apellido, mail, clave);
 
@@ -106,7 +106,7 @@ public class UsuarioServ implements UserDetailsService{
     }
 
     public void validarClave(String clave) throws ErrorServicio {
-if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
+if (clave == null || clave.trim().isEmpty() || clave.length() < 6) {
             throw new ErrorServicio("La clave del usuario no puede estar vacía, y debe contener más de 6 caracteres.");
         }
 }
@@ -129,7 +129,7 @@ if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
             throw new ErrorServicio("Ya existe un usuario registrado con ese e-mail.");
         }
 
-        if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
+        if (clave == null || clave.trim().isEmpty() || clave.length() < 6) {
             throw new ErrorServicio("La clave del usuario no puede estar vacía, y debe contener más de 6 caracteres.");
         }
     }

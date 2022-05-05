@@ -19,7 +19,7 @@ public class UsuarioController {
 @Autowired
 private UsuarioServ usuarioServ;
 
-    @GetMapping("/list-usuario/{id}")
+    @GetMapping("/perfil/{id}")
     public String lista(@PathVariable String id, ModelMap modelo) {
 
         Usuario usuario = usuarioServ.getOne(id);
@@ -59,11 +59,11 @@ private UsuarioServ usuarioServ;
     }
  
     @PostMapping("/modificar/{id}")
-    public String modificar (ModelMap modelo, @PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam Long tel, @RequestParam String clave ){
+    public String modificar (ModelMap modelo, @PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave ){
         try{
             usuarioServ.modificar(id, nombre, apellido, mail, tel, clave);
             modelo.put("exito", "Modificó sus datos satisfactoriamente.");
-            return "perfil.html";
+            return "redirect:/usuario/perfil.html";
             
         }catch (Exception e){
             modelo.put("error", e.getMessage());

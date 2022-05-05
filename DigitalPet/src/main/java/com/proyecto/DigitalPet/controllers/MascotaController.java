@@ -45,7 +45,7 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
     try{
         mascotaServ.crear(idU, nombre, fechaNac, sexo, especie);
         model.put("exito", "La mascota ha sido registrada exitosamente");
-        return "redirect:/list-mascota.html";
+        return "list-mascota.html";
     } catch (Exception e) {
 //        e.printStackTrace();
         model.put("error", e.getMessage());

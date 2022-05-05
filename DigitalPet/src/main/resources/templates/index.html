@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/static.css/index.css">
+    <link rel="stylesheet" href="../static.css/index.css">
 </head>
 <body>
     <header>
@@ -22,21 +22,27 @@
                 <a class="active" href="/">Home</a>
                 <a href="#">About us</a>
                 <a href="#">Info</a>
+                <div sec:authorize="hasRole('USER')">
+                  <a th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
+                </div>
+                
                 <!-- Log in -->
                 <span class=""> 
-                    <a class="btn login" role="button" id="#dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button sec:authorize="!isAuthenticated()" class="btn login" role="button" id="#dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a th:href="@{/login}" >
                         Log-in
-                    </a>
+                      </a>
+                    </button>
 
-                    <div th:action="@{/usuario/}" method="POST" class="dropdown-menu" id="dropdownMenuButton">
-                        <form class="px-4 py-3">
+                    <div class="dropdown-menu" id="dropdownMenuButton">
+                        <form th:action="@{/logincheck}" method="POST" class="px-4 py-3">
                           <div class="mb-3">
                             <label for="mail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="mail" name="mail" placeholder="email@ejemplo.com">
+                            <input type="email" class="form-control" id="mail" name="mail" th:value="${mail}" placeholder="email@ejemplo.com">
                           </div>
                           <div class="mb-3">
                             <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="clave" placeholder="Contraseña">
+                            <input type="password" class="form-control" id="password" name="clave" th:value="${clave}" placeholder="Contraseña">
                           </div>
                           <div class="mb-3">
                             <div class="form-check">
@@ -59,6 +65,12 @@
     </header>
 
     <main>
+      <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+        <div class="card-body">
+            <h5 class="card-title">Éxito</h5>
+            <p class="card-text" th:text="${exito}"></p>
+        </div>
+    </div>
 
     </main>
 
