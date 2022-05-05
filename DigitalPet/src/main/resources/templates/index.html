@@ -23,7 +23,7 @@
                 <a href="#">About us</a>
                 <a href="#">Info</a>
                 <div sec:authorize="hasRole('USER')">
-                  <a th:href="@{/usuario/perfil/__${usuario.id}__}">Mi perfil</a>
+                  <a th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
                 </div>
                 
                 <!-- Log in -->

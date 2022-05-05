@@ -14,10 +14,11 @@ public class MainController {
     public String index(@RequestParam(required = false) String login, ModelMap model) {
         if (login != null) {
             model.put("exito", "Ha ingresado exitosamente.");
+            return "index.html";
         } else {
             model.put("error", "Error al ingresar.");
+            return "index.html";
         }
-        return "perfil.html";
     }
 
     @GetMapping("/login")
