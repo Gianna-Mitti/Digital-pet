@@ -129,7 +129,7 @@ if (clave == null || clave.trim().isEmpty() || clave.length() < 6) {
             throw new ErrorServicio("Ya existe un usuario registrado con ese e-mail.");
         }
 
-        if (clave == null || clave.trim().isEmpty() || clave.length() <= 6) {
+        if (clave == null || clave.trim().isEmpty() || clave.length() < 6) {
             throw new ErrorServicio("La clave del usuario no puede estar vacía, y debe contener más de 6 caracteres.");
         }
     }
