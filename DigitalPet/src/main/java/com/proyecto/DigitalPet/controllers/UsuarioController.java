@@ -2,6 +2,7 @@ package com.proyecto.DigitalPet.controllers;
 
 import com.proyecto.DigitalPet.entidades.Usuario;
 import com.proyecto.DigitalPet.servicios.UsuarioServ;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +20,7 @@ public class UsuarioController {
 @Autowired
 private UsuarioServ usuarioServ;
 
-    @GetMapping("/list-usuario/{id}")
+    @GetMapping("/perfil/{id}")
     public String lista(@PathVariable String id, ModelMap modelo) {
 
         Usuario usuario = usuarioServ.getOne(id);
@@ -39,13 +40,12 @@ private UsuarioServ usuarioServ;
     @PostMapping("/registro")      
     public String registrar (ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave){
       try{
-          System.out.println(clave);
           usuarioServ.registrar(nombre, apellido, mail, tel, clave);
           modelo.put("exito", "Registro exitoso");
-          return "perfil.html";
+          return "index.html";
 
         }catch (Exception e){
-            modelo.put("error", "No se ha registrado correctamente");
+            modelo.put("error", e.getMessage());
             System.out.println(e.getMessage());
                     
             return "form-usuario.html";
@@ -53,24 +53,34 @@ private UsuarioServ usuarioServ;
     } 
     
     @GetMapping("/modificar/{id}")
-    public String modificar (@PathVariable String id, ModelMap modelo){
-        modelo.put("usuario", usuarioServ.getOne(id));
+    public String modificar (HttpSession sesion, @PathVariable String id, ModelMap modelo){
+        
+        try{
+            Usuario u = (Usuario) sesion.getAttribute("usuariosesion");
+            modelo.put("usuario", u);
+        } catch(Exception e) {  
+        }
             
         return "form-usuario-modif.html";
     }
  
     @PostMapping("/modificar/{id}")
-    public String modificar (ModelMap modelo, @PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam Long tel, @RequestParam String clave ){
-        try{
-            usuarioServ.modificar(id, nombre, apellido, mail, tel, clave);
-            modelo.put("exito", "Modificacion exitosa");
+    public String modificar (ModelMap modelo, @PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave, HttpSession sesion){
+        
+        if(usuarioServ.getOne(id) != null) {
+         try{
+            Usuario u = usuarioServ.modificar(id, nombre, apellido, mail, tel, clave);
+            sesion.setAttribute("usuariosesion", u);
+            modelo.put("exito", "Modificó sus datos satisfactoriamente.");
             return "perfil.html";
             
         }catch (Exception e){
-            modelo.put("error", "No se ha modificado correctamente");
+            modelo.put("error", e.getMessage());
+            modelo.put("usuario", usuarioServ.getOne(id));
             return "form-usuario-modif.html";
-            
+        }   
         }
+        return null;
     }
     
     @GetMapping("/modificarclave/{id}")
@@ -84,13 +94,12 @@ private UsuarioServ usuarioServ;
     public String modificarclave (ModelMap modelo, @PathVariable String id, @RequestParam String claveNueva, @RequestParam String claveAnterior ){
         try{
             usuarioServ.modificarClave(id, claveNueva, claveAnterior);
-            modelo.put("exito", "Modificacion exitosa");
+            modelo.put("exito", "Modificó su clave satisfactoriamente.");
             return "perfil.html";
             
         }catch (Exception e){
-            modelo.put("error", "No se ha modificado correctamente");
+            modelo.put("error", e.getMessage());
             return "form-usuario-modific.html";
-            
         }
     }
     }

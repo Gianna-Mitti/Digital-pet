@@ -9,22 +9,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/")
 public class MainController {
-
+///////////////PROBANDING ESTA KK ////////////////
     @GetMapping("/index")
     public String index(@RequestParam(required = false) String login, ModelMap model) {
         if (login != null) {
             model.put("exito", "Ha ingresado exitosamente.");
+            return "index.html";
         } else {
             model.put("error", "Error al ingresar.");
+            return "index.html";
         }
-        return "perfil.html";
     }
 
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, @RequestParam(required = false) String logout, ModelMap model) {
         if (error != null) {
             model.put("error", "Usuario/clave incorrectos.");
-            return "login.html";
+            return "index.html";
         }
         if (logout != null) {
             model.put("exito", "Ha salido de manera segura.");

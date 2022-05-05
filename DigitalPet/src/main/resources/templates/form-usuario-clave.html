@@ -10,15 +10,21 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static.css/index.css">
-	<link rel="stylesheet" href="../static.css/forms.css">
+    <link rel="stylesheet" href="/../static.css/index.css">
+	<link rel="stylesheet" href="/../static.css/forms.css">
 </head>
 <body class="form-page">
     <main class="form-bg">
         <h1 class="form-title">Digital <span><br>Pet</span></h1>
 
         <h2 class="form-subtitle">Cambiar contraseña</h2>
-		
+
+		<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
+			<div class="card-body">
+				<h5 class="card-title">Error</h5>
+				<p class="card-text" th:text="${error}"></p>
+			</div>
+		</div>
 
 		<form th:action="@{/usuario/modificarclave/__${usuario.id}__}" method="POST" class="form" id="form">
 			<div class="form-group" id="group-password">
@@ -51,23 +57,7 @@
 			
 
             <p><span class="warn">*</span>Campo obligatorio</p>
-<!--
-			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
-				<div class="card-body">
-					<h5 class="card-title">Éxito</h5>
-					<p class="card-text" th:text="${exito}"></p>
-				</div>
-			</div>
--->
-<!--
-				<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
-					<div class="card-body">
-						<h5 class="card-title">Error</h5>
-						<p class="card-text" th:text="${error}"></p>
-					</div>
-				</div>
--->
-	<!--errorClave??-->
+
 			<div th:if="${error}!=null" class="form-message form-group-long">
 				<h1>Error:</h1>
 				<p th:text="${error}"><i class="fas fa-exclamation-triangle"></i></p>
@@ -93,6 +83,6 @@
 		</div>
 	</main>
 
-	<script src="../static.js/forms.js"></script>
+	<script src="/../static.js/forms.js"></script>
 </body>
 </html>

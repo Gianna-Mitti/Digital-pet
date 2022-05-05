@@ -31,7 +31,7 @@ public class MascotaController {
 
         modelo.addAttribute("mascotas", listaM);
 
-        return "perfil.html";
+        return "list-mascota.html";
     }
     ///////////PREGUNTAR
     @GetMapping("/form-mascota/{id}")
@@ -45,7 +45,7 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
     try{
         mascotaServ.crear(idU, nombre, fechaNac, sexo, especie);
         model.put("exito", "La mascota ha sido registrada exitosamente");
-        return "redirect:/form-mascota-vac.html";
+        return "list-mascota.html";
     } catch (Exception e) {
 //        e.printStackTrace();
         model.put("error", e.getMessage());
@@ -76,10 +76,10 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
 
         try {
             mascotaServ.eliminar(id, idU);
-            return "redirect:/perfil";
+            return "redirect:/list-mascota.html";
         } catch (Exception e) {
             model.put("error", e.getMessage());
-            return "redirect:/perfil";
+            return "redirect:/list-mascota.html";
         }
     }
     
@@ -88,10 +88,10 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
 
         try {
             mascotaServ.habilitar(id, idU);
-            return "redirect:/perfil";
+            return "redirect:/list-mascota.html";
         } catch (Exception e) {
             model.put("error", e.getMessage());
-            return "redirect:/perfil";
+            return "redirect:/list-mascota.html";
         }
     }
 
