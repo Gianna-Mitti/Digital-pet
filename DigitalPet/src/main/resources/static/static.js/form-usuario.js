@@ -86,15 +86,5 @@ inputs.forEach((input) => {
 	input.addEventListener('keyup', validateForm);
 	input.addEventListener('blur', validateForm);
 });
-/*
-	const terms = document.getElementById('terms');
-form.addEventListener('submit', () => {
-	if(!(fields.name && fields.surname && fields.mail && fields.password && terms.checked) ){
-		e.preventDefault();
-		document.getElementById('form-message').classList.add('form-message-active');
-		setTimeout(() => {
-			document.getElementById('form-message').classList.remove('form-message-active');
-		}, 5000);
-	} 
-});
-*/
+
+

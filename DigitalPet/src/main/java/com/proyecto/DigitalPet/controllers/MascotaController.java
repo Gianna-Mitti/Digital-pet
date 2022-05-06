@@ -34,14 +34,16 @@ public class MascotaController {
         return "list-mascota.html";
     }
     ///////////PREGUNTAR
-    @GetMapping("/form-mascota/{id}")
+    @GetMapping("/form-mascota/{idU}")
     public String registrar() {
         return "form-mascota.html";
     }
 
-@PostMapping("/form-mascota/{id}")
-public String registrar(ModelMap model, @PathVariable String idU, @RequestParam String nombre, @RequestParam LocalDate fechaNac, @RequestParam String sexo, @RequestParam Especie especie) throws Exception {
+@PostMapping("/form-mascota/{idU}")
+public String registrar(ModelMap model, @PathVariable String idU, @RequestParam String nombre, @RequestParam String fechaNacS, @RequestParam String sexo, @RequestParam String especie) throws Exception {
     
+    LocalDate fechaNac = LocalDate.parse(fechaNacS); 
+
     try{
         mascotaServ.crear(idU, nombre, fechaNac, sexo, especie);
         model.put("exito", "La mascota ha sido registrada exitosamente");
