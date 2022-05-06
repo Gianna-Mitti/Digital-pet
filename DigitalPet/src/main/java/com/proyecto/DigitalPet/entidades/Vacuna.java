@@ -2,8 +2,13 @@ package com.proyecto.DigitalPet.entidades;
 
 import java.time.LocalDate;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
+import javax.persistence.ManyToOne;
+
 import org.hibernate.annotations.GenericGenerator;
 
     @Entity
@@ -18,6 +23,9 @@ private LocalDate fechaAplicacion;
 private String edadAplicacion;
 private LocalDate reAplicacion;
 private Boolean refuerzo;
+@ManyToOne(fetch=FetchType.LAZY)
+@JoinColumn(name = "mascota")
+private Mascota mascota;
 
     public Vacuna() {
     }
