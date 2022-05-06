@@ -16,20 +16,18 @@
 </head>
 
 <body>
-    <header>
+    <header onselectstart="return false" onsmousestart="return false">
         <div class="off-menu">
             <span class="off-btn"><i class="fas fa-bars"></i></span>
 
             <nav class="topnav">
-                <a class="active" th:href="@{/}">Home</a>
-                <a href="#">About us</a>
-                <a href="#">Info</a>
-                
-                <span sec:authorize="isAuthenticated()">
-                    <a th:href="@{/logout}" class="btn login" role="button">
-                        Log-out
-                    </a>
-                </span>
+                <a th:href="@{/}">Home</a>
+                <a th:href="@{/#aboutUs}">About us</a>
+                <a th:href="@{/#info}">Info</a>
+                <a sec:authorize="hasRole('USER')" class="active" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="login" role="button">
+                    Log-out
+                </a>
             </nav>
         </div>
         <h1 class="title">Digital <span>Pet</span></h1>

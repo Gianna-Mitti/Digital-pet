@@ -60,7 +60,6 @@ public class UsuarioServ implements UserDetailsService {
             usuario.setApellido(apellido);
             usuario.setTel(tel);
             usuario.setMail(mail);
-            usuario.setClave(encoder.encode(clave));
             usuario.setRole(Role.USER);
             
             return usuarioRepo.save(usuario);
