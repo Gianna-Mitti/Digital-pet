@@ -48,7 +48,7 @@ public class MascotaServ {
     }
 
     @Transactional
-    public Mascota crear(String idUsuario, String nombre, LocalDate fechaNac, String sexo, Especie especie) throws ErrorServicio {
+    public Mascota crear(String idUsuario, String nombre, LocalDate fechaNac, String sexo, String especie) throws ErrorServicio {
 
         Optional<Usuario> rta = usuarioRepo.findById(idUsuario);
 
@@ -62,15 +62,17 @@ public class MascotaServ {
             mascota.setNombre(nombre);
             mascota.setFechaNac(fechaNac);
             mascota.setSexo(sexo);
-            mascota.setEspecie(especie);
+            mascota.setEspecie(Especie.valueOf(especie.toUpperCase()));
             mascota.setUsuario(usuario);
+            
+            mascotaRepo.save(mascota);
 
             switch (mascota.getEspecie().toString()) {
                 case "CANINO":
-                    mascota.setVacPendientes(vacunaServ.vacCanino());
+                    mascota.setVacPendientes(vacunaServ.vacCanino(mascota));
                     break;
                 case "FELINO":
-                    mascota.setVacPendientes(vacunaServ.vacFelino());
+                    mascota.setVacPendientes(vacunaServ.vacFelino(mascota));
                     break;
             }
 
