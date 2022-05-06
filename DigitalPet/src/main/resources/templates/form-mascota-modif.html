@@ -52,13 +52,9 @@
 			<div class="form-group" id="group-especie">
 				<label for="especie" class="form-label">Especie</label>
 				<div class="form-group-input">
-					<select class="form-input" name="especie" id="especie">
-						<option disabled th:value="${mascota.especie}" 
-							th:text="${mascota.especie}"
-							th:selected="true">
-						</option>
-						<option value="felino">Gato</option>
-						<option value="canino">Perro</option>
+					<select  class="form-input"  name="especie" id="especie">
+						<option th:selected="${mascota.especie.name == 'FELINO'}" th:value="'FELINO'" th:text="Gato"></option>
+						<option th:selected="${mascota.especie.name == 'CANINO'}" th:value="'CANINO'" th:text="Perro"></option>
 					</select>
 				</div>
 			</div>
@@ -67,10 +63,10 @@
 				<label class="form-label">Sexo<span class="warn">*</span></label>
 				<div class="form-group-input form-group-sexo">
 					<p style="font-weight: 600; padding-left: 18px;">
-						<input th:value="${mascota.sexo}" class="form-check" type="radio" name="sexo" id="sexo" value="macho"> Macho
+						<input th:checked="${mascota.sexo=='macho'}" class="form-check" type="radio" name="sexo" id="sexo" th:value="macho"> Macho
 					</p>
 					<p style="font-weight: 600; padding-left: 18px;">
-						<input th:value="${mascota.sexo}" class="form-check" type="radio" name="sexo" id="sexo" value="hembra"> Hembra
+						<input th:checked="${mascota.sexo=='hembra'}" class="form-check" type="radio" name="sexo" id="sexo" th:value="hembra"> Hembra
 					</p>
 				</div>
 				<p class="form-input-error">Campo obligatorio.</p>

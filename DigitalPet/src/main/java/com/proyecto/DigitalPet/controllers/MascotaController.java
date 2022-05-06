@@ -2,7 +2,6 @@ package com.proyecto.DigitalPet.controllers;
 
 import com.proyecto.DigitalPet.entidades.Mascota;
 import com.proyecto.DigitalPet.entidades.Vacuna;
-import com.proyecto.DigitalPet.enums.Especie;
 import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.servicios.MascotaServ;
 import java.time.LocalDate;
