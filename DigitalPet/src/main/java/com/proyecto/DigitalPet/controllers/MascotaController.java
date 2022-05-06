@@ -73,47 +73,49 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
         }
     }
 
-    @GetMapping("/baja/{id}")
+    @GetMapping("/baja/{id}/{idU}")
     public String baja(@PathVariable String id, @PathVariable String idU, ModelMap model) {
 
         try {
             mascotaServ.eliminar(id, idU);
-            return "redirect:/list-mascota.html";
+            return "redirect:/mascota/list-mascotas/{id}";
         } catch (Exception e) {
             model.put("error", e.getMessage());
-            return "redirect:/list-mascota.html";
+            return "redirect:/mascota/list-mascotas/{id}";
         }
     }
     
-        @GetMapping("/alta/{id}")
+        @GetMapping("/alta/{id}/{idU}")
     public String alta(@PathVariable String id, @PathVariable String idU, ModelMap model) {
 
         try {
             mascotaServ.habilitar(id, idU);
-            return "redirect:/list-mascota.html";
+            return "redirect:/mascota/list-mascotas/{id}";
         } catch (Exception e) {
             model.put("error", e.getMessage());
-            return "redirect:/list-mascota.html";
+            return "redirect:/mascota/list-mascotas/{id}";
         }
     }
 
-    @GetMapping("/modificar/{id}")
-    public String editar(@PathVariable String idMascota, ModelMap model) throws Exception {
+    @GetMapping("/modificar/{id}/{idU}")
+    public String editar(ModelMap model, @PathVariable String id, @PathVariable String idU) throws Exception {
 
-        model.put("mascota", mascotaServ.buscarMxId(idMascota));
+        model.put("mascota", mascotaServ.buscarMxId(id));
         return "form-mascota-modif.html";
     }
     
-    @PostMapping("/modificar/{id}")
-    public String editar(@PathVariable String idUsuario, @PathVariable String idMascota, @RequestParam String nombre, @RequestParam LocalDate fechaNac, @RequestParam String sexo, @RequestParam Especie especie, ModelMap modelo) throws Exception {
+    @PostMapping("/modificar/{id}/{idU}")
+    public String editar(ModelMap model, @PathVariable String id, @PathVariable String idU, @RequestParam String nombre, @RequestParam String fechaNacS, @RequestParam String sexo, @RequestParam String especie) throws Exception {
+
+        LocalDate fechaNac = LocalDate.parse(fechaNacS); 
 
         try {
-            mascotaServ.editar(idUsuario, idMascota, nombre, fechaNac, sexo, especie);
-            return "redirect:/perfil";
+            mascotaServ.editar(idU, id, nombre, fechaNac, sexo, especie);
+            return "redirect:/mascota/list-mascotas/{id}";
             
         } catch (Exception e) {
-            modelo.put("error", e.getMessage());
-            modelo.put("mascota", mascotaServ.buscarMxId(idMascota));
+            model.put("error", e.getMessage());
+            model.put("mascota", mascotaServ.buscarMxId(id));
             return "form-mascota-modif.html";
         }
     }

@@ -71,11 +71,13 @@
                             <i th:if="${mascota.alta}" class="fa fa-circle text-success"></i>
                             <i th:unless="${mascota.alta}" class="fa fa-circle" style="color:red;"></i>
                         </td>
-                        <td><a th:href="@({/mascota/form-mascota-vac/__${mascota.id}__}">Agregar vacunas</a></td>
                         <td>
-                            <a th:href="@{/mascota/alta/__${mascota.id}__}"><i class="fa fa-arrow-up"></i></a>
-                            <a th:href="@{/mascota/baja/__${mascota.id}__}"><i class="fa fa-ban"></i></a>
-                            <a th:href="@{/mascota/modificar/__${mascota.id}__}"><i class="fas fa-feather-alt"></i></a>
+                            <!-- <a th:href="@({/mascota/form-mascota-vac/__${mascota.id}__}">Agregar vacunas</a> -->
+                        </td>
+                        <td>
+                            <a th:href="@{/mascota/alta/__${mascota.id}__/__${session.usuariosesion.id}__}"><i class="fa fa-arrow-up"></i></a>
+                            <a th:href="@{/mascota/baja/__${mascota.id}__/__${session.usuariosesion.id}__}"><i class="fa fa-ban"></i></a>
+                            <a th:href="@{/mascota/modificar/__${mascota.id}__/__${session.usuariosesion.id}__}"><i class="fas fa-feather-alt"></i></a>
                         </td>
                     </tr>
                 </tbody>
