@@ -13,23 +13,21 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
 		rel="stylesheet">
-	<link rel="stylesheet" href="../static.css/index.css">
-	<link rel="stylesheet" href="../static.css/forms.css">
+	<link rel="stylesheet" href="../static/static.css/index.css">
+	<link rel="stylesheet" href="../static/static.css/forms.css">
 </head>
 
 <body class="form-page">
 	<main class="form-bg">
 		<h1 class="form-title">Digital <span><br>Pet</span></h1>
 
-		<h2 class="form-subtitle">Registro</h2>
-
 		<form th:action="@{/Vacunas/registro}" method="POST" class="form" id="form">
 			<!--  -->
 			<div class="form-group form-group-long" id="group-vacunasAplicadas">
-				<label for="vacunasAplicadas" class="form-label">Seleccione las vacunas que la mascota tiene aplicadas</label>
+				<label for="vacunasAplicadas" class="form-label"><span class="warn">*</span>Seleccione las vacunas que la mascota tiene aplicadas</label>
 				<div class="form-group-input">
 					<ul class="form-select">
-						<li><a>Seleccionar vacunas</a>
+						<li><a>Seleccionar</a>
 							<ul>
 								<li class="form-option">
 									<input type="checkbox"> Ninguna
@@ -37,13 +35,21 @@
 								<li>
 									<input type="checkbox" th:value="${mascota.vacPendientes.tipo}" name="vacAplicadas">
 								</li>
+								<li class="form-option">
+									<input type="checkbox"> Alguna
+								</li>
+								<li class="form-option">
+									<input type="checkbox"> Varias
+								</li>
+								<li class="form-option">
+									<input type="checkbox"> Si
+								</li>
 							</ul>
 						</li>
 					</ul>
 				</div>
 			</div>
 
-			<p><span class="warn">*</span>Campo obligatorio</p>
 			<!--
 			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
 				<div class="card-body">
@@ -68,6 +74,9 @@
 			<div class="form-group form-group-btn-submit">
 				<button type="submit" class="form-btn">Enviar</button>
 			</div>
+			<p class="form-group-long"><span class="warn">*</span>Tengo que chequear la parejidad del label que queden en el centro. "Seleccione las ....</p>
+			<p class="form-group-long"><span class="warn">*</span>Y las "ninguna", "alguna" no estan alineadas al checkbox, estan un poco por debajo</p>
+			<p class="form-group-long"><span class="warn">*</span>Más allá de eso trate de cambiar el tipo list, pero queda mejor así ( intente otras cosas y quedaba feo)</p>
 		</form>
 		<div class="form-footer">
 			<nav>
@@ -83,9 +92,10 @@
 				<a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
 			</div>
 		</div>
+		
 	</main>
 
-	<script src="../static.js/forms.js"></script>
+	<script src="../static/static.js/forms.js"></script>
 </body>
 
 </html>
