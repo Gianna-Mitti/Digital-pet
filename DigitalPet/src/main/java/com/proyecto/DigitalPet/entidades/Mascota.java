@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
@@ -28,10 +29,10 @@ public class Mascota {
     private Especie especie;
 //private Raza raza;
     private Boolean alta;
-    @OneToMany
+    @OneToMany(mappedBy="mascota", fetch=FetchType.LAZY)
     @Cascade(value={org.hibernate.annotations.CascadeType.ALL})
     private List<Vacuna> vacAplicadas;
-    @OneToMany
+    @OneToMany(mappedBy="mascota", fetch=FetchType.LAZY)
     @Cascade(value={org.hibernate.annotations.CascadeType.ALL})
     private List<Vacuna> vacPendientes;
     @ManyToOne
