@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalPet</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static.css/index.css">
+</head>
+<body>
+    <header>
+        <div class="off-menu">
+            <span class="off-btn"><i class="fas fa-bars"></i></span>
+            
+            <nav class="topnav">
+                <a class="active" href="/">Home</a>
+                <a href="#aboutUs">About us</a>
+                <a href="#info">Info</a>
+                <div sec:authorize="hasRole('USER')">
+                  <a th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
+                </div>
+                
+                <!-- Log in -->
+                <span class=""> 
+                    <button sec:authorize="!isAuthenticated()" class="btn login" role="button" id="#dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                      <a th:href="@{/login}" >
+                        Log-in
+                      </a>
+                    </button>
+
+                    <div class="dropdown-menu" id="dropdownMenuButton">
+                        <form th:action="@{/logincheck}" method="POST" class="px-4 py-3">
+                          <div class="mb-3">
+                            <label for="mail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="mail" name="mail" th:value="${mail}" placeholder="email@ejemplo.com">
+                          </div>
+                          <div class="mb-3">
+                            <label for="password" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="password" name="clave" th:value="${clave}" placeholder="Contraseña">
+                          </div>
+                          <div class="mb-3">
+                            <div class="form-check">
+                              <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                              <label class="form-check-label" for="dropdownCheck">
+                                Recordarme <!--Esto es facha nomás-->
+                              </label>
+                            </div>
+                          </div>
+                          <button type="submit" class="btn btn-primary">Sign in</button>
+                        </form>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" th:href="@{/usuario/registro}">Sign up</a>
+                        <a class="dropdown-item" href="#">Recuperar contraseña</a> <!--Esto es facha nomás-->
+                      </div>
+                </span>
+            </nav>
+        </div>
+        <h1 class="title">Digital <span>Pet</span></h1>
+    </header>
+
+    <main>
+      <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+        <div class="card-body">
+            <h5 class="card-title">Éxito</h5>
+            <p class="card-text" th:text="${exito}"></p>
+        </div>
+    </div>
+
+    <a name="aboutUs"></a>
+    <section>
+      <h2>¿Que son las vacunas?</h2>
+      <article>
+        <p>
+          Las vacunas son la mejor forma de prevenir enfermedades. 
+          Estas son sustancias estimulan el sistema inmunológico enfocado en la creación de defensas contra la enfermedad o enfermedades que se quieran prevenir. 
+
+        </p>
+      </article>
+    </section>
+
+    <a name="info"
+    <section>
+      <h2>Porque Vacunar a tus Mascotas?</h2>
+      <article>
+          <p>
+            Así como nosotros, los humanos, las mascotas también deben vacunarse para poder tener una vida lo mas sana posible. <br> 
+            Por esto nosotros siempre recomendamos vacunar a nuestras mascotas, ya que estas previenen enfermedades y evitan que otros animales se contagien. <br> 
+            Algunos animales salvajes pueden contagiar enfermedades como la rabia y el moquillo que pueden prevenirse con la aplicación de vacunas. <br>
+            Además, algunas enfermedades, como la rabia, pueden ser contagiosas y muy peligrosas para las personas.
+          </p>
+      </article>
+    </section>
+
+    <section>
+      <h2>Que vacunas debe darse mi mascota</h2>
+      <article>
+          <p>
+            Durante las primeras semanas de vida nuestra mascota recibe las defensas mediante la madre a través de la lactancia. <br>  
+            Las vacunas para perros y para gatos son diferentes. <br>  
+            Empezando por los gatos, estos reciben la triple felina a los 2 meses de edad y a los 15 días se coloca el refuerzo, esta vacuna los protege contra la panleucopenia, el calicivirus y la rinotraqueitis. <br>  
+            seis meses luego se coloca otro refuerzo de la triple felina y además la antirrábica. <br>  
+            luego de eso, cada año debe aplicarse la triple felina y la antirrábica. <br> 
+            Para los perros, de forma similar, se los vacuna a los 2 meses de vida con la Polivalente, la cual los protege del adenovirus, moquillo, parainfluenza y parvovirus. <br> 
+            a los 3 meses se les aplica el refuerzo de al polivalente y además se da la vacuna contra la leptospirosis. <br> 
+            a los 4 meses, de forma obligatoria se les da la antirrábica. <br> 
+            Luego queda reforzar la polivalente de forma anual. 
+            
+          </p>
+      </article>
+    </section>
+
+    </main>
+
+    <footer>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+</body>
+</html>
