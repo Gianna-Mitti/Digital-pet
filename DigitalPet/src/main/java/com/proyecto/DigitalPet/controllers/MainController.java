@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/")
 public class MainController {
-///////////////PROBANDING ESTA KK ////////////////
+    
     @GetMapping("/index")
     public String index(@RequestParam(required = false) String login, ModelMap model) {
         if (login != null) {
