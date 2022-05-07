@@ -57,16 +57,16 @@ public String registrar(ModelMap model, @PathVariable String id, @RequestParam S
     @GetMapping("/form-mascota-vac/{id}/{idU}")
     public String cargarVac(@PathVariable String idU, @PathVariable String id, ModelMap model) throws ErrorServicio {
         model.put("mascota", mascotaServ.buscarMxId(id));
+
+        List<Vacuna> vacPend = mascotaServ.listarVacPend(id);
+        model.addAttribute("vacs", vacPend);
+        
         return "form-mascota-vac.html";
     }
 
     @PostMapping("form-mascota-vac/{id}/{idU}")
     public String cargarVac(@PathVariable String idU, @PathVariable String id, @RequestParam ArrayList<Vacuna> vacAplicadas, ModelMap model) throws ErrorServicio {
         try{
-
-            List<Vacuna> vacPend = mascotaServ.listarVacPend(id);
-            model.addAttribute("vacs", vacPend);
-
             mascotaServ.cargarVacunas(idU, id, vacAplicadas);
             model.put("exito", "Las vacunas han sido cargadas exitosamente.");
             return "redirect:/mascota/list-vacunas/{id}";
