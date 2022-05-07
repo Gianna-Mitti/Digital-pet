@@ -54,7 +54,7 @@
                 </thead>
                 <tbody th:each="vacunaAp : ${vacunasAp}">
                     <tr>
-                        <td th:text="${vacunaAp.tipo}"></td>
+                        <td th:text="${vacunaAp.tipoVac}"></td>
                         <td th:text="${vacunaAp.id}"></td>
                         <td th:text="${vacunaAp.fechaAplicacion}"></td>
                         <td th:text="${vacunaAp.edadAplicacion}"></td>
@@ -82,7 +82,7 @@
                 </thead>
                 <tbody th:each="vacunaPend : ${vacunasPend}">
                     <tr>
-                        <td th:text="${vacunaPend.tipo}"></td>
+                        <td th:text="${vacunaPend.tipoVac}"></td>
                         <td th:text="${vacunaPend.edadAplicacion}"></td>
                         <td>
                             <i th:if="${vacunaPend.refuerzo}" class="fa fa-circle text-success"></i>

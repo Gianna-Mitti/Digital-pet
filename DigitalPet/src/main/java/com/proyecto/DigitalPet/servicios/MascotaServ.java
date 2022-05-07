@@ -69,10 +69,10 @@ public class MascotaServ {
 
             switch (especie.toUpperCase()) {
                 case "CANINO":
-                    mascota.setVacPendientes(vacunaServ.vacCanino(mascota));
+                    mascota.setVacPendientes(vacunaServ.vacCanino(fechaNac));
                     break;
                 case "FELINO":
-                    mascota.setVacPendientes(vacunaServ.vacFelino(mascota));
+                    mascota.setVacPendientes(vacunaServ.vacFelino(fechaNac));
                     break;
             }
 

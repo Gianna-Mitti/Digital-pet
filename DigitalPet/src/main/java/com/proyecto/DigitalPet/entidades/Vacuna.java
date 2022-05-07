@@ -23,9 +23,6 @@ private LocalDate fechaAplicacion;
 private String edadAplicacion;
 private LocalDate reAplicacion;
 private Boolean refuerzo;
-@ManyToOne(fetch=FetchType.LAZY)
-@JoinColumn(name = "mascota")
-private Mascota mascota;
 
     public Vacuna() {
     }
