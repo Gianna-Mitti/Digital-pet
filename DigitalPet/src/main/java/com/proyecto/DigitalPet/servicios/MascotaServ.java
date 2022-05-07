@@ -65,9 +65,9 @@ public class MascotaServ {
             mascota.setEspecie(Especie.valueOf(especie.toUpperCase()));
             mascota.setUsuario(usuario);
             
-            mascotaRepo.save(mascota);
+            // Reformular en dos métodos, guarda dos veces la misma mascota
 
-            switch (mascota.getEspecie().toString()) {
+            switch (especie.toUpperCase()) {
                 case "CANINO":
                     mascota.setVacPendientes(vacunaServ.vacCanino(mascota));
                     break;
@@ -118,7 +118,7 @@ public class MascotaServ {
     }
 
     @Transactional
-    public Mascota editar(String idUsuario, String idMascota, String nombre, LocalDate fechaNac, String sexo, Especie especie) throws ErrorServicio {
+    public Mascota editar(String idUsuario, String idMascota, String nombre, LocalDate fechaNac, String sexo, String especie) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(idMascota);
 
         if (rta.isPresent()) {
@@ -130,7 +130,7 @@ public class MascotaServ {
             mascota.setNombre(nombre);
             mascota.setFechaNac(fechaNac);
             mascota.setSexo(sexo);
-            mascota.setEspecie(especie);
+            mascota.setEspecie(Especie.valueOf(especie.toUpperCase()));
 
             return mascotaRepo.save(mascota);
             } else {
