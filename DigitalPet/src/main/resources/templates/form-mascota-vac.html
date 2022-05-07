@@ -44,7 +44,7 @@
 				<div class="form-group-input">
 					<select class="form-input" name="vacAplicadas" id="vacAplicadas" aria-placeholder="Seleccione...">
 						<option selected th:value="'NULL'">Ninguna</option>
-						<option th:each="vac : ${vacs}" th:text="${vac.tipo}" th:value="${vac}"></option>
+						<option th:each="vac : ${vacs}" th:text="${vac.tipoVac}" th:value="${vac.id}"></option>
 					</select>
 			
 
