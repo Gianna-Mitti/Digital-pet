@@ -40,7 +40,6 @@ header {
 .topnav {
     width: 100%;
     display: inline-flex;
-    justify-content: flex-end;
     background-color: #B9EDE9; /* B */
     overflow: hidden;
 }
