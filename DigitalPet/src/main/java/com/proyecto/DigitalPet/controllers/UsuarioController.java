@@ -2,7 +2,6 @@ package com.proyecto.DigitalPet.controllers;
 
 import com.proyecto.DigitalPet.entidades.Usuario;
 import com.proyecto.DigitalPet.servicios.UsuarioServ;
-import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -53,34 +52,23 @@ private UsuarioServ usuarioServ;
     } 
     
     @GetMapping("/modificar/{id}")
-    public String modificar (HttpSession sesion, @PathVariable String id, ModelMap modelo){
-        
-        try{
-            Usuario u = (Usuario) sesion.getAttribute("usuariosesion");
-            modelo.put("usuario", u);
-        } catch(Exception e) {  
-        }
+    public String modificar (@PathVariable String id, ModelMap modelo){
+        modelo.put("usuario", usuarioServ.getOne(id));
             
         return "form-usuario-modif.html";
     }
  
     @PostMapping("/modificar/{id}")
-    public String modificar (ModelMap modelo, @PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave, HttpSession sesion){
-        
-        if(usuarioServ.getOne(id) != null) {
-         try{
-            Usuario u = usuarioServ.modificar(id, nombre, apellido, mail, tel, clave);
-            sesion.setAttribute("usuariosesion", u);
+    public String modificar (ModelMap modelo, @PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave ){
+        try{
+            usuarioServ.modificar(id, nombre, apellido, mail, tel, clave);
             modelo.put("exito", "Modificó sus datos satisfactoriamente.");
-            return "perfil.html";
+            return "redirect:/usuario/perfil.html";
             
         }catch (Exception e){
             modelo.put("error", e.getMessage());
-            modelo.put("usuario", usuarioServ.getOne(id));
             return "form-usuario-modif.html";
-        }   
         }
-        return null;
     }
     
     @GetMapping("/modificarclave/{id}")

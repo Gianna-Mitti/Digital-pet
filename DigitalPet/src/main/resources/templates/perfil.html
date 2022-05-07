@@ -40,15 +40,16 @@
         <h2>Mis datos</h2>
 
         <section>
-            <div th:if="${session.usuariosesion != null}">
-                <h3 th:text="${session.usuariosesion.nombre}"></h3>
-                <h3 th:text="${session.usuariosesion.apellido}"></h3>
-                <h3 th:text="${session.usuariosesion.mail}"></h3>
-                <h3 th:text="${session.usuariosesion.tel}"></h3>
-            </div>
             <div>
-                <a th:href="@{/usuario/modificar/__${session.usuariosesion.id}__}">Modificar mis datos</a>"
-                <a th:href="@{/usuario/modificarclave/__${session.usuariosesion.id}__}">Cambiar contraseña</a>"
+                <h3 th:text="${usuario.nombre}"></h3>
+                <h3 th:text="${usuario.apellido}"></h3>
+                <h3 th:text="${usuario.mail}"></h3>
+                <h3 th:text="${usuario.tel}"></h3>
+            </div>
+
+            <div>
+                <a th:href="@{/usuario/modificar/__${usuario.id}__}">Modificar mis datos</a>"
+                <a th:href="@{/usuario/modificarclave/__${usuario.id}__}">Cambiar contraseña</a>"
             </div>
         </section>
 

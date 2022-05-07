@@ -100,10 +100,10 @@ public class MascotaServ {
                     aux = it.next();
                     if (aux.getTipoVac().equals(vacAplicada.getTipoVac()) && !aux.getRefuerzo()) {
                         it.remove();
-                    }else if(aux.getTipoVac().equals(vacAplicada.getTipoVac())){
+                    } else if (aux.getTipoVac().equals(vacAplicada.getTipoVac())) {
                         aux.setFechaAplicacion(LocalDate.now());
                     }
-                        
+
                     i++;
                 }
                 return mascotaRepo.save(mascota);
@@ -123,14 +123,14 @@ public class MascotaServ {
             validator(nombre, fechaNac, sexo);
             Mascota mascota = rta.get();
 
-            if(mascota.getUsuario().getId().equals(idUsuario)) {
+            if (mascota.getUsuario().getId().equals(idUsuario)) {
 
-            mascota.setNombre(nombre);
-            mascota.setFechaNac(fechaNac);
-            mascota.setSexo(sexo);
-            mascota.setEspecie(especie);
+                mascota.setNombre(nombre);
+                mascota.setFechaNac(fechaNac);
+                mascota.setSexo(sexo);
+                mascota.setEspecie(especie);
 
-            return mascotaRepo.save(mascota);
+                return mascotaRepo.save(mascota);
             } else {
                 throw new ErrorServicio("Usted no puede acceder a los datos de esta mascota.");
             }
@@ -146,10 +146,10 @@ public class MascotaServ {
         if (rta.isPresent()) {
             Mascota mascota = rta.get();
 
-            if (mascota.getUsuario().getId().equals(idUsuario)){
+            if (mascota.getUsuario().getId().equals(idUsuario)) {
 
-            mascota.setAlta(Boolean.FALSE);
-            return mascotaRepo.save(mascota);
+                mascota.setAlta(Boolean.FALSE);
+                return mascotaRepo.save(mascota);
             } else {
                 throw new ErrorServicio("Usted no tiene permisos suficientes.");
             }
@@ -165,10 +165,10 @@ public class MascotaServ {
         if (rta.isPresent()) {
             Mascota mascota = rta.get();
 
-            if (mascota.getUsuario().getId().equals(idUsuario)){
+            if (mascota.getUsuario().getId().equals(idUsuario)) {
 
                 mascota.setAlta(Boolean.TRUE);
-            return mascotaRepo.save(mascota);
+                return mascotaRepo.save(mascota);
             } else {
                 throw new ErrorServicio("Usted no tiene permisos suficientes.");
             }
@@ -176,7 +176,7 @@ public class MascotaServ {
             throw new ErrorServicio("No se encontró la mascota que está intentando dar de alta.");
         }
     }
-    
+
     @Transactional(readOnly = true)
     public Mascota buscarMxId(String id) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(id);
@@ -189,36 +189,36 @@ public class MascotaServ {
         }
     }
 
-        @Transactional(readOnly = true)
+    @Transactional(readOnly = true)
     public List<Mascota> findAll() {
         return mascotaRepo.findAll();
     }
-    
+
     @Transactional(readOnly = true)
     public List<Mascota> listarMascotas(String idU) throws ErrorServicio {
-        if(idU != null) {
-        List<Mascota> mascotas = mascotaRepo.findPetsByUser(idU);
-        return mascotas;    
+        if (idU != null) {
+            List<Mascota> mascotas = mascotaRepo.findPetsByUser(idU);
+            return mascotas;
         } else {
             throw new ErrorServicio("No se encontraron mascotas asociadas a este usuario.");
         }
     }
-    
-        @Transactional(readOnly = true)
+
+    @Transactional(readOnly = true)
     public List<Vacuna> listarVacAp(String id) throws ErrorServicio {
-        if(id != null) {
-        List<Vacuna> vacs = mascotaRepo.listVacAp(id);
-        return vacs;    
+        if (id != null) {
+            List<Vacuna> vacs = mascotaRepo.listVacAp(id);
+            return vacs;
         } else {
             throw new ErrorServicio("No se encontró esta mascota.");
         }
     }
-    
-            @Transactional(readOnly = true)
+
+    @Transactional(readOnly = true)
     public List<Vacuna> listarVacPend(String id) throws ErrorServicio {
-        if(id != null) {
-        List<Vacuna> vacs = mascotaRepo.listVacPend(id);
-        return vacs;    
+        if (id != null) {
+            List<Vacuna> vacs = mascotaRepo.listVacPend(id);
+            return vacs;
         } else {
             throw new ErrorServicio("No se encontró esta mascota.");
         }
