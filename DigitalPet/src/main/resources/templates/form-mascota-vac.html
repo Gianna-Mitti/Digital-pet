@@ -13,8 +13,8 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
 		rel="stylesheet">
-	<link rel="stylesheet" href="../static.css/index.css">
-	<link rel="stylesheet" href="../static.css/forms.css">
+	<link rel="stylesheet" href="/../static.css/index.css">
+	<link rel="stylesheet" href="/../static.css/form-mascota.css">
 </head>
 
 <body class="form-page">
@@ -37,26 +37,34 @@
 			</div>
 		</div>
 
-		<form th:action="@{/vacunas/registro}" method="POST" class="form" id="form">
+		<form th:action="@{/form-mascota-vac/__${mascota.id}__/{session.usuariosesion.id}}" method="POST" class="form" id="form">
+			
 			<div class="form-group form-group-long" id="group-vacunasAplicadas">
-				<label for="vacunasAplicadas" class="form-label">Seleccione las vacunas que la mascota tiene aplicadas</label>
+				<label for="vacAplicadas" class="form-label">Seleccione las vacunas que la mascota tiene aplicadas</label>
 				<div class="form-group-input">
-					<ul class="form-select">
+					<select class="form-input" name="vacAplicadas" id="vacAplicadas" aria-placeholder="Seleccione...">
+						<option selected th:value="'NULL'">Ninguna</option>
+						<option th:each="vac : ${vacs}" th:text="${vac.tipo}" th:value="${vac}"></option>
+					</select>
+			
+
+
+					<!-- <ul class="form-select">
 						<li><a>Seleccionar vacunas</a>
 							<ul>
 								<li class="form-option">
 									<input type="checkbox"> Ninguna
 								</li>
-								<li>
-									<input type="checkbox" th:value="${mascota.vacPendientes.tipo}" name="vacAplicadas">
+								<li th:each="vac : ${vacs}">
+									<input type="checkbox" th:value="${vac.tipo}" name="vacAplicadas">
 								</li>
 							</ul>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
-
-			<p><span class="warn">*</span>Campo obligatorio</p>
+<!-- 
+			<p><span class="warn">*</span>Campo obligatorio</p> -->
 			<!--
 			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
 				<div class="card-body">

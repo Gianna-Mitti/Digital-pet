@@ -65,10 +65,9 @@ public class MascotaServ {
             mascota.setEspecie(Especie.valueOf(especie.toUpperCase()));
             mascota.setUsuario(usuario);
             
-            mascotaRepo.save(mascota);
             // Reformular en dos métodos, guarda dos veces la misma mascota
 
-            switch (mascota.getEspecie().toString()) {
+            switch (especie.toUpperCase()) {
                 case "CANINO":
                     mascota.setVacPendientes(vacunaServ.vacCanino(mascota));
                     break;

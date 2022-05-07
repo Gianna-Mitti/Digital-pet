@@ -46,7 +46,7 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
     try{
         mascotaServ.crear(idU, nombre, fechaNac, sexo, especie);
         model.put("exito", "La mascota ha sido registrada exitosamente");
-        return "list-mascota.html";
+        return "redirect:/mascota/list-mascotas/{id}";
     } catch (Exception e) {
 //        e.printStackTrace();
         model.put("error", e.getMessage());
@@ -54,18 +54,22 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
     }
 }
     
-    @GetMapping("/form-mascota-vac/{id}")
-    public String cargarVac(@PathVariable String idMascota, ModelMap model) throws ErrorServicio {
-        model.put("mascota", mascotaServ.buscarMxId(idMascota));
+    @GetMapping("/form-mascota-vac/{id}/{idU}")
+    public String cargarVac(@PathVariable String idU, @PathVariable String id, ModelMap model) throws ErrorServicio {
+        model.put("mascota", mascotaServ.buscarMxId(id));
         return "form-mascota-vac.html";
     }
 
-    @PostMapping("form-mascota-vac/{id}")
-    public String cargarVac(@PathVariable String idUsuario, @PathVariable String idMascota, @RequestParam ArrayList<Vacuna> vacAplicadas, ModelMap model) throws ErrorServicio {
+    @PostMapping("form-mascota-vac/{id}/{idU}")
+    public String cargarVac(@PathVariable String idU, @PathVariable String id, @RequestParam ArrayList<Vacuna> vacAplicadas, ModelMap model) throws ErrorServicio {
         try{
-            mascotaServ.cargarVacunas(idUsuario, idMascota, vacAplicadas);
+
+            List<Vacuna> vacPend = mascotaServ.listarVacPend(id);
+            model.addAttribute("vacs", vacPend);
+
+            mascotaServ.cargarVacunas(idU, id, vacAplicadas);
             model.put("exito", "Las vacunas han sido cargadas exitosamente.");
-            return "perfil.html";
+            return "redirect:/mascota/list-vacunas/{id}";
         } catch (Exception e) {
             model.put("error", e.getMessage());
             return "from-mascota-vac.html";
@@ -130,6 +134,6 @@ public String registrar(ModelMap model, @PathVariable String idU, @RequestParam 
         ///////////////////REVISAR
         modelo.addAttribute("vacunasPend", vacPend);
         
-        return "perfil.html";
+        return "list-vacunas.html";
     }
 }
