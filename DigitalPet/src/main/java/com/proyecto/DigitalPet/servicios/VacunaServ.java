@@ -24,15 +24,15 @@ public class VacunaServ {
             vac2.setEdadAplicacion("8-10sem");
             vac2.setFechaAplicacion(fechaNac.plusWeeks(9));
             vac2.setRefuerzo(Boolean.TRUE);
-            vac2.setReAplicacion(vac2.getFechaAplicacion().plusWeeks(4));
+            vac2.setReAplicacion(30);
             vacunas.add(vac2);
             
-            Vacuna vac3 = new Vacuna();
-            vac3.setTipoVac("Polivalente");
-            vac3.setEdadAplicacion("12-14sem");
-            vac3.setFechaAplicacion(fechaNac.plusWeeks(13));
-            vac3.setRefuerzo(Boolean.FALSE);
-            vacunas.add(vac3);
+            // Vacuna vac3 = new Vacuna();
+            // vac3.setTipoVac("Polivalente 2º dósis");
+            // vac3.setEdadAplicacion("12-14sem");
+            // vac3.setFechaAplicacion(vac2.getFechaAplicacion().plusMonths(1));
+            // vac3.setRefuerzo(Boolean.FALSE);
+            // vacunas.add(vac3);
             
             Vacuna vac4 = new Vacuna();
             vac4.setTipoVac("Traqueobronquitis");
@@ -43,10 +43,10 @@ public class VacunaServ {
             
             Vacuna vac5 = new Vacuna();
             vac5.setTipoVac("Antirrábica");
-            vac5.setEdadAplicacion("6-8sem");
+            vac5.setEdadAplicacion("A partir de 6-8sem");
             vac5.setFechaAplicacion(fechaNac.plusWeeks(7));
             vac5.setRefuerzo(Boolean.TRUE);
-            vac5.setReAplicacion(vac5.getFechaAplicacion().plusYears(1));
+            vac5.setReAplicacion(360);
             vacunas.add(vac5);
             
         return vacunas;
@@ -68,16 +68,15 @@ public class VacunaServ {
             vac1.setEdadAplicacion("8-9sem");
             vac1.setFechaAplicacion(fechaNac.plusWeeks(8));
             vac1.setRefuerzo(Boolean.TRUE);
-            vac1.setReAplicacion(vac.getFechaAplicacion().plusDays(15));
+            vac1.setReAplicacion(15);
             vacunas.add(vac1);
-            
-            Vacuna vac2 = new Vacuna();
-            vac2.setTipoVac("Leucemia");
-            vac2.setEdadAplicacion("9sem");
-            vac2.setFechaAplicacion(fechaNac.plusWeeks(9));
-            vac2.setRefuerzo(Boolean.TRUE);
-            vac2.setReAplicacion(vac.getFechaAplicacion().plusYears(1));
-            vacunas.add(vac2);
+
+            // Vacuna vac2 = new Vacuna();
+            // vac2.setTipoVac("Triple 2º dósis");
+            // vac2.setEdadAplicacion("10-11sem");
+            // vac2.setFechaAplicacion(vac1.getFechaAplicacion().plusDays(15));
+            // vac2.setRefuerzo(Boolean.FALSE);
+            // vacunas.add(vac2);
             
             Vacuna vac3 = new Vacuna();
             vac3.setTipoVac("Coronavirus");
@@ -105,7 +104,16 @@ public class VacunaServ {
             vac6.setEdadAplicacion("4-6m");
             vac6.setFechaAplicacion(fechaNac.plusMonths(5));
             vac6.setRefuerzo(Boolean.FALSE);
+            vac6.setReAplicacion(360);
             vacunas.add(vac6);
+
+            Vacuna vac7 = new Vacuna();
+            vac7.setTipoVac("Leucemia");
+            vac7.setEdadAplicacion("A partir de 9sem");
+            vac7.setFechaAplicacion(fechaNac.plusWeeks(9));
+            vac7.setRefuerzo(Boolean.TRUE);
+            vac7.setReAplicacion(360);
+            vacunas.add(vac7);
             
         return vacunas;
     }

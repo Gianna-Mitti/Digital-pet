@@ -8,6 +8,7 @@ import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.repositorios.MascotaRepo;
 import com.proyecto.DigitalPet.repositorios.UsuarioRepo;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -84,7 +85,7 @@ public class MascotaServ {
 
     //El método "cargarVacunas", también sirve para MODIFICAR las vacunas.
     @Transactional
-    public Mascota cargarVacunas(String idUsuario, String idMascota, List<Vacuna> vacAplicadas) throws ErrorServicio {
+    public Mascota cargarVacunas(String idUsuario, String idMascota, LocalDate fechaAp, List<Vacuna> vacAplicadas) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(idMascota);
 
         if (rta.isPresent()) {
@@ -92,24 +93,45 @@ public class MascotaServ {
 
             if (mascota.getUsuario().getId().equals(idUsuario)) {
 
-                mascota.getVacAplicadas().addAll(vacAplicadas);
+                Vacuna auxPend;
+
+                Period edadAp;
+                Integer edadApS;
                 
-                Vacuna auxVacPend;
+                Iterator<Vacuna> itPends = mascota.getVacPendientes().iterator();
 
-                Iterator<Vacuna> it = mascota.getVacPendientes().iterator();
-                while (it.hasNext()) {
+                while(itPends.hasNext()) {
+                    auxPend = itPends.next();
 
-                    auxVacPend = it.next();
+                    for (Vacuna vacuna : vacAplicadas) {
+                        if(auxPend.getId().equals(vacuna.getId())){
 
-                    for (Vacuna vacAplicada : mascota.getVacAplicadas()) {
+                            if (!auxPend.getRefuerzo()) {
+                                itPends.remove();
+                            } else if(auxPend.getReAplicacion() < 360){
+                                auxPend.setFechaAplicacion(fechaAp.plusDays(auxPend.getReAplicacion()));
+                                auxPend.setRefuerzo(Boolean.FALSE);
+                            } else {
+                                auxPend.setFechaAplicacion(fechaAp.plusDays(auxPend.getReAplicacion()));
+                            }
 
-                        if (auxVacPend.getId().equals(vacAplicada.getId()) && !auxVacPend.getRefuerzo()) {
-                            it.remove();
-                        } else if(auxVacPend.getId().equals(vacAplicada.getId())) {
-                            auxVacPend.setFechaAplicacion(LocalDate.now());
+                            Vacuna vacAp = new Vacuna();
+                            
+                            vacAp.setTipoVac(vacuna.getTipoVac());
+                            vacAp.setFechaAplicacion(fechaAp);
+                            vacAp.setRefuerzo(vacuna.getRefuerzo());
+
+                            edadAp = Period.between(fechaAp, mascota.getFechaNac());
+                            edadApS = edadAp.getYears();
+                            System.out.println(edadApS);
+                            vacAp.setEdadAplicacion(edadApS.toString());
+
+
+                            mascota.getVacAplicadas().add(vacAp);
                         }
                     }
                 }
+
                 return mascotaRepo.save(mascota);
             } else {
                 throw new ErrorServicio("Usted no puede acceder a los datos de esta mascota.");

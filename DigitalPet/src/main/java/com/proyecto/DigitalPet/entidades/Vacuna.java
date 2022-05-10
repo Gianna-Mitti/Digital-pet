@@ -13,17 +13,17 @@ public class Vacuna {
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
-private String id;
-private String tipoVac;
-private LocalDate fechaAplicacion;
-private String edadAplicacion;
-private LocalDate reAplicacion;
-private Boolean refuerzo;
+    private String id;
+    private String tipoVac;
+    private LocalDate fechaAplicacion;
+    private String edadAplicacion;
+    private long reAplicacion;
+    private Boolean refuerzo;
 
     public Vacuna() {
     }
 
-    public Vacuna(String id, String tipoVac, LocalDate fechaAplicacion, String edadAplicacion, LocalDate reAplicacion, Boolean refuerzo) {
+    public Vacuna(String id, String tipoVac, LocalDate fechaAplicacion, String edadAplicacion, long reAplicacion, Boolean refuerzo) {
         this.id = id;
         this.tipoVac = tipoVac;
         this.fechaAplicacion = fechaAplicacion;
@@ -36,11 +36,11 @@ private Boolean refuerzo;
         return id;
     }
 
-    public LocalDate getReAplicacion() {
+    public long getReAplicacion() {
         return reAplicacion;
     }
 
-    public void setReAplicacion(LocalDate reAplicacion) {
+    public void setReAplicacion(long reAplicacion) {
         this.reAplicacion = reAplicacion;
     }
 
