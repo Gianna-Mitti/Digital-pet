@@ -84,7 +84,7 @@ public class MascotaServ {
 
     //El método "cargarVacunas", también sirve para MODIFICAR las vacunas.
     @Transactional
-    public Mascota cargarVacunas(String idUsuario, String idMascota, ArrayList<Vacuna> vacAplicadas) throws ErrorServicio {
+    public Mascota cargarVacunas(String idUsuario, String idMascota, List<Vacuna> vacAplicadas) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(idMascota);
 
         if (rta.isPresent()) {
@@ -92,21 +92,23 @@ public class MascotaServ {
 
             if (mascota.getUsuario().getId().equals(idUsuario)) {
 
-                int i = 0;
-                Vacuna vacAplicada;
-                Vacuna aux;
+                mascota.getVacAplicadas().addAll(vacAplicadas);
+                
+                Vacuna auxVacPend;
 
                 Iterator<Vacuna> it = mascota.getVacPendientes().iterator();
                 while (it.hasNext()) {
-                    vacAplicada = vacAplicadas.get(i);
-                    aux = it.next();
-                    if (aux.getTipoVac().equals(vacAplicada.getTipoVac()) && !aux.getRefuerzo()) {
-                        it.remove();
-                    }else if(aux.getTipoVac().equals(vacAplicada.getTipoVac())){
-                        aux.setFechaAplicacion(LocalDate.now());
+
+                    auxVacPend = it.next();
+
+                    for (Vacuna vacAplicada : mascota.getVacAplicadas()) {
+
+                        if (auxVacPend.getId().equals(vacAplicada.getId()) && !auxVacPend.getRefuerzo()) {
+                            it.remove();
+                        } else if(auxVacPend.getId().equals(vacAplicada.getId())) {
+                            auxVacPend.setFechaAplicacion(LocalDate.now());
+                        }
                     }
-                        
-                    i++;
                 }
                 return mascotaRepo.save(mascota);
             } else {
@@ -179,10 +181,12 @@ public class MascotaServ {
         }
     }
     
+    
     @Transactional(readOnly = true)
     public Mascota buscarMxId(String id) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(id);
 
+        System.out.println(id);
         if (rta.isPresent()) {
             Mascota mascota = rta.get();
             return mascota;
@@ -191,10 +195,6 @@ public class MascotaServ {
         }
     }
 
-        @Transactional(readOnly = true)
-    public List<Mascota> findAll() {
-        return mascotaRepo.findAll();
-    }
     
     @Transactional(readOnly = true)
     public List<Mascota> listarMascotas(String idU) throws ErrorServicio {

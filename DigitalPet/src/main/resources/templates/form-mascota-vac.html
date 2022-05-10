@@ -6,7 +6,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registro Vacunas</title>
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,37 +30,27 @@
 			</div>
 		</div>
 
-		<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
-			<div class="card-body">
-				<h5 class="card-title">Error</h5>
-				<p class="card-text" th:text="${error}"></p>
-			</div>
-		</div>
-
-		<form th:action="@{/form-mascota-vac/__${mascota.id}__/{session.usuariosesion.id}}" method="POST" class="form" id="form">
+		<form th:action="@{/mascota/form-mascota-vac/__${mascota.id}__}" method="POST" th:object="${vacAplicadas}" class="form" id="form">
 			
 			<div class="form-group form-group-long" id="group-vacunasAplicadas">
 				<label for="vacAplicadas" class="form-label">Seleccione las vacunas que la mascota tiene aplicadas</label>
 				<div class="form-group-input">
-					<select class="form-input" name="vacAplicadas" id="vacAplicadas" aria-placeholder="Seleccione...">
-						<option selected th:value="'NULL'">Ninguna</option>
-						<option th:each="vac : ${vacs}" th:text="${vac.tipoVac}" th:value="${vac.id}"></option>
-					</select>
-			
 
-
-					<!-- <ul class="form-select">
-						<li><a>Seleccionar vacunas</a>
-							<ul>
-								<li class="form-option">
-									<input type="checkbox"> Ninguna
-								</li>
-								<li th:each="vac : ${vacs}">
-									<input type="checkbox" th:value="${vac.tipo}" name="vacAplicadas">
-								</li>
-							</ul>
-						</li>
-					</ul> -->
+					<div class="dropdown">
+						<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+						  Seleccione...
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<li class="form-option">
+								<input type="checkbox" id="vacAplicadas" th:value="NULL" name="vacAplicada">
+								<label for="vacAplicadas" th:text="Ninguna"></label>
+							</li>
+							<li th:each="vac : ${mascota.vacPendientes}">
+								<input type="checkbox" id="vacAplicadas" th:value="${vac.id}" name="vacAplicada">
+								<label for="vacAplicadas" th:text="${vac.tipoVac}"></label>
+							</li>
+						</ul>
+					  </div>
 				</div>
 			</div>
 <!-- 
@@ -94,6 +84,7 @@
 		</div>
 	</main>
 
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 	<script src="../static.js/forms.js"></script>
 </body>
 

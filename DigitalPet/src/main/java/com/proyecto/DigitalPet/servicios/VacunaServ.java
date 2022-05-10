@@ -1,21 +1,13 @@
 package com.proyecto.DigitalPet.servicios;
 
-import com.proyecto.DigitalPet.entidades.Mascota;
 import com.proyecto.DigitalPet.entidades.Vacuna;
-import com.proyecto.DigitalPet.repositorios.MascotaRepo;
-import com.proyecto.DigitalPet.repositorios.VacunaRepo;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class VacunaServ {
 
-@Autowired
-    private VacunaRepo vacunaRepo;
-@Autowired
-    private MascotaRepo mascotaRepo;
 
     public ArrayList<Vacuna> vacCanino(LocalDate fechaNac) {
         
@@ -31,7 +23,8 @@ public class VacunaServ {
             vac2.setTipoVac("Polivalente");
             vac2.setEdadAplicacion("8-10sem");
             vac2.setFechaAplicacion(fechaNac.plusWeeks(9));
-            vac2.setRefuerzo(Boolean.FALSE);
+            vac2.setRefuerzo(Boolean.TRUE);
+            vac2.setReAplicacion(vac2.getFechaAplicacion().plusWeeks(4));
             vacunas.add(vac2);
             
             Vacuna vac3 = new Vacuna();
@@ -53,7 +46,7 @@ public class VacunaServ {
             vac5.setEdadAplicacion("6-8sem");
             vac5.setFechaAplicacion(fechaNac.plusWeeks(7));
             vac5.setRefuerzo(Boolean.TRUE);
-            vac5.setReAplicacion(fechaNac.plusYears(1));
+            vac5.setReAplicacion(vac5.getFechaAplicacion().plusYears(1));
             vacunas.add(vac5);
             
         return vacunas;

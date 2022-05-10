@@ -26,7 +26,7 @@
 			</div>
 		</div>
 
-		<form th:action="@{/usuario/modificarclave/__${usuario.id}__}" method="POST" class="form" id="form">
+		<form th:action="@{/usuario/modificarclave/__${session.usuariosesion.id}__}" method="POST" class="form" id="form">
 			<div class="form-group" id="group-password">
 				<label for="password" class="form-label">Contraseña<span class="warn">*</span></label>
 				<div class="form-group-input">
