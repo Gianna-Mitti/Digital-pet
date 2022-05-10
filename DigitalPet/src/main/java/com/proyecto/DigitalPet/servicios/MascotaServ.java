@@ -8,6 +8,7 @@ import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.repositorios.MascotaRepo;
 import com.proyecto.DigitalPet.repositorios.UsuarioRepo;
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -48,7 +49,7 @@ public class MascotaServ {
     }
 
     @Transactional
-    public Mascota crear(String idUsuario, String nombre, LocalDate fechaNac, String sexo, Especie especie) throws ErrorServicio {
+    public Mascota crear(String idUsuario, String nombre, LocalDate fechaNac, String sexo, String especie) throws ErrorServicio {
 
         Optional<Usuario> rta = usuarioRepo.findById(idUsuario);
 
@@ -62,15 +63,17 @@ public class MascotaServ {
             mascota.setNombre(nombre);
             mascota.setFechaNac(fechaNac);
             mascota.setSexo(sexo);
-            mascota.setEspecie(especie);
+            mascota.setEspecie(Especie.valueOf(especie.toUpperCase()));
             mascota.setUsuario(usuario);
+            
+            // Reformular en dos métodos, guarda dos veces la misma mascota
 
-            switch (mascota.getEspecie().toString()) {
+            switch (especie.toUpperCase()) {
                 case "CANINO":
-                    mascota.setVacPendientes(vacunaServ.vacCanino());
+                    mascota.setVacPendientes(vacunaServ.vacCanino(fechaNac));
                     break;
                 case "FELINO":
-                    mascota.setVacPendientes(vacunaServ.vacFelino());
+                    mascota.setVacPendientes(vacunaServ.vacFelino(fechaNac));
                     break;
             }
 
@@ -82,7 +85,7 @@ public class MascotaServ {
 
     //El método "cargarVacunas", también sirve para MODIFICAR las vacunas.
     @Transactional
-    public Mascota cargarVacunas(String idUsuario, String idMascota, ArrayList<Vacuna> vacAplicadas) throws ErrorServicio {
+    public Mascota cargarVacunas(String idUsuario, String idMascota, LocalDate fechaAp, List<Vacuna> vacAplicadas) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(idMascota);
 
         if (rta.isPresent()) {
@@ -90,22 +93,45 @@ public class MascotaServ {
 
             if (mascota.getUsuario().getId().equals(idUsuario)) {
 
-                int i = 0;
-                Vacuna vacAplicada;
-                Vacuna aux;
+                Vacuna auxPend;
 
-                Iterator<Vacuna> it = mascota.getVacPendientes().iterator();
-                while (it.hasNext()) {
-                    vacAplicada = vacAplicadas.get(i);
-                    aux = it.next();
-                    if (aux.getTipoVac().equals(vacAplicada.getTipoVac()) && !aux.getRefuerzo()) {
-                        it.remove();
-                    }else if(aux.getTipoVac().equals(vacAplicada.getTipoVac())){
-                        aux.setFechaAplicacion(LocalDate.now());
+                Period edadAp;
+                Integer edadApS;
+                
+                Iterator<Vacuna> itPends = mascota.getVacPendientes().iterator();
+
+                while(itPends.hasNext()) {
+                    auxPend = itPends.next();
+
+                    for (Vacuna vacuna : vacAplicadas) {
+                        if(auxPend.getId().equals(vacuna.getId())){
+
+                            if (!auxPend.getRefuerzo()) {
+                                itPends.remove();
+                            } else if(auxPend.getReAplicacion() < 360){
+                                auxPend.setFechaAplicacion(fechaAp.plusDays(auxPend.getReAplicacion()));
+                                auxPend.setRefuerzo(Boolean.FALSE);
+                            } else {
+                                auxPend.setFechaAplicacion(fechaAp.plusDays(auxPend.getReAplicacion()));
+                            }
+
+                            Vacuna vacAp = new Vacuna();
+                            
+                            vacAp.setTipoVac(vacuna.getTipoVac());
+                            vacAp.setFechaAplicacion(fechaAp);
+                            vacAp.setRefuerzo(vacuna.getRefuerzo());
+
+                            edadAp = Period.between(fechaAp, mascota.getFechaNac());
+                            edadApS = edadAp.getYears();
+                            System.out.println(edadApS);
+                            vacAp.setEdadAplicacion(edadApS.toString());
+
+
+                            mascota.getVacAplicadas().add(vacAp);
+                        }
                     }
-                        
-                    i++;
                 }
+
                 return mascotaRepo.save(mascota);
             } else {
                 throw new ErrorServicio("Usted no puede acceder a los datos de esta mascota.");
@@ -116,7 +142,7 @@ public class MascotaServ {
     }
 
     @Transactional
-    public Mascota editar(String idUsuario, String idMascota, String nombre, LocalDate fechaNac, String sexo, Especie especie) throws ErrorServicio {
+    public Mascota editar(String idUsuario, String idMascota, String nombre, LocalDate fechaNac, String sexo, String especie) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(idMascota);
 
         if (rta.isPresent()) {
@@ -128,7 +154,7 @@ public class MascotaServ {
             mascota.setNombre(nombre);
             mascota.setFechaNac(fechaNac);
             mascota.setSexo(sexo);
-            mascota.setEspecie(especie);
+            mascota.setEspecie(Especie.valueOf(especie.toUpperCase()));
 
             return mascotaRepo.save(mascota);
             } else {
@@ -177,10 +203,12 @@ public class MascotaServ {
         }
     }
     
+    
     @Transactional(readOnly = true)
     public Mascota buscarMxId(String id) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(id);
 
+        System.out.println(id);
         if (rta.isPresent()) {
             Mascota mascota = rta.get();
             return mascota;
@@ -189,10 +217,6 @@ public class MascotaServ {
         }
     }
 
-        @Transactional(readOnly = true)
-    public List<Mascota> findAll() {
-        return mascotaRepo.findAll();
-    }
     
     @Transactional(readOnly = true)
     public List<Mascota> listarMascotas(String idU) throws ErrorServicio {

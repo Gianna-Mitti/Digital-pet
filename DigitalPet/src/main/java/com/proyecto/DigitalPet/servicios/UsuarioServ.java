@@ -49,18 +49,13 @@ public class UsuarioServ implements UserDetailsService {
     public Usuario modificar(String id, String nombre, String apellido, String mail, Long tel, String clave) throws ErrorServicio {
         Optional<Usuario> op = usuarioRepo.findById(id);
         Usuario usuario = op.get();
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        
         validatorMod(nombre, apellido, mail, clave);
-
-        if (op == null) {
-            throw new ErrorServicio("No se encontró al usuario indicado.");
-        }
 
             usuario.setNombre(nombre);
             usuario.setApellido(apellido);
             usuario.setTel(tel);
             usuario.setMail(mail);
-            usuario.setClave(encoder.encode(clave));
             usuario.setRole(Role.USER);
             
             return usuarioRepo.save(usuario);
@@ -170,7 +165,7 @@ public class UsuarioServ implements UserDetailsService {
             session.setAttribute("usuariosesion", entidad);
 
             User user = new User(entidad.getMail(), entidad.getClave(), permisos);
-            return (UserDetails) user;
+            return user;
         } else {
             return null;
         }

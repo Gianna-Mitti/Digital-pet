@@ -14,7 +14,7 @@
 		href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
 		rel="stylesheet">
 	<link rel="stylesheet" href="/../static.css/index.css">
-	<link rel="stylesheet" href="/../static.css/forms.css">
+	<link rel="stylesheet" href="/../static.css/form-mascota.css">
 </head>
 
 <body class="form-page">
@@ -30,7 +30,7 @@
 			</div>
 		</div>
 
-		<form th:action="@{/mascota/registro}" method="POST" class="form" id="form">
+		<form th:action="@{/mascota/form-mascota}" method="POST" class="form" id="form">
 
 			<div class="form-group" id="group-name">
 				<label for="name" class="form-label">Nombre<span class="warn">*</span></label>
@@ -44,7 +44,7 @@
 			<div class="form-group" id="group-birth">
 				<label for="birth" class="form-label">Fecha de nacimiento<span class="warn">*</span></label>
 				<div class="form-group-input">
-					<input type="date" class="form-input" name="fechaNac" id="birth">
+					<input type="date" class="form-input" name="fechaNacS" id="birth">
 				</div>
 				<p class="form-input-error">Campo obligatorio.</p>
 			</div>
@@ -53,9 +53,9 @@
 				<label for="especie" class="form-label">Especie</label>
 				<div class="form-group-input">
 					<select class="form-input" name="especie" id="especie" aria-placeholder="Seleccione...">
-						<option selected>Especie</option>
-						<option value="gato">Gato</option>
-						<option value="perro">Perro</option>
+						<option selected disabled>Especie</option>
+						<option value="felino">Gato</option>
+						<option value="canino">Perro</option>
 					</select>
 				</div>
 			</div>
@@ -96,7 +96,7 @@
 		</div>
 	</main>
 
-	<script src="/../static.js/forms.js"></script>
+	<script src="/../static.js/form-mascota.js"></script>
 </body>
 
 </html>

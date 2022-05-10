@@ -72,7 +72,7 @@ private UsuarioServ usuarioServ;
             Usuario u = usuarioServ.modificar(id, nombre, apellido, mail, tel, clave);
             sesion.setAttribute("usuariosesion", u);
             modelo.put("exito", "Modificó sus datos satisfactoriamente.");
-            return "perfil.html";
+            return "redirect:/usuario/perfil/{id}";
             
         }catch (Exception e){
             modelo.put("error", e.getMessage());
@@ -95,11 +95,11 @@ private UsuarioServ usuarioServ;
         try{
             usuarioServ.modificarClave(id, claveNueva, claveAnterior);
             modelo.put("exito", "Modificó su clave satisfactoriamente.");
-            return "perfil.html";
+            return "redirect:/usuario/perfil/{id}";
             
         }catch (Exception e){
             modelo.put("error", e.getMessage());
-            return "form-usuario-modific.html";
+            return "form-usuario-clave.html";
         }
     }
     }

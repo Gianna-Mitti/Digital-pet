@@ -15,24 +15,22 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="../static.css/index.css">
+    <link rel="stylesheet" href="/../static.css/index.css">
 </head>
 
 <body>
-    <header>
+    <header onselectstart="return false" onsmousestart="return false">
         <div class="off-menu">
             <span class="off-btn"><i class="fas fa-bars"></i></span>
 
             <nav class="topnav">
-                <a class="active" href="./">Home</a>
-                <a href="#">About us</a>
-                <a href="#">Info</a>
-                <!-- Log in -->
-                <span class="">
-                    <a class="btn login" role="button">
-                        Log-out
-                    </a>
-                </span>
+                <a th:href="@{/}">Home</a>
+                <a th:href="@{/#aboutUs}">About us</a>
+                <a th:href="@{/#info}">Info</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}">Mi perfil</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="login" role="button">
+                    Log-out
+                </a>
             </nav>
         </div>
         <h1 class="title">Digital <span>Pet</span></h1>
@@ -40,35 +38,29 @@
 
     <main>
 
-        <h2 th:text="${mascota.nombre}"></h2>
-
         <h3>Vacunas aplicadas</h3>
 
         <div class="container m-5">
 
-            <table class="table table-dark">
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
                         <th scope="col">Lote</th>
                         <th scope="col">Fecha de aplicación</th>
-                        <th scope="col">Edad de aplicación</th>
+                        <th scope="col">Fecha de reaplicación</th>
                         <th scope="col">Refuerzo</th>
-                        <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody th:each="vacunaAp : ${vacunasAp}">
+                <tbody th:each="vacunaAp : ${mascota.vacAplicadas}">
                     <tr>
-                        <td th:text="${vacunaAp.tipo}"></td>
+                        <td th:text="${vacunaAp.tipoVac}"></td>
                         <td th:text="${vacunaAp.id}"></td>
                         <td th:text="${vacunaAp.fechaAplicacion}"></td>
-                        <td th:text="${vacunaAp.edadAplicacion}"></td>
+                        <td th:text="${vacunaAp.reAplicacion}"></td>
                         <td>
                             <i th:if="${vacunaAp.refuerzo}" class="fa fa-circle text-success"></i>
                             <i th:unless="${vacunaAp.refuerzo}" class="fa fa-circle" style="color:red;"></i>
-                        </td>
-                        <td>
-                            <a th:href="@{/vacuna/cargarvacunas/__${mascota.id}__}"><i class="fa fa-arrow-up"></i></a>    
                         </td>
                     </tr>
 
@@ -80,7 +72,7 @@
         
         <div class="container m-5">
 
-            <table class="table table-dark">
+            <table class="table">
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
@@ -88,9 +80,9 @@
                         <th scope="col">Refuerzo</th>
                     </tr>
                 </thead>
-                <tbody th:each="vacunaPend : ${vacunasPend}">
+                <tbody th:each="vacunaPend : ${mascota.vacPendientes}">
                     <tr>
-                        <td th:text="${vacunaPend.tipo}"></td>
+                        <td th:text="${vacunaPend.tipoVac}"></td>
                         <td th:text="${vacunaPend.edadAplicacion}"></td>
                         <td>
                             <i th:if="${vacunaPend.refuerzo}" class="fa fa-circle text-success"></i>
@@ -101,6 +93,9 @@
                 </tbody>
             </table>
         </div>
+
+        <a th:href="@{/mascota/form-mascota-vac/__${mascota.id}__}">Agregar vacunas</a>
+        
     </main>
 
     <footer>

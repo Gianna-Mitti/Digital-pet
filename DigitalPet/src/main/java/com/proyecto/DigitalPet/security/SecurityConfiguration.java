@@ -41,7 +41,7 @@ public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
                 .permitAll()
             .and().logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")
+                .logoutSuccessUrl("/index?logout")
                 .permitAll();
     }    
 }
