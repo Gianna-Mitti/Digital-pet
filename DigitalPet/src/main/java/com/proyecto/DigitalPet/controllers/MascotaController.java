@@ -76,13 +76,11 @@ public class MascotaController {
     }
 
     @PostMapping("form-mascota-vac/{id}")
-    public String cargarVac(ModelMap model, @PathVariable String id, HttpSession session, @RequestParam(value="fechaAps") List<String> fechasApS, @RequestParam(value="vacAplicada") List<Vacuna> vacAplicadas) throws Exception {
+    public String cargarVac(ModelMap model, @PathVariable String id, HttpSession session, @RequestParam(value="fechaApS") List<String> fechasApS, @RequestParam(value="vacAplicada") List<Vacuna> vacAplicadas) throws Exception {
         try{
             Usuario u = (Usuario) session.getAttribute("usuariosesion");
 
-            LocalDate fechaAp = LocalDate.parse(fechaApS);
-
-            mascotaServ.cargarVacunas(u.getId(), id, fechaAp, vacAplicadas);
+            mascotaServ.cargarVacunas(u.getId(), id, fechasApS, vacAplicadas);
             model.put("exito", "Las vacunas han sido cargadas exitosamente.");
             return "redirect:/mascota/list-vacunas/{id}";
         } catch (Exception e) {

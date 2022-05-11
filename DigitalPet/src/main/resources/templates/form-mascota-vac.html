@@ -46,11 +46,13 @@
 								<label for="vacAplicadas" th:text="Ninguna"></label>
 							</li>
 							<li th:each="vac : ${mascota.vacPendientes}">
-								<label th:for="${vac.tipoVac}" th:text="${vac.tipoVac}+ ' (' + ${vac.edadAplicacion} + ')'"></label>
-								<input type="checkbox" th:id="${vac.tipoVac}" class="form-check" th:value="${vac.id}" name="vacAplicada">
-								<label th:for="${vac.tipoVac}">
+								<label th:for="${vac.tipoVac}" th:text="${vac.tipoVac} + ' (' + ${vac.edadAplicacion} + ')'"></label>
+								<input type="checkbox" th:id="${vac.tipoVac}" class="form-check form-input" th:value="${vac.id}" name="vacAplicada">
+								<label>
 									Ingrese fecha de aplicación
-									<input type="date" class="form-input" name="fechaApS">
+									<div th:object=" ${fechasApS}">
+										<input th:for="${vac.tipoVac}" type="date" class="form-input" name="fechaApS">
+									</div>
 								</label>
 							</li>
 						</ul>
