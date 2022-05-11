@@ -19,27 +19,11 @@
             <span class="off-btn"><i class="fas fa-bars"></i></span>
             
             <nav class="topnav">
-<<<<<<< HEAD
-                <a class="active" href="/">Home</a>
-                <a href="#">About us</a>
-                <a href="#">Info</a>
-                <div sec:authorize="isAuthenticated()">
-                  <a th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
-                </div>
-                
-                <!-- Log in -->
-                <span class=""> 
-                    <button sec:authorize="!isAuthenticated()" class="btn login" role="button" id="#dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                      <a th:href="@{/login}" >
-                        Log-in
-                      </a>
-                    </button>
-=======
+
               <a class="active" th:href="@{/}">Home</a>
               <a th:href="@{/#aboutUs}">About us</a>
               <a th:href="@{/#info}">Info</a>
               <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
->>>>>>> 823179138fddebef8fcae383d0b57ea49bae1b6d
 
               <!-- Log in -->
               <span >
