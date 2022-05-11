@@ -27,7 +27,7 @@
                 <a th:href="@{/}">Home</a>
                 <a th:href="@{/#aboutUs}">About us</a>
                 <a th:href="@{/#info}">Info</a>
-                <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}">Mi perfil</a>
                 <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="login" role="button">
                     Log-out
                 </a>
@@ -52,7 +52,7 @@
                         <th scope="col">Refuerzo</th>
                     </tr>
                 </thead>
-                <tbody th:each="vacunaAp : ${vacunasAp}">
+                <tbody th:each="vacunaAp : ${mascota.vacAplicadas}">
                     <tr>
                         <td th:text="${vacunaAp.tipoVac}"></td>
                         <td th:text="${vacunaAp.id}"></td>
@@ -76,14 +76,14 @@
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Edad de aplicación</th>
+                        <th scope="col">Debe aplicar</th>
                         <th scope="col">Refuerzo</th>
                     </tr>
                 </thead>
-                <tbody th:each="vacunaPend : ${vacunasPend}">
+                <tbody th:each="vacunaPend : ${mascota.vacPendientes}">
                     <tr>
                         <td th:text="${vacunaPend.tipoVac}"></td>
-                        <td th:text="${vacunaPend.edadAplicacion}"></td>
+                        <td th:text="${vacunaPend.fechaAplicacion}"></td>
                         <td>
                             <i th:if="${vacunaPend.refuerzo}" class="fa fa-circle text-success"></i>
                             <i th:unless="${vacunaPend.refuerzo}" class="fa fa-circle" style="color:red;"></i>
@@ -93,6 +93,9 @@
                 </tbody>
             </table>
         </div>
+
+        <a th:href="@{/mascota/form-mascota-vac/__${mascota.id}__}">Agregar vacunas</a>
+        
     </main>
 
     <footer>
