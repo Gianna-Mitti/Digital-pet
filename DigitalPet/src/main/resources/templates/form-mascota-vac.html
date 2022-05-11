@@ -15,6 +15,8 @@
 		rel="stylesheet">
 	<link rel="stylesheet" href="../static/static.css/index.css">
 	<link rel="stylesheet" href="../static/static.css/forms.css">
+	<link rel="stylesheet" href="/../static.css/index.css">
+	<link rel="stylesheet" href="/../static.css/form-mascota.css">
 </head>
 
 <body class="form-page">
@@ -32,8 +34,8 @@
 								<li class="form-option">
 									<input type="checkbox"> Ninguna
 								</li>
-								<li>
-									<input type="checkbox" th:value="${mascota.vacPendientes.tipo}" name="vacAplicadas">
+								<li th:each="vac : ${vacs}">
+									<input type="checkbox" th:value="${vac.tipo}" name="vacAplicadas">
 								</li>
 								<li class="form-option">
 									<input type="checkbox"> Alguna
@@ -46,10 +48,9 @@
 								</li>
 							</ul>
 						</li>
-					</ul>
+					</ul> -->
 				</div>
 			</div>
-
 			<!--
 			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
 				<div class="card-body">
@@ -58,18 +59,6 @@
 				</div>
 			</div>
 -->
-			<!--
-				<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
-					<div class="card-body">
-						<h5 class="card-title">Error</h5>
-						<p class="card-text" th:text="${error}"></p>
-					</div>
-				</div>
--->
-			<div th:if="${error}!=null" class="form-message form-group-long">
-				<h1>Error:</h1>
-				<p th:text="${error}"><i class="fas fa-exclamation-triangle"></i></p>
-			</div>
 
 			<div class="form-group form-group-btn-submit">
 				<button type="submit" class="form-btn">Enviar</button>

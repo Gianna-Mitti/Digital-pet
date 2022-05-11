@@ -38,7 +38,14 @@
 
     <main>
 
-        <h3>Vacunas aplicadas</h3>
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+            <div class="card-body">
+                <h5 class="card-title">Éxito</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+
+        <h2>Mis mascotas</h2>
 
         <div class="container m-5">
 
@@ -46,53 +53,42 @@
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Lote</th>
-                        <th scope="col">Fecha de aplicación</th>
-                        <th scope="col">Edad de aplicación</th>
-                        <th scope="col">Refuerzo</th>
+                        <th scope="col">Fecha de nacimiento</th>
+                        <th scope="col">Sexo</th>
+                        <th scope="col">Especie</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col"></th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
-                <tbody th:each="vacunaAp : ${vacunasAp}">
+                <tbody th:each="mascota : ${mascotas}">
                     <tr>
-                        <td th:text="${vacunaAp.tipoVac}"></td>
-                        <td th:text="${vacunaAp.id}"></td>
-                        <td th:text="${vacunaAp.fechaAplicacion}"></td>
-                        <td th:text="${vacunaAp.edadAplicacion}"></td>
+                        <td th:text="${mascota.nombre}"></td>
+                        <td th:text="${mascota.fechaNac}"></td>
+                        <td th:text="${mascota.sexo}"></td>
+                        <td th:text="${mascota.especie}"></td>
                         <td>
-                            <i th:if="${vacunaAp.refuerzo}" class="fa fa-circle text-success"></i>
-                            <i th:unless="${vacunaAp.refuerzo}" class="fa fa-circle" style="color:red;"></i>
+                            <i th:if="${mascota.alta}" class="fa fa-circle text-success"></i>
+                            <i th:unless="${mascota.alta}" class="fa fa-circle" style="color:red;"></i>
+                        </td>
+                        <td>
+                            <a th:href="@{/mascota/list-vacunas/__${mascota.id}__}">Ver vacunas</a>
+                            <a th:href="@{/mascota/form-mascota-vac/__${mascota.id}__/__${session.usuariosesion.id}__}">Agregar vacunas</a>
+                        </td>
+                        <td>
+                            <a th:href="@{/mascota/alta/__${mascota.id}__/__${session.usuariosesion.id}__}"><i class="fa fa-arrow-up"></i></a>
+                            <a th:href="@{/mascota/baja/__${mascota.id}__/__${session.usuariosesion.id}__}"><i class="fa fa-ban"></i></a>
+                            <a th:href="@{/mascota/modificar/__${mascota.id}__/__${session.usuariosesion.id}__}"><i class="fas fa-feather-alt"></i></a>
                         </td>
                     </tr>
-
                 </tbody>
             </table>
         </div>
 
-        <h3>Vacunas Pendientes</h3>
-        
-        <div class="container m-5">
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Edad de aplicación</th>
-                        <th scope="col">Refuerzo</th>
-                    </tr>
-                </thead>
-                <tbody th:each="vacunaPend : ${vacunasPend}">
-                    <tr>
-                        <td th:text="${vacunaPend.tipoVac}"></td>
-                        <td th:text="${vacunaPend.edadAplicacion}"></td>
-                        <td>
-                            <i th:if="${vacunaPend.refuerzo}" class="fa fa-circle text-success"></i>
-                            <i th:unless="${vacunaPend.refuerzo}" class="fa fa-circle" style="color:red;"></i>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
+        <div class="form-group form-group-btn-submit">
+            <a class="form-btn" th:href="@{/mascota/form-mascota/__${session.usuariosesion.id}__}">Agregar mascota</a>
         </div>
+
     </main>
 
     <footer>

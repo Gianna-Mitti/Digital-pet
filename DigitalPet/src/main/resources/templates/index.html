@@ -14,51 +14,85 @@
     <link rel="stylesheet" href="../static/static.css/index.css">
 </head>
 <body>
-    <header>
+    <header onselectstart="return false" onsmousestart="return false">
         <div class="off-menu">
             <span class="off-btn"><i class="fas fa-bars"></i></span>
             
             <nav class="topnav">
-                <a class="active" href="/">Home</a>
-                <a href="#">About us</a>
-                <a href="#">Info</a>
-                <!-- Log in -->
-                <span class=""> 
-                    <a class="btn login" role="button" id="#dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        Log-in
-                    </a>
+              <a class="active" th:href="@{/}">Home</a>
+              <a th:href="@{/#aboutUs}">About us</a>
+              <a th:href="@{/#info}">Info</a>
+              <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
 
-                    <div th:action="@{/usuario/}" method="POST" class="dropdown-menu" id="dropdownMenuButton">
-                        <form class="px-4 py-3">
-                          <div class="mb-3">
-                            <label for="mail" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="mail" name="mail" placeholder="email@ejemplo.com">
-                          </div>
-                          <div class="mb-3">
-                            <label for="password" class="form-label">Contraseña</label>
-                            <input type="password" class="form-control" id="password" name="clave" placeholder="Contraseña">
-                          </div>
-                          <div class="mb-3">
-                            <div class="form-check">
-                              <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                              <label class="form-check-label" for="dropdownCheck">
-                                Recordarme <!--Esto es facha nomás-->
-                              </label>
-                            </div>
-                          </div>
-                          <button type="submit" class="btn btn-primary">Sign in</button>
-                        </form>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" th:href="@{/usuario/registro}">Sign up</a>
-                        <a class="dropdown-item" href="#">Recuperar contraseña</a> <!--Esto es facha nomás-->
+              <!-- Log in -->
+              <span >
+                <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn login" role="button" id="#dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  Log-in
+                </a>
+
+                <a sec:authorize="isAuthenticated()" th:href="@{/login?logout}" class="btn login" role="button">
+                  Log-out
+                </a>
+
+                <div class="dropdown-menu" id="dropdownMenuButton">
+                    <form th:action="@{/logincheck}" method="POST" class="px-4 py-3">
+                      <div class="mb-3">
+                        <label for="mail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="mail" name="mail" th:value="${mail}" placeholder="email@ejemplo.com">
                       </div>
-                </span>
+                      <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="clave" th:value="${clave}" placeholder="Contraseña">
+                      </div>
+                      <div class="mb-3">
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                          <label class="form-check-label" for="dropdownCheck">
+                            Recordarme <!--Esto es facha nomás-->
+                          </label>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Sign in</button>
+                    </form>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" th:href="@{/usuario/registro}">Sign up</a>
+                    <a class="dropdown-item" href="#">Recuperar contraseña</a> <!--Esto es facha nomás-->
+                  </div>
+              </span>
             </nav>
         </div>
+
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
+          <div class="card-body">
+              <h5 class="card-title">Éxito</h5>
+              <p class="card-text" th:text="${exito}"></p>
+          </div>
+        </div>
+
         <h1 class="title">Digital <span>Pet</span></h1>
     </header>
 
     <main>
+      
+    <a name="aboutUs"></a>
+    <section>
+      <h2></h2>
+      <article>
+        <p>
+
+        </p>
+      </article>
+    </section>
+
+    <a name="info"
+    <section>
+      <h2></h2>
+      <article>
+        <p>
+
+        </p>
+      </article>
+    </section>
 
     </main>
 

@@ -4,6 +4,7 @@ import com.proyecto.DigitalPet.enums.Especie;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -27,10 +28,13 @@ public class Mascota {
     private Especie especie;
 //private Raza raza;
     private Boolean alta;
-    @OneToMany
+    
+    @OneToMany(cascade={CascadeType.ALL}, orphanRemoval=true)
     private List<Vacuna> vacAplicadas;
-    @OneToMany
+    
+    @OneToMany(cascade={CascadeType.ALL}, orphanRemoval=true)
     private List<Vacuna> vacPendientes;
+    
     @ManyToOne
     private Usuario usuario;
 

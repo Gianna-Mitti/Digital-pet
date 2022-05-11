@@ -37,11 +37,11 @@ public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("mail")
                 .passwordParameter("clave")
-                .defaultSuccessUrl("/perfil?login")
+                .defaultSuccessUrl("/index?login")
                 .permitAll()
             .and().logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/index?logout")
+                .logoutSuccessUrl("/login?logout")
                 .permitAll();
     }    
 }

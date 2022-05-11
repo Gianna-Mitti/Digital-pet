@@ -48,7 +48,7 @@ public class MascotaServ {
     }
 
     @Transactional
-    public Mascota crear(String idUsuario, String nombre, LocalDate fechaNac, String sexo, Especie especie) throws ErrorServicio {
+    public Mascota crear(String idUsuario, String nombre, LocalDate fechaNac, String sexo, String especie) throws ErrorServicio {
 
         Optional<Usuario> rta = usuarioRepo.findById(idUsuario);
 
@@ -62,15 +62,17 @@ public class MascotaServ {
             mascota.setNombre(nombre);
             mascota.setFechaNac(fechaNac);
             mascota.setSexo(sexo);
-            mascota.setEspecie(especie);
+            mascota.setEspecie(Especie.valueOf(especie.toUpperCase()));
             mascota.setUsuario(usuario);
+            
+            // Reformular en dos métodos, guarda dos veces la misma mascota
 
-            switch (mascota.getEspecie().toString()) {
+            switch (especie.toUpperCase()) {
                 case "CANINO":
-                    mascota.setVacPendientes(vacunaServ.vacCanino());
+                    mascota.setVacPendientes(vacunaServ.vacCanino(fechaNac));
                     break;
                 case "FELINO":
-                    mascota.setVacPendientes(vacunaServ.vacFelino());
+                    mascota.setVacPendientes(vacunaServ.vacFelino(fechaNac));
                     break;
             }
 
@@ -116,7 +118,7 @@ public class MascotaServ {
     }
 
     @Transactional
-    public Mascota editar(String idUsuario, String idMascota, String nombre, LocalDate fechaNac, String sexo, Especie especie) throws ErrorServicio {
+    public Mascota editar(String idUsuario, String idMascota, String nombre, LocalDate fechaNac, String sexo, String especie) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(idMascota);
 
         if (rta.isPresent()) {
@@ -128,7 +130,7 @@ public class MascotaServ {
             mascota.setNombre(nombre);
             mascota.setFechaNac(fechaNac);
             mascota.setSexo(sexo);
-            mascota.setEspecie(especie);
+            mascota.setEspecie(Especie.valueOf(especie.toUpperCase()));
 
             return mascotaRepo.save(mascota);
             } else {

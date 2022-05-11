@@ -2,66 +2,39 @@ const form = document.getElementById('form');
 const inputs = document.querySelectorAll('#form input');
 
 const expressions = {
-    name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
-	fechaNac: /^[0-9]{2}[/][0-9]{2}[/][0-9]{4}$/, /* validacion dd/mm/aaaa */
-	//sexo:/^(macho|hembra)*$/,
-	//especie: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-	//vacAplicadas: /^.{4,12}$/,
+	name: /^[a-zA-ZÀ-ÿ\s]{1,40}$/,
+	surname: /^[\w'\-,.][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{1,40}$/,
+	phone:/^\d{0,14}$/,
+	mail: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+	password: /^.{6,12}$/,
 }
 
 const fields = {
 	name: false,
-	fechaNac: false,
-	// sexo: false,
-	// especie: false,
-	// vacAplicadas: false,
+	surname: false,
+	phone: false,
+	mail: false,
+	password: false,
 }
-
-// opciones = document.getElementsByName("opciones");
- 
-// var especie = false;
-// for(var i=0; i<opciones.length; i++) {
-//   if(opciones[i].checked) {
-//     especie = true;
-//     break;
-//   }
-// }
- 
-// if(!especie) {
-//   return false;
-// }
-
-let ano = document.getElementById("ano").value;
-let mes = document.getElementById("mes").value;
-let dia = document.getElementById("dia").value;
-
-fechaNac = new Date(ano, mes, dia);
-if(!isNaN(fechaNac)){
- 	return false;
-}
-
-// indice = document.getElementById("especie").selectedIndex;
-// if( indice == null || indice == 0 ) {
-//   return false;
-// }
 
 const validateForm = (e) => {
 	switch (e.target.id) {
 		case "name":
 			validateField(expressions.name, e.target, 'name');
 		break;
-		case "fechaNac":
-			validateField(expressions.fechaNac, e.target, 'fechaNac');
+		case "surname":
+			validateField(expressions.surname, e.target, 'surname');
 		break;
-		// case "sexo":
-		// 	validateField(expressions.sexo, e.target, 'sexo');
-		// break;
-		// case "especie":
-		// 	validateField(expressions.especie, e.target, 'especie');
-		// break;
-		// case "vacAplicadas":
-		// 	validateField(expressions.vacAplicadas, e.target, 'vacAplicadas');
-		// break;
+		case "phone":
+			validateField(expressions.phone, e.target, 'phone');
+		break;
+		case "mail":
+			validateField(expressions.mail, e.target, 'mail');
+		break;
+		case "password":
+			validateField(expressions.password, e.target, 'password');
+			validatePasswordi();
+		break;
 	}
 }
 
@@ -82,6 +55,8 @@ const validateField = (expression, input, field) => {
 		fields[field] = false;
 	}
 }
+
+
 
 inputs.forEach((input) => {
 	input.addEventListener('keyup', validateForm);
