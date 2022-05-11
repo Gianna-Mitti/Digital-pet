@@ -103,7 +103,7 @@ public class VacunaServ {
             vac6.setTipoVac("Antirrábica");
             vac6.setEdadAplicacion("4-6m");
             vac6.setFechaAplicacion(fechaNac.plusMonths(5));
-            vac6.setRefuerzo(Boolean.FALSE);
+            vac6.setRefuerzo(Boolean.TRUE);
             vac6.setReAplicacion(360);
             vacunas.add(vac6);
 

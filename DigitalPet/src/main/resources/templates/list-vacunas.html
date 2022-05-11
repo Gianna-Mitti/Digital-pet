@@ -48,7 +48,7 @@
                         <th scope="col">Nombre</th>
                         <th scope="col">Lote</th>
                         <th scope="col">Fecha de aplicación</th>
-                        <th scope="col">Fecha de reaplicación</th>
+                        <th scope="col">Edad de aplicación</th>
                         <th scope="col">Refuerzo</th>
                     </tr>
                 </thead>
@@ -57,7 +57,7 @@
                         <td th:text="${vacunaAp.tipoVac}"></td>
                         <td th:text="${vacunaAp.id}"></td>
                         <td th:text="${vacunaAp.fechaAplicacion}"></td>
-                        <td th:text="${vacunaAp.reAplicacion}"></td>
+                        <td th:text="${vacunaAp.edadAplicacion}"></td>
                         <td>
                             <i th:if="${vacunaAp.refuerzo}" class="fa fa-circle text-success"></i>
                             <i th:unless="${vacunaAp.refuerzo}" class="fa fa-circle" style="color:red;"></i>
@@ -76,14 +76,14 @@
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
-                        <th scope="col">Edad de aplicación</th>
+                        <th scope="col">Debe aplicar</th>
                         <th scope="col">Refuerzo</th>
                     </tr>
                 </thead>
                 <tbody th:each="vacunaPend : ${mascota.vacPendientes}">
                     <tr>
                         <td th:text="${vacunaPend.tipoVac}"></td>
-                        <td th:text="${vacunaPend.edadAplicacion}"></td>
+                        <td th:text="${vacunaPend.fechaAplicacion}"></td>
                         <td>
                             <i th:if="${vacunaPend.refuerzo}" class="fa fa-circle text-success"></i>
                             <i th:unless="${vacunaPend.refuerzo}" class="fa fa-circle" style="color:red;"></i>

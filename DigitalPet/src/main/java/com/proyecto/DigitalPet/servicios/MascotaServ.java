@@ -85,7 +85,7 @@ public class MascotaServ {
 
     //El método "cargarVacunas", también sirve para MODIFICAR las vacunas.
     @Transactional
-    public Mascota cargarVacunas(String idUsuario, String idMascota, LocalDate fechaAp, List<Vacuna> vacAplicadas) throws ErrorServicio {
+    public Mascota cargarVacunas(String idUsuario, String idMascota, List<String> fechasApS, List<Vacuna> vacAplicadas) throws ErrorServicio {
         Optional<Mascota> rta = mascotaRepo.findById(idMascota);
 
         if (rta.isPresent()) {
@@ -95,17 +95,38 @@ public class MascotaServ {
 
                 Vacuna auxPend;
 
+                LocalDate fechaAp;
                 Period edadAp;
                 Integer edadApS;
+                int i;
                 
                 Iterator<Vacuna> itPends = mascota.getVacPendientes().iterator();
 
                 while(itPends.hasNext()) {
                     auxPend = itPends.next();
-
+                    
+                    i = 0;
                     for (Vacuna vacuna : vacAplicadas) {
+
+                        fechaAp = LocalDate.parse(fechasApS.get(i));
+                        i++;
+
                         if(auxPend.getId().equals(vacuna.getId())){
 
+                            Vacuna vacAp = new Vacuna();
+                            
+                            vacAp.setTipoVac(vacuna.getTipoVac());
+                            vacAp.setFechaAplicacion(fechaAp);
+                            vacAp.setRefuerzo(vacuna.getRefuerzo());
+                            vacAp.setReAplicacion(vacuna.getReAplicacion());
+
+                            edadAp = Period.between(mascota.getFechaNac(), fechaAp);
+                            edadApS = edadAp.getYears();
+                            vacAp.setEdadAplicacion(edadApS.toString());
+
+
+                            mascota.getVacAplicadas().add(vacAp);
+                            
                             if (!auxPend.getRefuerzo()) {
                                 itPends.remove();
                             } else if(auxPend.getReAplicacion() < 360){
@@ -115,19 +136,6 @@ public class MascotaServ {
                                 auxPend.setFechaAplicacion(fechaAp.plusDays(auxPend.getReAplicacion()));
                             }
 
-                            Vacuna vacAp = new Vacuna();
-                            
-                            vacAp.setTipoVac(vacuna.getTipoVac());
-                            vacAp.setFechaAplicacion(fechaAp);
-                            vacAp.setRefuerzo(vacuna.getRefuerzo());
-
-                            edadAp = Period.between(fechaAp, mascota.getFechaNac());
-                            edadApS = edadAp.getYears();
-                            System.out.println(edadApS);
-                            vacAp.setEdadAplicacion(edadApS.toString());
-
-
-                            mascota.getVacAplicadas().add(vacAp);
                         }
                     }
                 }
