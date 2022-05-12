@@ -25,7 +25,7 @@
                 <a th:href="@{/#aboutUs}">About us</a>
                 <a th:href="@{/info}">Info</a>
                 <a sec:authorize="isAuthenticated()" class="active" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
-                <a sec:authorize="isAuthenticated()" th:href="@{/index?logout}" class="login" role="button">
+                <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="login" role="button">
                     Log-out
                 </a>
 
