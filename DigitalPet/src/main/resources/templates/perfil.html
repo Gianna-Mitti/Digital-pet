@@ -12,118 +12,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/static.css/perfil.css">
+    <link rel="stylesheet" href="/../static.css/index.css">
 </head>
 
 <body>
     <header onselectstart="return false" onsmousestart="return false">
         <div class="off-menu">
             <span class="off-btn"><i class="fas fa-bars"></i></span>
-            
-            <nav class="topnav">
-<<<<<<< HEAD
-              <a class="active" th:href="@{/}">Home</a>
-              <a th:href="@{/#aboutUs}">About us</a>
-              <a th:href="@{/#info}">Info</a>
-              <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
 
-              <!-- Log in -->
-              <span >
-                <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn login" role="button" id="#dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                  Log-in
-=======
+            <nav class="topnav">
                 <a th:href="@{/}">Home</a>
                 <a th:href="@{/#aboutUs}">About us</a>
                 <a th:href="@{/info}">Info</a>
                 <a sec:authorize="isAuthenticated()" class="active" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
                 <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="login" role="button">
                     Log-out
->>>>>>> c061b5ef190f863fb57d4aa1d22ee28e8b721277
                 </a>
 
-                <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="btn login" role="button">
-                  Log-out
-                </a>
-
-                <div class="dropdown-menu" id="dropdownMenuButton">
-                    <form th:action="@{/logincheck}" method="POST" class="px-4 py-3">
-                      <div class="mb-3">
-                        <label for="mail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="mail" name="mail" th:value="${mail}" placeholder="email@ejemplo.com">
-                      </div>
-                      <div class="mb-3">
-                        <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" class="form-control" id="password" name="clave" th:value="${clave}" placeholder="Contraseña">
-                      </div>
-                      <div class="mb-3">
-                        <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                          <label class="form-check-label" for="dropdownCheck">
-                            Recordarme <!--Esto es facha nomás-->
-                          </label>
-                        </div>
-                      </div>
-                      <button type="submit" class="btn btn-primary">Sign in</button>
-                    </form>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" th:href="@{/usuario/registro}">Sign up</a>
-                    <a class="dropdown-item" href="#">Recuperar contraseña</a> <!--Esto es facha nomás-->
-                  </div>
-              </span>
             </nav>
         </div>
-
-        <div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
-          <div class="card-body">
-              <h5 class="card-title">Éxito</h5>
-              <p class="card-text" th:text="${exito}"></p>
-          </div>
-        </div>
-
         <h1 class="title">Digital <span>Pet</span></h1>
     </header>
 
-    <section class="seccion-perfil-usuario">
-        <div class="perfil-usuario-header">
-            <div class="perfil-usuario-portada">
-                <div class="perfil-usuario-avatar">
-                    <img src="../img/boarding-pass.jpg" alt="img-avatar">
-                    <!-- <button type="button" class="boton-avatar">
-                        <i class="far fa-image"></i>
-                    </button> -->
-                </div>
-                <!-- <button type="button" class="boton-portada">
-                    <i class="far fa-image"></i> Cambiar fondo
-                </button> -->
-            </div>
-        </div>
-        <div class="perfil-usuario-body">
+    <main>
         
-            <div class="perfil-usuario-footer">
-                <ul class="lista-datos">
-                    <li><i class="icono fas fa-solid fa-user" th:text="${session.usuariosesion.nombre}"></i> nombre : </li>
-                    <li><i class="icono fas fa-solid fa-user" th:text="${session.usuariosesion.apellido}"></i> apellido : </li>
-                    <li><i class="icono fas fa-solid fa-envelope" th:text="${session.usuariosesion.mail}"></i>Mail</li>
-                    <li><i class="icono fas fa-phone-alt" th:text="${session.usuariosesion.tel}"></i>Telefono:</li>
-                    <li><i class="icono fas fa-solid fa-paw"></i> Mascota</li>
-                </ul>
-            </div>
-            
-        </div>
-    </section>
+        <h2>Mis datos</h2>
 
-        <!-- <section>
-            <div class="list-user">
+        <section>
             <div th:if="${session.usuariosesion != null}">
-<<<<<<< HEAD
-                <ul>
-                <li th:text="${session.usuariosesion.nombre}">nombre : </li>
-                <li th:text="${session.usuariosesion.apellido}">apellido : </li>
-                <li th:text="${session.usuariosesion.mail}">mail : </li>
-                <li th:text="${session.usuariosesion.tel}">teléfono : </li>
-            </ul>
-            
-=======
                 <h3 th:text="${session.usuariosesion.nombre}"></h3>
                 <h3 th:text="${session.usuariosesion.apellido}"></h3>
                 <h3 th:text="${session.usuariosesion.mail}"></h3>
@@ -132,34 +48,14 @@
             <div>
                 <a th:href="@{/usuario/modificar/__${session.usuariosesion.id}__}" class="form-btn">Modificar mis datos</a>
                 <a th:href="@{/usuario/modificarclave/__${session.usuariosesion.id}__}" class="form-btn">Cambiar contraseña</a>
->>>>>>> c061b5ef190f863fb57d4aa1d22ee28e8b721277
             </div>
-        </div>
-
         </section>
-        <aside>
-            <a th:href="@{/usuario/modificar/__${session.usuariosesion.id}__}">Modificar mis datos</a>
-            <a th:href="@{/usuario/modificarclave/__${session.usuariosesion.id}__}">Cambiar contraseña</a>
-        </aside>
 
-        <a class="form-btn" th:href="@{/mascota/list-mascotas}">Ver mis mascotas</a> -->
+        <a class="form-btn" th:href="@{/mascota/list-mascotas}">Ver mis mascotas</a>
 
+    </main>
 
     <footer>
-        <div class="form-footer">
-			<nav>
-				<ul>
-					<li><a href="./">Home</a></li>
-					<li><a href="#">About us</a></li>
-					<li><a href="#">Info</a></li>
-				  </ul>
-			</nav>
-			<div>
-				<a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
-				<a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
-				<a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
-			</div>
-		</div>
 
     </footer>
 
