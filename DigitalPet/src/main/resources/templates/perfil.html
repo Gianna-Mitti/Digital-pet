@@ -23,7 +23,7 @@
             <nav class="topnav">
                 <a th:href="@{/}">Home</a>
                 <a th:href="@{/#aboutUs}">About us</a>
-                <a th:href="@{/#info}">Info</a>
+                <a th:href="@{/info}">Info</a>
                 <a sec:authorize="isAuthenticated()" class="active" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
                 <a sec:authorize="isAuthenticated()" th:href="@{/index?logout}" class="login" role="button">
                     Log-out
@@ -46,8 +46,8 @@
                 <h3 th:text="${session.usuariosesion.tel}"></h3>
             </div>
             <div>
-                <a th:href="@{/usuario/modificar/__${session.usuariosesion.id}__}">Modificar mis datos</a>
-                <a th:href="@{/usuario/modificarclave/__${session.usuariosesion.id}__}">Cambiar contraseña</a>
+                <a th:href="@{/usuario/modificar/__${session.usuariosesion.id}__}" class="form-btn">Modificar mis datos</a>
+                <a th:href="@{/usuario/modificarclave/__${session.usuariosesion.id}__}" class="form-btn">Cambiar contraseña</a>
             </div>
         </section>
 

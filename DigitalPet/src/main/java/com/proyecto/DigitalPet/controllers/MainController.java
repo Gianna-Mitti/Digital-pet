@@ -27,4 +27,8 @@ public class MainController {
         return "index.html";
     }
 
+    @GetMapping("/info")
+    public String info() {
+        return "info.html";
+    }
 }

@@ -22,7 +22,7 @@
 
               <a class="active" th:href="@{/}">Home</a>
               <a th:href="@{/#aboutUs}">About us</a>
-              <a th:href="@{/#info}">Info</a>
+              <a th:href="@{/info}">Info</a>
               <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
 
               <!-- Log in -->

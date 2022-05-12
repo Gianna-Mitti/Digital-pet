@@ -26,7 +26,7 @@
             <nav class="topnav">
                 <a th:href="@{/}">Home</a>
                 <a th:href="@{/#aboutUs}">About us</a>
-                <a th:href="@{/#info}">Info</a>
+                <a th:href="@{/info}">Info</a>
                 <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}">Mi perfil</a>
                 <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="login" role="button">
                     Log-out
