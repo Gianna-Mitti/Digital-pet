@@ -80,7 +80,7 @@
 								<input type="checkbox" th:id="${vac.tipoVac}" class="form-check form-input" th:value="${vac.id}" name="vacAplicada">
 								<label>
 									Ingrese fecha de aplicación
-									<div th:object=" ${fechasApS}">
+									<div th:object="${fechasApS}">
 										<input th:for="${vac.tipoVac}" type="date" class="form-input" name="fechaApS">
 									</div>
 								</label>
@@ -109,9 +109,9 @@
 		<div class="form-footer">
 			<nav>
 				<ul>
-					<li><a href="./">Home</a></li>
+					<li><a th:href="@{/}">Home</a></li>
 					<li><a href="#">About us</a></li>
-					<li><a href="#">Info</a></li>
+					<li><a th:href="@{/info}">Info</a></li>
 				</ul>
 			</nav>
 			<div>

@@ -65,6 +65,7 @@ public class MascotaServ {
             mascota.setSexo(sexo);
             mascota.setEspecie(Especie.valueOf(especie.toUpperCase()));
             mascota.setUsuario(usuario);
+            mascota.setAlta(Boolean.TRUE);
             
             // Reformular en dos métodos, guarda dos veces la misma mascota
 
