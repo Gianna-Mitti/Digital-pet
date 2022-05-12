@@ -84,8 +84,12 @@ private UsuarioServ usuarioServ;
     }
     
     @GetMapping("/modificarclave/{id}")
-    public String modificarclave (@PathVariable String id, ModelMap modelo){
-        modelo.put("usuario", usuarioServ.getOne(id));
+    public String modificarclave (HttpSession sesion, @PathVariable String id, ModelMap modelo){
+        try{
+            Usuario u = (Usuario) sesion.getAttribute("usuariosesion");
+            modelo.put("usuario", u);
+        } catch(Exception e) {  
+        }
         
         return "form-usuario-clave.html";
     }

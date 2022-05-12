@@ -67,7 +67,7 @@ public class UsuarioServ implements UserDetailsService {
         if (op.isPresent()) {
             Usuario usuario = op.get();
             validarClave(claveAnterior);
-            if (claveAnterior.equals(usuario.getClave())) {
+            if (claveAnterior != claveNueva) {
                 validarClave(claveNueva);
                 String encriptada = new BCryptPasswordEncoder().encode(claveNueva);
                 usuario.setClave(encriptada);
