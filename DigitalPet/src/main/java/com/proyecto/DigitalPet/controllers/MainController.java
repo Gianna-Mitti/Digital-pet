@@ -14,10 +14,7 @@ public class MainController {
     public String index(@RequestParam(required = false) String login, @RequestParam(required = false) String error, @RequestParam(required = false) String logout, ModelMap model) {
         if (login != null) {
             model.put("exito", "Ha ingresado exitosamente.");
-        } else {
-            model.put("error", "Error al ingresar.");
-        }
-        
+        }        
         if (error != null) {
             model.put("error", "Usuario/clave incorrectos.");
         }
