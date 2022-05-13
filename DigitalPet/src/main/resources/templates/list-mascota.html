@@ -26,8 +26,8 @@
             <nav class="topnav">
                 <a th:href="@{/}">Home</a>
                 <a th:href="@{/#aboutUs}">About us</a>
-                <a th:href="@{/#info}">Info</a>
-                <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
+                <a th:href="@{/info}">Info</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}">Mi perfil</a>
                 <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="login" role="button">
                     Log-out
                 </a>
@@ -73,12 +73,12 @@
                         </td>
                         <td>
                             <a th:href="@{/mascota/list-vacunas/__${mascota.id}__}">Ver vacunas</a>
-                            <a th:href="@{/mascota/form-mascota-vac/__${mascota.id}__/__${session.usuariosesion.id}__}">Agregar vacunas</a>
+                            <a th:href="@{/mascota/form-mascota-vac/__${mascota.id}__}">Agregar vacunas</a>
                         </td>
                         <td>
-                            <a th:href="@{/mascota/alta/__${mascota.id}__/__${session.usuariosesion.id}__}"><i class="fa fa-arrow-up"></i></a>
-                            <a th:href="@{/mascota/baja/__${mascota.id}__/__${session.usuariosesion.id}__}"><i class="fa fa-ban"></i></a>
-                            <a th:href="@{/mascota/modificar/__${mascota.id}__/__${session.usuariosesion.id}__}"><i class="fas fa-feather-alt"></i></a>
+                            <a th:href="@{/mascota/alta/__${mascota.id}__}"><i class="fa fa-arrow-up"></i></a>
+                            <a th:href="@{/mascota/baja/__${mascota.id}__}"><i class="fa fa-ban"></i></a>
+                            <a th:href="@{/mascota/modificar/__${mascota.id}__}"><i class="fas fa-feather-alt"></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -86,7 +86,7 @@
         </div>
 
         <div class="form-group form-group-btn-submit">
-            <a class="form-btn" th:href="@{/mascota/form-mascota/__${session.usuariosesion.id}__}">Agregar mascota</a>
+            <a class="form-btn" th:href="@{/mascota/form-mascota}">Agregar mascota</a>
         </div>
 
     </main>

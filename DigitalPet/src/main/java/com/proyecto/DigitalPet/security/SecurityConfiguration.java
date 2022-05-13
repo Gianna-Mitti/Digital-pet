@@ -28,8 +28,7 @@ public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
 
 @Override
     public void configure(HttpSecurity http) throws Exception {
-        http.headers().frameOptions().sameOrigin().and()
-                .authorizeRequests()
+http.authorizeRequests()
                 .antMatchers("/css/*", "/js/*", "/img/*", "/**")
                 .permitAll()
              .and().formLogin()
@@ -41,7 +40,8 @@ public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception{
                 .permitAll()
             .and().logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .logoutSuccessUrl("/index?logout")
+                .permitAll()
+        .and().csrf().disable();
     }    
 }

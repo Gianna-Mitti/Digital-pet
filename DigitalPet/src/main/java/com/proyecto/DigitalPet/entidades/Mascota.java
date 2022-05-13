@@ -105,7 +105,7 @@ public class Mascota {
         return vacAplicadas;
     }
 
-    public void setVacAplicadas(ArrayList<Vacuna> vacAplicadas) {
+    public void setVacAplicadas(List<Vacuna> vacAplicadas) {
         this.vacAplicadas = vacAplicadas;
     }
 
@@ -113,7 +113,7 @@ public class Mascota {
         return vacPendientes;
     }
 
-    public void setVacPendientes(ArrayList<Vacuna> vacPendientes) {
+    public void setVacPendientes(List<Vacuna> vacPendientes) {
         this.vacPendientes = vacPendientes;
     }
 
