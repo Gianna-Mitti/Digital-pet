@@ -80,18 +80,21 @@ header {
     color: #D6DB2E;
 }
 
-.subtitle {
-    width: 90vw;
+section {
+    width: 90%;
     margin: auto;
+}
+
+.subtitle {
     padding: 2vh 2vw;
     font-size: calc(2em + 2vw);
     font-weight: 200;
-    text-align: right;
+    text-align: center;
     color: #7E18DB;
 }
 
 .preface {
-    background-color: #F0D8CC;
+    background-color: #B9EDE9;
     font-size: calc(1em + 1vw);
     text-align: center;
     color: #7E18DB;
@@ -99,9 +102,7 @@ header {
 }
 
 .article {
-    font-size: 1em;
     text-align: justify;
-    color: #7E18DB;
 }
 
 .subtitle span, .preface span, .article span {
@@ -110,14 +111,29 @@ header {
 
 .article a, .article a:visited {
     text-decoration: none;
-    color: #08423E;
+    color: #7E18DB;
 }
 .article a:hover {
-    color: #ED5628;
+    color: #DB5F23;
+}
+
+.section-btn, .center-btn:hover {
+    background-color: #fff;
+    color: #7E18DB;
+}
+.section-btn:hover, .center-btn {
+    background-color: #7E18DB;
+    color: #fff;
+}
+
+.center-div {
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .div {
-    background-color: #ED5628;
+    background-color: #DB5F23;
     height: 25vh;
 }
 
@@ -127,6 +143,7 @@ header {
     width: 44vw;
     height: 44vw;
     overflow: hidden;
+    margin: 0 0 0 2vw ;
 }
 .carousel ul {
     padding: 0;
@@ -208,6 +225,55 @@ header {
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+/* Recursos */
+
+.menu {
+    position: relative;
+    display: inline-block;
+    margin-left: 30vw;
+}
+.unfold {
+    background-color: #7E18DB;
+    font-size: 1.2em;
+    color: white;
+    width: 40vw;
+    padding: 2vw 0;
+    border: none;
+}
+.unfold-content {
+    display: none;
+    position: absolute;
+    background-color: #B9EDE9;
+    z-index: 1;
+}
+.unfold-content a {
+    display: block;
+    font-size: 1em;
+    text-decoration: none;
+    text-align: center;
+    color: #7E18DB;
+    width: 40vw;
+    padding: 2vh 0;
+}
+.unfold-content a:hover {
+    background-color: #D5DB2E;
+    color: #fff;
+}
+.menu:hover .unfold-content {
+    display: block;
+}
+
+.maps {
+    margin-top: 2%;
+    border: none;
+    width: 100%;
+    height: 50vh;
+}
+
+.article > div {
+    padding: 5%;
 }
 
 footer {

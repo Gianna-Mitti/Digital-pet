@@ -14,7 +14,7 @@
 		href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
 		rel="stylesheet">
 	<link rel="stylesheet" href="/../static.css/index.css">
-	<link rel="stylesheet" href="/../static.css/form-mascota.css">
+	<link rel="stylesheet" href="/../static.css/forms.css">
 </head>
 
 <body class="form-page">
@@ -36,12 +36,12 @@
 				<label for="vacAplicadas" class="form-label">Seleccione las vacunas que la mascota tiene aplicadas</label>
 				<div class="form-group-input">
 
-					<div class="dropdown">
-						<button class="btn dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+					<div class="dropdown center-div">
+						<button class="btn select-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
 						  Seleccione...
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-							<li class="form-option">
+							<li>
 								<input type="checkbox" id="vacAplicadas" th:value="NULL" name="vacAplicada">
 								<label for="vacAplicadas" th:text="Ninguna"></label>
 							</li>
@@ -59,19 +59,9 @@
 					  </div>
 				</div>
 			</div>
-<!-- 
-			<p><span class="warn">*</span>Campo obligatorio</p> -->
-			<!--
-			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
-				<div class="card-body">
-					<h5 class="card-title">Éxito</h5>
-					<p class="card-text" th:text="${exito}"></p>
-				</div>
-			</div>
--->
 
 			<div class="form-group form-group-btn-submit">
-				<button type="submit" class="form-btn">Enviar</button>
+				<button type="submit" class="btn center-btn form-btn">Enviar</button>
 			</div>
 		</form>
 		<div class="form-footer">

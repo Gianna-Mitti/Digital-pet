@@ -26,8 +26,9 @@
             <nav class="topnav">
                 <a th:href="@{/}">Home</a>
                 <a th:href="@{/#aboutUs}">About us</a>
-                <a th:href="@{/info}">Info</a>
-                <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil}">Mi perfil</a>
+                <a th:href="@{/#info}">Info</a>
+                <a th:href="@{/recursos}">Recursos</a>
+                <a sec:authorize="isAuthenticated()" class="active" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
                 <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="login" role="button">
                     Log-out
                 </a>
@@ -45,9 +46,9 @@
             </div>
         </div>
 
-        <h2>Mis mascotas</h2>
-
-        <div class="container m-5">
+        <section>
+            
+            <h2>Mis mascotas</h2>
 
             <table class="table">
                 <thead>
@@ -68,26 +69,27 @@
                         <td th:text="${mascota.sexo}"></td>
                         <td th:text="${mascota.especie}"></td>
                         <td>
-                            <i th:if="${mascota.alta}" class="fa fa-circle text-success"></i>
-                            <i th:unless="${mascota.alta}" class="fa fa-circle" style="color:red;"></i>
+                            <i th:if="${mascota.alta}" class="fa fa-check text-success"></i>
+                            <i th:unless="${mascota.alta}" class="fa fa-ban" style="color:red;"></i>
                         </td>
                         <td>
-                            <a th:href="@{/mascota/list-vacunas/__${mascota.id}__}">Ver vacunas</a>
-                            <a th:href="@{/mascota/form-mascota-vac/__${mascota.id}__}">Agregar vacunas</a>
+                            <a class="btn section-btn" th:href="@{/mascota/list-vacunas/__${mascota.id}__}">Ver vacunas</a>
+                            <a class="btn section-btn" th:href="@{/mascota/form-mascota-vac/__${mascota.id}__}">Agregar vacunas</a>
                         </td>
                         <td>
-                            <a th:href="@{/mascota/alta/__${mascota.id}__}"><i class="fa fa-arrow-up"></i></a>
-                            <a th:href="@{/mascota/baja/__${mascota.id}__}"><i class="fa fa-ban"></i></a>
-                            <a th:href="@{/mascota/modificar/__${mascota.id}__}"><i class="fas fa-feather-alt"></i></a>
+                            <a class="btn section-btn" th:href="@{/mascota/alta/__${mascota.id}__}"><i class="fa fa-arrow-up"></i></a>
+                            <a class="btn section-btn" th:href="@{/mascota/baja/__${mascota.id}__}"><i class="fa fa-arrow-down"></i></a>
+                            <a class="btn section-btn" th:href="@{/mascota/modificar/__${mascota.id}__}"><i class="fas fa-feather-alt"></i></a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </div>
 
-        <div class="form-group form-group-btn-submit">
-            <a class="form-btn" th:href="@{/mascota/form-mascota}">Agregar mascota</a>
+        <div class="center-div">
+            <a class="btn center-btn" th:href="@{/mascota/form-mascota}">Agregar mascota</a>
+            <a class="btn center-btn" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Volver</a>
         </div>
+    </section>
 
     </main>
 
