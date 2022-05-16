@@ -30,6 +30,9 @@ public class UsuarioServ implements UserDetailsService {
 
     @Autowired
     private UsuarioRepo usuarioRepo;
+    
+    @Autowired
+    private NotificacionServ notificacionServ;
 
     @Transactional
     public Usuario registrar(String nombre, String apellido, String mail, Long tel, String clave) throws ErrorServicio {
@@ -42,6 +45,7 @@ public class UsuarioServ implements UserDetailsService {
         usuario.setMail(mail);
         usuario.setClave(encoder.encode(clave));
         usuario.setRole(Role.USER);
+        notificacionServ.notificacionRegistro("¡Gracias por unirte a nuestra comunidad! En nuestra página vas a poder llevar el control de las vacunas aplicadas y pendientes de tu mascota.", " ¡Bienvenidx a DigitalPet!", usuario.getMail());
         return usuarioRepo.save(usuario);
     }
 

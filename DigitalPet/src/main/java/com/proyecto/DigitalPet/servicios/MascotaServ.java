@@ -28,7 +28,7 @@ public class MascotaServ {
 
     @Autowired
     private VacunaServ vacunaServ;
-
+   
     public void validator(String nombre, LocalDate fechaNac, String sexo) throws ErrorServicio {
 
         if (nombre == null || nombre.isEmpty()) {
@@ -77,8 +77,8 @@ public class MascotaServ {
                     mascota.setVacPendientes(vacunaServ.vacFelino(fechaNac));
                     break;
             }
-
-            return mascotaRepo.save(mascota);
+            
+      return mascotaRepo.save(mascota);
         } else {
             throw new ErrorServicio("El usuario ingresado no se econtró en nuestra lista de usuarios registrados.");
         }
