@@ -69,12 +69,12 @@
               <p class="card-text" th:text="${exito}"></p>
           </div>
         </div>
-        <div th:if="${error}!=null" class="card text-white bg-success mb-3" >
+<!--        <div th:if="${error}!=null" class="card text-white bg-success mb-3" >
           <div class="card-body">
               <h5 class="card-title">Error</h5>
               <p class="card-text" th:text="${error}"></p>
           </div>
-        </div>
+        </div>-->
         
         <h1 class="title">Digital <span>Pet</span></h1>
     </header>
@@ -83,21 +83,114 @@
       
     <a name="aboutUs"></a>
     <section>
-      <h2></h2>
+      <h2 class="subtitle">About us</h2>
       <article>
-        <p>
-
+        <p class="preface">En Digital Pet queremos acompañarte en el cuidado de tu mascota, para que sólo tengas que concentrarte en quererla.</p>
+        <p class="article">
+          Registrándote en Digital Pet vas a poder ingresar los datos de tus mascotas y automáticamente vas a conocer todas las vacunaas que se ofrecen para cuidar la salud de tu mascota, tuya y de su entorno. 
+          Además vas a poder llevar un control de sus vacunas tanto aplicadas como pendientes ya que te vamos a informar respecto a su vencimiento. 
         </p>
       </article>
     </section>
 
-    <a name="info"
+    <div class="carousel">
+      <ul>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 12.00.36.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 12.21.44.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 12.22.35.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 12.59.49.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 13.00.17.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 13.00.53.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 13.11.12.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 13.50.25.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 13.58.36.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 14.10.26.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 14.38.56.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 14.49.11.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 14.59.32 (1).jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 14.59.32 (2).jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 14.59.32 (3).jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 14.59.32.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 14.59.33.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 15.41.50.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 15.54.48.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 17.04.35.jpeg" alt="foto">
+          </li>
+          <li>
+              <img src="../static/carousel/WhatsApp Image 2021-10-03 at 12.00.36.jpeg" alt="foto">
+          </li>
+      </ul>
+  </div>
+    
+    <a name="info"></a>
     <section>
-      <h2></h2>
-      <article>
+      <article class="article">
+      <h2 class="subtitle">¿Qué son las vacunas?</h2>
         <p>
 
         </p>
+      <h2 class="subtitle">¿Por qué Vacunar a tus Mascotas?</h2>
+          <p>
+            Así como nosotros, los humanos, las mascotas también deben vacunarse para poder tener una vida lo más sana posible. 
+            Por esto, se recomienda vacunar a nuestras mascotas, ya que éstas previenen enfermedades y evitan que otros animales se contagien. 
+            Algunos animales salvajes, pueden contagiar enfermedades como el moquillo, la cual puede prevenirse con la aplicación de su correspondiente vacuna. 
+            Además, es muy importante pensar que enfermedades como la rabia (la cual puede llegar a ser mortal) puden ser transmitidas hacia las personas. Por este motivo, vacunar a nuestras 
+            mascotas siempre es la mejor opción.
+          </p>
+      <h2 class="subtitle">¿Qué vacunas debo aplicarle a mi mascota?</h2>
+          <p>
+            Durante las primeras semanas de vida, nuestra mascota recibe las defensas mediante la madre, a través de la lactancia.  
+            A medida que comienzan a crecer, hay que reforzar su inmunidad con la ayuda de las vacunas. 
+            La inmunización para perros y para gatos es diferente.  
+            Empezando por los felinos, estos reciben la triple felina a los dos (2) meses de edad y a los 15 días se coloca el refuerzo. Esta vacuna los protege contra la panleucopenia, el calicivirus y la rinotraqueitis.  
+            Junto con la primera, tambi{en reciben la vacuna contra el moquillo, a los dos (2) meses de vida. 
+            Seis (6) meses luego se coloca otro refuerzo de la triple felina y, además, la antirrábica.  
+            Cada año debe aplicarse el refuerzo de la triple felina y la antirrábica. 
+            En el caso de los caninos, de forma similar, se los vacuna a los 2 meses de vida con la polivalente, la cual los protege del adenovirus, moquillo, parainfluenza y parvovirus. 
+            A los tres (3) meses se les aplica el refuerzo de la polivalente y, además, se da la vacuna contra la leptospirosis. 
+            A los cuatro (4) meses, de forma obligatoria se les da la antirrábica. 
+            Luego, queda reforzar la polivalente de forma anual junto con la antirrábica.
+            También, existen vacunas opcionales que protegen contra otras enfermedades, aunque las de calendario "obligatorias", son las mencionadas anteriormente.
+          </p>
       </article>
     </section>
 
