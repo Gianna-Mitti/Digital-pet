@@ -24,8 +24,8 @@ public class MainController {
         return "index.html";
     }
 
-    @GetMapping("/info")
-    public String info() {
-        return "info.html";
+    @GetMapping("/recursos")
+    public String recursos() {
+        return "recursos.html";
     }
 }
