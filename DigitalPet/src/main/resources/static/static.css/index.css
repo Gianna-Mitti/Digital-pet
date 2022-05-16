@@ -40,7 +40,6 @@ header {
 .topnav {
     width: 100%;
     display: inline-flex;
-    justify-content: flex-end;
     background-color: #B9EDE9; /* B */
     overflow: hidden;
 }
@@ -79,6 +78,202 @@ header {
     font-family: 'Pacifico', cursive;
     font-size: 20vw;
     color: #D6DB2E;
+}
+
+section {
+    width: 90%;
+    margin: auto;
+}
+
+.subtitle {
+    padding: 2vh 2vw;
+    font-size: calc(2em + 2vw);
+    font-weight: 200;
+    text-align: center;
+    color: #7E18DB;
+}
+
+.preface {
+    background-color: #B9EDE9;
+    font-size: calc(1em + 1vw);
+    text-align: center;
+    color: #7E18DB;
+    padding: 4% 10%;
+}
+
+.article {
+    text-align: justify;
+}
+
+.subtitle span, .preface span, .article span {
+    font-weight: 600;
+}
+
+.article a, .article a:visited {
+    text-decoration: none;
+    color: #7E18DB;
+}
+.article a:hover {
+    color: #DB5F23;
+}
+
+.section-btn, .center-btn:hover {
+    background-color: #fff;
+    color: #7E18DB;
+}
+.section-btn:hover, .center-btn {
+    background-color: #7E18DB;
+    color: #fff;
+}
+
+.center-div {
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.div {
+    background-color: #DB5F23;
+    height: 25vh;
+}
+
+
+.carousel {
+    float: right;
+    width: 44vw;
+    height: 44vw;
+    overflow: hidden;
+    margin: 0 0 0 2vw ;
+}
+.carousel ul {
+    padding: 0;
+    width: 2100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    animation: mascotas 200s linear infinite;
+}
+    @keyframes mascotas {
+        0% {margin-left: 0%;}
+        2% {margin-left: 0%}
+
+        3% {margin-left: -100%;}
+        7% {margin-left: -100%;}
+
+        8% {margin-left: -200%;}
+        12% {margin-left: -200%;}
+
+        13% {margin-left: -300%;}
+        17% {margin-left: -300%;}
+
+        18% {margin-left: -400%;}
+        22% {margin-left: -400%;}
+
+        23% {margin-left: -500%;}
+        27% {margin-left: -500%;}
+
+        28% {margin-left: -600%;}
+        32% {margin-left: -600%;}
+
+        33% {margin-left: -700%;}
+        37% {margin-left: -700%;}
+
+        38% {margin-left: -800%;}
+        42% {margin-left: -800%;}
+
+        43% {margin-left: -900%;}
+        47% {margin-left: -900%;}
+
+        48% {margin-left: -1000%;}
+        52% {margin-left: -1000%;}
+
+        53% {margin-left: -1100%;}
+        57% {margin-left: -1100%;}
+
+        58% {margin-left: -1200%;}
+        62% {margin-left: -1200%;}
+
+        63% {margin-left: -1300%;}
+        67% {margin-left: -1300%;}
+
+        68% {margin-left: -1400%;}
+        72% {margin-left: -1400%;}
+
+        73% {margin-left: -1500%;}
+        77% {margin-left: -1500%;}
+
+        78% {margin-left: -1600%;}
+        82% {margin-left: -1600%;}
+
+        83% {margin-left: -1700%;}
+        87% {margin-left: -1700%;}
+
+        88% {margin-left: -1800%;}
+        92% {margin-left: -1800%;}
+
+        93% {margin-left: -1900%;}
+        97% {margin-left: -1900%;}
+
+        98% {margin-left: -2000%}
+        100% {margin-left: -2000%;}
+}
+.carousel li {
+    width: 100%;
+    list-style: none;
+}
+.carousel img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Recursos */
+
+.menu {
+    position: relative;
+    display: inline-block;
+    margin-left: 30vw;
+}
+.unfold {
+    background-color: #7E18DB;
+    font-size: 1.2em;
+    color: white;
+    width: 40vw;
+    padding: 2vw 0;
+    border: none;
+}
+.unfold-content {
+    display: none;
+    position: absolute;
+    background-color: #B9EDE9;
+    z-index: 1;
+}
+.unfold-content a {
+    display: block;
+    font-size: 1em;
+    text-decoration: none;
+    text-align: center;
+    color: #7E18DB;
+    width: 40vw;
+    padding: 2vh 0;
+}
+.unfold-content a:hover {
+    background-color: #D5DB2E;
+    color: #fff;
+}
+.menu:hover .unfold-content {
+    display: block;
+}
+
+.maps {
+    margin-top: 2%;
+    border: none;
+    width: 100%;
+    height: 50vh;
+}
+
+.article > div {
+    padding: 5%;
 }
 
 footer {

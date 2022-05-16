@@ -1,13 +1,13 @@
 package com.proyecto.DigitalPet.controllers;
 
 import com.proyecto.DigitalPet.entidades.Mascota;
+import com.proyecto.DigitalPet.entidades.Usuario;
 import com.proyecto.DigitalPet.entidades.Vacuna;
-import com.proyecto.DigitalPet.enums.Especie;
 import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.servicios.MascotaServ;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -24,109 +24,131 @@ public class MascotaController {
     @Autowired
     private MascotaServ mascotaServ;
     
-    @GetMapping("/list-mascotas/{id}")
-    public String lista(ModelMap modelo) {
+    @GetMapping("/list-mascotas")
+    public String lista(ModelMap model, HttpSession session) throws ErrorServicio {
 
-        List<Mascota> listaM = mascotaServ.findAll();
+        Usuario u = (Usuario) session.getAttribute("usuariosesion");
 
-        modelo.addAttribute("mascotas", listaM);
+        try{
+            List<Mascota> listaM = mascotaServ.listarMascotas(u.getId());
+            model.addAttribute("mascotas", listaM);
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
+        }
+
 
         return "list-mascota.html";
     }
     ///////////PREGUNTAR
-    @GetMapping("/form-mascota/{id}")
+    @GetMapping("/form-mascota")
     public String registrar() {
         return "form-mascota.html";
     }
 
-@PostMapping("/form-mascota/{id}")
-public String registrar(ModelMap model, @PathVariable String idU, @RequestParam String nombre, @RequestParam LocalDate fechaNac, @RequestParam String sexo, @RequestParam Especie especie) throws Exception {
-    
-    try{
-        mascotaServ.crear(idU, nombre, fechaNac, sexo, especie);
-        model.put("exito", "La mascota ha sido registrada exitosamente");
-        return "list-mascota.html";
-    } catch (Exception e) {
-//        e.printStackTrace();
-        model.put("error", e.getMessage());
-        return "form-mascota.html";
+    @PostMapping("/form-mascota")
+    public String registrar(ModelMap model, HttpSession session, @RequestParam String nombre, @RequestParam String fechaNacS, @RequestParam String sexo, @RequestParam String especie) throws Exception {
+        
+        Usuario u = (Usuario) session.getAttribute("usuariosesion");
+
+        LocalDate fechaNac = LocalDate.parse(fechaNacS); 
+
+        try{
+            mascotaServ.crear(u.getId(), nombre, fechaNac, sexo, especie);
+            model.put("exito", "La mascota ha sido registrada exitosamente");
+            return "redirect:/mascota/list-mascotas";
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
+            return "form-mascota.html";
+        }
     }
-}
     
     @GetMapping("/form-mascota-vac/{id}")
-    public String cargarVac(@PathVariable String idMascota, ModelMap model) throws ErrorServicio {
-        model.put("mascota", mascotaServ.buscarMxId(idMascota));
+    public String cargarVac(ModelMap model, @PathVariable String id) throws Exception {
+        
+        try{
+            Mascota m = mascotaServ.buscarMxId(id);
+            model.put("mascota", m);
+        } catch (Exception e) {
+            model.put("error", e.getMessage());
+        }
+        
         return "form-mascota-vac.html";
     }
 
     @PostMapping("form-mascota-vac/{id}")
-    public String cargarVac(@PathVariable String idUsuario, @PathVariable String idMascota, @RequestParam ArrayList<Vacuna> vacAplicadas, ModelMap model) throws ErrorServicio {
+    public String cargarVac(ModelMap model, @PathVariable String id, HttpSession session, @RequestParam(value="fechaApS") List<String> fechasApS, @RequestParam(value="vacAplicada") List<Vacuna> vacAplicadas) throws Exception {
         try{
-            mascotaServ.cargarVacunas(idUsuario, idMascota, vacAplicadas);
+            Usuario u = (Usuario) session.getAttribute("usuariosesion");
+
+            mascotaServ.cargarVacunas(u.getId(), id, fechasApS, vacAplicadas);
             model.put("exito", "Las vacunas han sido cargadas exitosamente.");
-            return "perfil.html";
+            return "redirect:/mascota/list-vacunas/{id}";
         } catch (Exception e) {
+            System.out.println("--------------------");
+            System.out.println(e.getMessage());
             model.put("error", e.getMessage());
-            return "from-mascota-vac.html";
+            return "redirect:/mascota/form-mascota-vac/{id}";
         }
     }
 
     @GetMapping("/baja/{id}")
-    public String baja(@PathVariable String id, @PathVariable String idU, ModelMap model) {
+    public String baja(@PathVariable String id, HttpSession session, ModelMap model) {
 
         try {
-            mascotaServ.eliminar(id, idU);
-            return "redirect:/list-mascota.html";
-        } catch (Exception e) {
+            
+            Usuario u = (Usuario) session.getAttribute("usuariosesion");
+            mascotaServ.eliminar(id, u.getId());
+            return "redirect:/mascota/list-mascotas";
+        } catch (ErrorServicio e) {
             model.put("error", e.getMessage());
-            return "redirect:/list-mascota.html";
+            return "redirect:/mascota/list-mascotas";
         }
     }
     
         @GetMapping("/alta/{id}")
-    public String alta(@PathVariable String id, @PathVariable String idU, ModelMap model) {
+    public String alta(@PathVariable String id, HttpSession session, ModelMap model) {
 
         try {
-            mascotaServ.habilitar(id, idU);
-            return "redirect:/list-mascota.html";
-        } catch (Exception e) {
+            
+            Usuario u = (Usuario) session.getAttribute("usuariosesion");
+            mascotaServ.habilitar(id, u.getId());
+            return "redirect:/mascota/list-mascotas";
+        } catch (ErrorServicio e) {
             model.put("error", e.getMessage());
-            return "redirect:/list-mascota.html";
+            return "redirect:/mascota/list-mascotas";
         }
     }
 
     @GetMapping("/modificar/{id}")
-    public String editar(@PathVariable String idMascota, ModelMap model) throws Exception {
+    public String editar(ModelMap model, @PathVariable String id) throws Exception {
 
-        model.put("mascota", mascotaServ.buscarMxId(idMascota));
+        model.put("mascota", mascotaServ.buscarMxId(id));
         return "form-mascota-modif.html";
     }
     
     @PostMapping("/modificar/{id}")
-    public String editar(@PathVariable String idUsuario, @PathVariable String idMascota, @RequestParam String nombre, @RequestParam LocalDate fechaNac, @RequestParam String sexo, @RequestParam Especie especie, ModelMap modelo) throws Exception {
+    public String editar(ModelMap model, @PathVariable String id, HttpSession session, @RequestParam String nombre, @RequestParam String fechaNacS, @RequestParam String sexo, @RequestParam String especie) throws Exception {
+
+        LocalDate fechaNac = LocalDate.parse(fechaNacS); 
 
         try {
-            mascotaServ.editar(idUsuario, idMascota, nombre, fechaNac, sexo, especie);
-            return "redirect:/perfil";
             
-        } catch (Exception e) {
-            modelo.put("error", e.getMessage());
-            modelo.put("mascota", mascotaServ.buscarMxId(idMascota));
+            Usuario u = (Usuario) session.getAttribute("usuariosesion");
+            mascotaServ.editar(u.getId(), id, nombre, fechaNac, sexo, especie);
+            return "redirect:/mascota/list-mascotas";
+            
+        } catch (ErrorServicio e) {
+            model.put("error", e.getMessage());
+            model.put("mascota", mascotaServ.buscarMxId(id));
             return "form-mascota-modif.html";
         }
     }
     
-        @GetMapping("/list-vacunas/{id}")
-    public String listarVacAp(@PathVariable String id, ModelMap modelo) throws ErrorServicio {
+    @GetMapping("/list-vacunas/{id}")
+    public String listarVacAp(@PathVariable String id, ModelMap model) throws ErrorServicio {
 
-        List<Vacuna> vacAp = mascotaServ.listarVacAp(id);
-        ///////////////////REVISAR
-        modelo.addAttribute("vacunasAp", vacAp);
-
-        List<Vacuna> vacPend = mascotaServ.listarVacPend(id);
-        ///////////////////REVISAR
-        modelo.addAttribute("vacunasPend", vacPend);
+        model.put("mascota", mascotaServ.buscarMxId(id));
         
-        return "perfil.html";
+        return "list-vacunas.html";
     }
 }

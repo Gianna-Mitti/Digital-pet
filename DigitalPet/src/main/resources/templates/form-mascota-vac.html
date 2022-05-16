@@ -6,15 +6,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Registro Vacunas</title>
-
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 	<script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link
 		href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap"
 		rel="stylesheet">
-	<link rel="stylesheet" href="../static.css/index.css">
-	<link rel="stylesheet" href="../static.css/forms.css">
+	<link rel="stylesheet" href="/../static.css/index.css">
+	<link rel="stylesheet" href="/../static.css/forms.css">
 </head>
 
 <body class="form-page">
@@ -30,52 +30,46 @@
 			</div>
 		</div>
 
-		<div th:if="${error}!=null" class="card text-white bg-danger mb-3" >
-			<div class="card-body">
-				<h5 class="card-title">Error</h5>
-				<p class="card-text" th:text="${error}"></p>
-			</div>
-		</div>
-
-		<form th:action="@{/vacunas/registro}" method="POST" class="form" id="form">
+		<form th:action="@{/mascota/form-mascota-vac/__${mascota.id}__}" method="POST" th:object="${vacAplicadas}" class="form" id="form">
+			
 			<div class="form-group form-group-long" id="group-vacunasAplicadas">
-				<label for="vacunasAplicadas" class="form-label">Seleccione las vacunas que la mascota tiene aplicadas</label>
+				<label for="vacAplicadas" class="form-label">Seleccione las vacunas que la mascota tiene aplicadas</label>
 				<div class="form-group-input">
-					<ul class="form-select">
-						<li><a>Seleccionar vacunas</a>
-							<ul>
-								<li class="form-option">
-									<input type="checkbox"> Ninguna
-								</li>
-								<li>
-									<input type="checkbox" th:value="${mascota.vacPendientes.tipo}" name="vacAplicadas">
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</div>
 
-			<p><span class="warn">*</span>Campo obligatorio</p>
-			<!--
-			<div th:if="${exito}!=null" class="card text-white bg-success mb-3" >
-				<div class="card-body">
-					<h5 class="card-title">Éxito</h5>
-					<p class="card-text" th:text="${exito}"></p>
+					<div class="dropdown center-div">
+						<button class="btn select-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+						  Seleccione...
+						</button>
+						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<li>
+								<input type="checkbox" id="vacAplicadas" th:value="NULL" name="vacAplicada">
+								<label for="vacAplicadas" th:text="Ninguna"></label>
+							</li>
+							<li th:each="vac : ${mascota.vacPendientes}">
+								<label th:for="${vac.tipoVac}" th:text="${vac.tipoVac} + ' (' + ${vac.edadAplicacion} + ')'"></label>
+								<input type="checkbox" th:id="${vac.tipoVac}" class="form-check form-input" th:value="${vac.id}" name="vacAplicada">
+								<label>
+									Ingrese fecha de aplicación
+									<div th:object="${fechasApS}">
+										<input th:for="${vac.tipoVac}" type="date" class="form-input" name="fechaApS">
+									</div>
+								</label>
+							</li>
+						</ul>
+					  </div>
 				</div>
 			</div>
--->
 
 			<div class="form-group form-group-btn-submit">
-				<button type="submit" class="form-btn">Enviar</button>
+				<button type="submit" class="btn center-btn form-btn">Enviar</button>
 			</div>
 		</form>
 		<div class="form-footer">
 			<nav>
 				<ul>
-					<li><a href="./">Home</a></li>
+					<li><a th:href="@{/}">Home</a></li>
 					<li><a href="#">About us</a></li>
-					<li><a href="#">Info</a></li>
+					<li><a th:href="@{/info}">Info</a></li>
 				</ul>
 			</nav>
 			<div>
@@ -86,7 +80,8 @@
 		</div>
 	</main>
 
-	<script src="../static.js/forms.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+	<script src="../static.js/form-mascota.js"></script>
 </body>
 
 </html>

@@ -16,44 +16,44 @@
 </head>
 
 <body>
-    <header>
+    <header onselectstart="return false" onsmousestart="return false">
         <div class="off-menu">
             <span class="off-btn"><i class="fas fa-bars"></i></span>
 
             <nav class="topnav">
-                <a class="active" th:href="@{/}">Home</a>
-                <a href="#">About us</a>
-                <a href="#">Info</a>
-                
-                <span sec:authorize="isAuthenticated()">
-                    <a th:href="@{/logout}" class="btn login" role="button">
-                        Log-out
-                    </a>
-                </span>
+                <a th:href="@{/}">Home</a>
+                <a th:href="@{/#aboutUs}">About us</a>
+                <a th:href="@{/#info}">Info</a>
+                <a th:href="@{/recursos}">Recursos</a>
+                <a sec:authorize="isAuthenticated()" class="active" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="login" role="button">
+                    Log-out
+                </a>
+
             </nav>
         </div>
         <h1 class="title">Digital <span>Pet</span></h1>
     </header>
 
+    <a name="goback"></a>
+
     <main>
-        
-        <h2>Mis datos</h2>
 
         <section>
-            <div>
-                <h3 th:text="${usuario.nombre}"></h3>
-                <h3 th:text="${usuario.apellido}"></h3>
-                <h3 th:text="${usuario.mail}"></h3>
-                <h3 th:text="${usuario.tel}"></h3>
-            </div>
+            <h2 class="subtitle">Mis datos</h2>
 
+            <div class="preface" th:if="${session.usuariosesion != null}">
+                <p th:text="${session.usuariosesion.nombre} + ' ' + ${session.usuariosesion.apellido}"></p>
+                <p th:text="${session.usuariosesion.mail}"></p>
+                <p th:text="${session.usuariosesion.tel}"></p>
+            </div>
             <div>
-                <a th:href="@{/usuario/modificar/__${usuario.id}__}">Modificar mis datos</a>"
-                <a th:href="@{/usuario/modificarclave/__${usuario.id}__}">Cambiar contraseña</a>"
+                <a th:href="@{/usuario/modificar/__${session.usuariosesion.id}__}" class="btn section-btn">Modificar mis datos</a>
+                <a th:href="@{/usuario/modificarclave/__${session.usuariosesion.id}__}" class="btn section-btn">Cambiar contraseña</a>
+                <a class="btn section-btn" th:href="@{/mascota/list-mascotas}">Ver mis mascotas</a>
             </div>
         </section>
 
-        <a class="form-btn" th:href="@{/mascota/list-mascotas/__${session.usuariosesion.id}__}">Ver mis mascotas</a>
 
     </main>
 
