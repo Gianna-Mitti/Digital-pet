@@ -62,7 +62,7 @@
 	position: relative;
 }
 
-.form-group-input-select {
+/* .form-group-input-select {
 	margin:20px auto 40px auto;	
 	border:1px solid #d9d9d9;
 	height:30px;
@@ -110,7 +110,7 @@
 	border: 3px solid #0075FF;
 	outline: none;
 	box-shadow: 3px 0px 30px rgba(163,163,163, 0.4);
-}
+} */
 
 ul {
 	list-style:none;

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DigitalPet</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/a588efa7ad.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static.css/index.css">
+</head>
+<body>
+    <header>
+        <div class="off-menu">
+            <span class="off-btn"><i class="fas fa-bars"></i></span>
+
+            <nav class="topnav">
+                <a th:href="@{/}">Home</a>
+                <a th:href="@{/#aboutUs}">About us</a>
+                <a th:href="@{/#info}">Info</a>
+                <a class="active" th:href="@{/recursos}">Recursos</a>
+              <a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a>
+
+              <!-- Log in -->
+              <span >
+                <a sec:authorize="!isAuthenticated()" th:href="@{/login}" class="btn login" role="button" id="#dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  Log-in
+                </a>
+
+                <a sec:authorize="isAuthenticated()" th:href="@{/logout}" class="btn login" role="button">
+                  Log-out
+                </a>
+
+                <div class="dropdown-menu" id="dropdownMenuButton">
+                    <form th:action="@{/logincheck}" method="POST" class="px-4 py-3">
+                      <div class="mb-3">
+                        <label for="mail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="mail" name="mail" th:value="${mail}" placeholder="email@ejemplo.com">
+                      </div>
+                      <div class="mb-3">
+                        <label for="password" class="form-label">Contraseña</label>
+                        <input type="password" class="form-control" id="password" name="clave" th:value="${clave}" placeholder="Contraseña">
+                      </div>
+                      <div class="mb-3">
+                        <div class="form-check">
+                          <input type="checkbox" class="form-check-input" id="dropdownCheck">
+                          <label class="form-check-label" for="dropdownCheck">
+                            Recordarme <!--Esto es facha nomás-->
+                          </label>
+                        </div>
+                      </div>
+                      <button type="submit" class="btn btn-primary">Sign in</button>
+                    </form>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" th:href="@{/usuario/registro}">Sign up</a>
+                    <a class="dropdown-item" href="#">Recuperar contraseña</a> <!--Esto es facha nomás-->
+                  </div>
+              </span>
+            </nav>
+        </div>
+        <h1 class="title">Digital <span>Pet</span></h1>
+    </header>
+
+
+    <a name="goback"></a>
+
+    <h2 class="subtitle">Recursos</h2>
+    <article class="preface">
+        <p>Te acercamos información sobre lugares donde podés acceder a vacunación antirrábica y otros recursos de manera gratuita.</p>
+    </article>
+
+
+        <div class="menu">
+            <button class="unfold">Zona</button>
+            <div class="unfold-content">
+              <a href="#CABA">CABA</a>
+              <a href="#norte">Zona Norte</a>
+              <a href="#sur">Zona Sur</a>
+              <a href="#oeste">Zona Oeste</a>
+            </div>
+        </div>
+
+        <a name="caba"></a>
+        <article class="article">
+        <!--CABA-->
+            <iframe class="maps" src="https://www.google.com/maps/d/embed?mid=1MbIwCwadbXmduJAd3X5ynnXcjUCpGaqh"></iframe>
+            <div>
+                <h3>CABA</h3>
+                <p>Dentro de la Ciudad de Buenos Aires hay campañas de castración realizadas por organizaciones no gubernamentales que ofrecen castraciones a bajo costo. Estas se organizan de forma independiente y depende de cada entidad. Para más información, deberás comunicarte con el grupo que sea de tu interés.</p>
+                <h4>Gobierno de la ciudad</h4>
+                <p>El gobierno de la ciudad otorga turnos online para móviles veterinarios que circulan en distintos puntos de la ciudad y sus centros fijos de atención ubicados en: <span>Av. Dr. Tristán Achával Rodríguez 1530</span> y <span>Av. Lacarra 3400</span>.</p>
+                <p>Podés solicitar turno ingresando <a href="https://www.buenosaires.gob.ar/jefedegobierno/ambiente/agenciaambiental/mascotas/atenciones-veterinarias-gratuitas" target=”_blank”>aquí</a>.</p>
+                <h4>instituto de zoonosis Luis Pasteur</h4>
+                <p>El mismo realiza castraciones, atenciones veterinarias y vacunación y está ubicado en: <span>Av. Díaz Vélez 4821, Caballito</span>.</p>
+                <p>Para obtener tu turno de castración acercate al Instituto los sábados a partir de las 10:00 hs. Si necesitás un turno para atención veterinaria acercate de lunes a viernes a las 8:00 o a las 13:00 hs. En el Instituto Pasteur se aplica la vacuna antirrábica a perros y gatos. Acercate sin turno de lunes a domingos de 9:00 a 12:00 y de 14:00 a 17:00 hs.</p>
+                <p>Para consultas llamá al <i class="fas fa-phone"></i> 4958-9900.</p>
+            </div>
+        </article>
+        <a href="#goback" class="btn section-btn">Volver</a>
+
+        <a name="norte"></a>
+        <article class="article">
+        <!--Zona Norte-->
+            <iframe class="maps" src="https://www.google.com/maps/d/embed?mid=10mS0Oq16N1wdm3N4au2gUnrQdAfShtFS"></iframe>
+            <div>
+                <h3>San Martín</h3>
+                <p>Los turnos para castración, vacunación y atención veterinaria se otorgan de manera presencial en la sede central de Zoonosis que se ubica en: <span>Almeyra 2399</span>. Para solicitar el turno, son requisito indispensable ser mayor de 18 años y tener domicilio en San Martín. Se dará un turno por persona y la persona que saque el turno debe ser la misma que se presente el día de la cirugía (sin excepción).</p>
+                <p>Consultá el cronograma de turnos <a href="http://www.sanmartin.gov.ar/servicios/salud/" target=”_blank”>aquí</a>. Para vacunación presentarse de lunes a viernes de 8.30 a 13.00 hs. y sábados de 8.30 a 14.00 hs., sin turno previo (se atiende por orden de llegada). La atención veterinaria se brinda de lunes a viernes de 7:00 a 14:00 hs.</p>
+                <p>Para consultas comuníquese al <i class="fas fa-phone"></i> 4512-7031.</p>
+            </div>
+            <div>
+                <h3>San Isidro</h3>
+                <p>La zoonosis de San Isidro cuenta con puestos fijos de atención para castración y vacunación antirrábica ubicados en: <span>Sede Zoonosis- 3 de Febrero 536, San Isidro</span> que funciona de lunes a domingo de 8:00 a 14:00 hs. y <span>Hospital de Boulogne- Av. Avelino Rolón 1200, Boulogne</span> con atención de lunes a viernes de 9:00 a 13:00 hs.</p>
+                <p>Para solicitar un turno para castración debés ingresar <a href="https://servicios.gestionmsi.gob.ar/CP/RegistroOnlineZoonosis/" target=”_blank”>aquí</a> (para vacunación no necesitás turno).</p>
+                <p>Además cuenta con un puesto fijo de vacunación en: <span>Villa Adelina- Scalabrini Ortiz 1750</span> que atiende de lunes a viernes de 9:00 a 13:00 hs. (consultar disponibilidad).</p>
+                <p>Zoonosis San Isidro cuenta además con atención móvil para vacunación, castración, desparasitación y adopción. Consultá el cronograma ingresando <a href="https://www.sanisidro.gob.ar/mascotas" target=”_blank”>aquí</a>.</p>
+                <p>Podés escribir a <a href=”mailto:zoonosis@sanisidro.gov.ar”?subject=”zoonosis”><i class="fas fa-at"></i> zoonosis@sanisidro.gov.ar</a> o llamar al <i class="fas fa-phone"></i> 4512-3151 / 3495 por cualquier consulta.</p>
+            </div>
+            <div>
+                <h3>Vicente Lopez</h3>
+                <p>Por refacciones edilicias, desde el 22 de junio, la Dirección de Zoonosis estará prestando sus servicios de lunes a viernes de 8:00 a 16:00 hs. y sábados de 8:00 a 12:00 hs. en <span> J. B. Justo 2390, Olivos</span>.</p>
+                <p>Zoonosis de Vicente Lopez brinda diferentes servicios como: consultorio, ecografías, desparasitaciones, castraciones, y vacunación. Se puede solicitar turno previo por email a <a href=”mailto:zoonosis@vicentelopez.gov.ar?subject=zoonosis”><i class="fas fa-at"></i> zoonosis@vicentelopez.gov.ar</a>, o por teléfono al <i class="fas fa-phone"></i> 4799-3240 y 4513-9871.</p>
+                <p>Ante urgencias se puede asistir sin turno de lunes a viernes de 8:00 a 14:00 hs., y los sábados de 9:00 a 12:00 hs. al Centro de Zoonosis ubicado en <span>Capitán Bermúdez 3484, Olivos</span>.</p>
+            </div>
+            <div>
+                <h3>San Fernando</h3>
+                <p>Zoonosis San Fernando lleva a cabo un plan integral de castración, vacunación y desparasitación gratuita con un quirófano itinerante en distintos barrios del distrito. Para conocer el itinerario ingresa <a href="https://www.sanfernando.gob.ar/municipio/secretarias/secetaria-de-salud/direccion-general-de-zoonosis/zoonosis-en-tu-barrio" target=”_blank”>aquí</a>.</p>
+                <p>Para castración en la zoonosis ubicada en <span>Malvinas Argentinas 3100, Victoria</span> sacá turno <a href="https://www1.diphot.com.ar/san-fernando-zoonosis/" target=”_blank”>aquí</a> o también podés comunicarte a <i class="fas fa-phone"></i> 4580-5732 de lunes a viernes, de 7:00 a 16:00 hs.</p>
+            </div>
+            <div>
+                <h3>Tigre</h3>
+                <p>La zoonosis de Tigre lleva a cabo campañas de esterilización masiva, temprana, gratuita y extendida de animales domésticos en todas sus localidades. Además ofrece consulta clínica externa, vacunación y desparasitación de caninos y felinos, vigilancia activa de rabia y vigilancia activa e investigación de casos epidemiológicos.</p>
+                <p>Los turnos se obtienen comunicándose al <i class="fas fa-phone"></i> 011 4512-4568 o escribiendo a <a href=”mailto:zoonosis@tigre.gov.ar?subject=Zoonosis”><i class="fas fa-at"></i> zoonosis@tigre.gov.ar</a>; las atenciones se realizan en <span>Pueyrredón 211</span>.</p>
+            </div>
+        </article>
+        <a href="#goback" class="btn section-btn">Volver</a>
+        
+            <a name="sur"></a>
+        <article class="article">
+            <!--Zona Sur-->
+            <iframe class="maps" src="https://www.google.com/maps/d/embed?mid=1LLIzt-Zp2P3kq8QvsmwEA10qQJDkcM1H"></iframe>
+            <div>
+                <h3>Alte. Brown</h3>
+                <p>Zonosis Alte. Brown brinda atención veterinaria, castraciones y vacunación. Para acceder podés sacar turno online <a href="https://www.almirantebrown.gov.ar/turnos/dni" target=”_blank”>aquí</a> o comunicarte al <i class="fas fa-phone"></i> 4238-7638/4299-0155/5034-6200.</p>
+                <p>La atención se realiza de lunes a viernes de 8:00 a 14:00 hs. en <span>Martín Fierro 33-Burzaco</span>.</p>
+            </div>
+            <div>
+                <h3>Avellaneda</h3>
+                <p>Avellaneda cuenta con un hospital veterinario que brinda atención en consultorios, enfermería, quirófano y dependencias administrativas. El mismo atiende de lunes a viernes de 8:00 a 17:00 hs. y sábados y domingos de 8:00 a 12:00 hs.; está ubicado en <span>Gral. Paz 441</a>.</span>
+                <p>Para consultas podés llamar al <i class="fas fa-phone"></i> 7527-5848.</p>
+            </div>
+            <div>
+                <h3>Berazategui</h3>
+                <p>Berazategui cuenta con una clínica veterinaria municipal en la que realizan vacunación antirrábica, atención clínica y castración ubicada en <span>Av. Ranelagh 4041, Berazategui</span>.</p>
+                <p>La vacunación es sin turno previo todos los días de 8:00 a 20:00 hs. Para atención veterinaria debe comunicarse al <i class="fas fa-phone"></i> 4356-9200. Para castraciones presentarse de lunes a viernes a partir de las 8:00 hs. (se entregan 22 turnos por día).</p>
+            </div>
+            <div>
+                <h3>Esteban Echeverría</h3>
+                <p>El área de Zoonosis de Esteban Echeverría en conjunto con el Programa Nacional de Tenencia Responsable y Sanidad de Perros y Gatos (ProTenencia), lleva a cabo operativos de castración con unidades móviles. Para conocer dónde estarán y solicitar turno debés comunicarte al <i class="fas fa-phone"></i> 4263-0050/15-6-185-9357/15-5-379-5100 de 8:00 a 20:00 hs.</p>
+            </div>
+            <div>
+                <h3>Florencio Varela</h3>
+                <p>El centro de zoonosis realiza castraciones, vacunación antirrábica y desparasitación interna. Además, tiene un consultorio antirrábico para atención de personas (solo por mordeduras y aplicación de la vacuna contra la rabia a personas).</p>
+                <p>Brinda atención de lunes a viernes de 7:30 a 16:00 hs y sábados de 8:00 a 12:00 hs.</p>
+                <p>Para solicitar turno para castración debés comunicarte al <i class="fas fa-phone"></i> 4255-1738 de lunes a viernes de 7:30 a 13:00 hs o acercate al Centro de Zoonosis ubicado en <span>Calle  576 y 501 (ex-Moranchel y Sipe Sipe), barrio Libertad</span>.</p>
+                <p>Zoonosis también cuenta con un móvil veterinario que realiza vacunación (sin turno) y castración (con turno previo). Para pedir turno para castrar a tu mascota u obtener información para vacunarla en tu barrio, acercate a la UGL más cercana.</p>
+            </div>
+            <div>
+                <h3>Lanús</h3>
+                <p>Lanús cuenta con una clínica veterinaria municipal que ofrece castración, vacunación y atención médica de animales. La misma se encuentra ubicada en <span>Pitágoras 4302, Monte Chingolo</span>.</p>
+                <p>Para solicitar turno para atención veterinaria o castración debés comunicarte al <i class="fas fa-phone"></i> 4357-5182. Para vacunación no necesitás turno, acercate de lunes a jueves de 8:00 a 12:00 hs.</p>
+            </div>
+            <div>
+                <h3>Lomas de Zamora</h3>
+                <p>Zoonosis Lomas de Zamora brinda atención y asesoramiento a pacientes y animales afectados o sospechosos de padecer enfermedades zoonóticas (leptospirosis, psitacosis, toxoplasmosis, etc.).</p>
+                <p>Para vacunación asistir sin turno de lunes a viernes de 8:00 a 17:00 hs. y sábados de 8:00 a 12:00 hs. Para solicitar turno para castración debés ingresar <a href="http://webextra.lomasdezamora.gov.ar/sacarnumerosviainternet/inicioturnos.aspx" target=”_blank”>aquí</a>.</p>
+                <p>Zoonosis se encuentra ubicada en <span>12 de Octubre 1100, Villa Centenario</span> y realiza operativos de castración y vacunación con móviles veterinarios. Podés consultar el itinerario de los móviles ingresando a sus cuentas oficiales en <a href="https://www.instagram.com/hospital.mascotas.lomas/?hl=es-la" target="_blank"><i class="fab fa-instagram"></i> @hospital.mascotas.lomas</a>, <a href="https://www.facebook.com/ZoonosisLdeZ/" target="_blank"><i class="fab fa-facebook"></i> /ZoonosisLdeZ</a> o <a href="https://twitter.com/ZoonosisLomas" target="_blank"><i class="fab fa-twitter"></i> @ZoonosisLomas</a>.</p>
+            </div>
+            <div>
+                <h3>Quilmes</h3>
+                <p>Zoonosis Quilmes ofrece además de castración y vacunación antirrábica:
+                    <ul type=”circle”>
+                        <li>Servicio de detección de enfermedades zoonóticas a través de extracción de sangre y envío a laboratorio provincial para el diagnóstico.</li>
+                        <li>Servicio de cirugía de tejidos blandos con consulta y turno previo (no urgencias ni traumatología)Con este servicio se intenta resolver las patologías como ser: tumores de mamas, de piel, otohematomas, hernias, testículos retenidos, etc. Para solicitar el turno llamar por teléfonos al centro de zoonosis de 9 a 14 hs.</li>
+                    </ul>
+                </p>
+                <p>Aquellos vecinos que deseen realizar una castración a su mascota deben comunicarse por teléfono al <i class="fas fa-phone"></i> 4257-1658 de lunes a viernes de 9 a 13 horas, desde el 1° y hasta el día 15 de cada mes. Con respecto a la vacunación, desparasitación y atención veterinaria es por orden de llegada en el centro de zoonosis con dirección <span>Av. Hipólito Yrigoyen 273, Quilmes</span>, de lunes a viernes de 9 a 13 hs.</p>
+            </div>
+        </article>
+        <a href="#goback" class="btn section-btn">Volver</a>
+        
+            <a name="oeste"></a>
+        <article class="article">
+            <!--Zona Oeste-->
+            <iframe class="maps" src="https://www.google.com/maps/d/embed?mid=1h8niPNPVJtPWiYa9jk2nKKChJKjrV5d-"></iframe>
+            <div>
+                <h3>Merlo</h3>
+                <p>La Dirección de Zoonosis Municipal se ubica en <span>Av. Calle Real 1800, B1716 Merlo.</span>. Para obtener turno para castración debe comunicarse al <i class="fas fa-phone"></i> 0220-494-1212.</p>
+            </div>
+            <div>
+                <h3>Moreno</h3>
+                <p>La zoonosis de Moreno se encuentra en <span>Concordia 1721, Moreno</span> y ofrece castraciones gratuitas con turno previo. Para solicitar turno por correo escribir a <a href="mailto:programazoonosismoreno@gmail.com?subject=Zoonosis"><i class="fas fa-at"></i> programazoonosismoreno@gmail.com</a></p>
+            </div>
+            <div>
+                <h3>Morón</h3>
+                <p>La Zoonosis de Morón se encuentra ubicada en <span>Curupayti 1126, Morón</span></p>
+                <p>La misma ofrece Servicio Veterinario para: 
+                    <ul>
+                        <li>Control de animales agresores</li>
+                        <li>Servicio de cirugía en Quirófano Central o Quirófano Móvil</li>
+                        <li>Laboratorio</li>
+                        <li>Vacunaciones antirrábicas, tratamientos antiparasitarios y antisárnicos</li>
+                        <li>Promoción de salud a través de charlas informativas</li>
+                        <li>Adopción responsable de mascotas</li>
+                    </ul>
+                </p>
+                <p>Además, en zoonosis, se atiende a las personas para:
+                    <ul>
+                        <li>Atención clínica</li>
+                        <li>Inmunizaciones</li>
+                        <li>Antirrábicas</li>
+                        <li>Antitetánicas</li>
+                        <li>Derivaciones a cirugía</li>
+                    </ul>
+                </p>
+                <p><span>Vacunación antirrábica</span>: se realiza de lunes a viernes de 08:00 a 16:00h y sábados de 08:00 a 12:00h. También se aplica en los operativos semanales del quirófano móvil. Se recuerda al vecino que el servicio no requiere turno previo.</p>
+                <p><span>Castración</span>: (con turno previo) es necesario presentar el DNI y un servicio que acredite el domicilio en Morón. Turnos telefónicos: Serán otorgados los miércoles de 9:00 a 12:00 hs. por teléfono al <i class="fas fa-phone"></i> 4645-2624 o por mail a <a href="mailto:turnos.castracion@moron.gob.ar?subject=Zoonosis"><i class="fas fa-at"></i> turnos.castracion@moron.gob.ar</a>, los turnos serán asignados exclusivamente los viernes de 9 a 12 hs.</p>
+                <p><span>Atención a personas agredidas por animales domésticos</span>: de lunes a viernes de 08:00 a 16:00h y los sábados de 08:00 a 12:00 hs.</p>
+            </div>
+            <div>
+                <h3>Tres de Febrero</h3>
+                <p>Zoonosis de Tres de Febrero cuenta con un Hospital Móvil Veterinario para descentralizar la atención. Este recorre los barrios del distrito para vacunar, desparasitar y esterilizar quirúrgicamente a perros y gatos. Para conocer su itinerario ingresá <a href="https://www.tresdefebrero.gov.ar/mascotasde3f/" target=_blank”>aquí</a>. Para sacar turno para castración tenés que completar este <a href="https://docs.google.com/forms/d/e/1FAIpQLSemWdUqPFR00DNkLOKnhdkLeCI041QUztBp4riuU8w6NFB9ag/closedform" target=_blank”>formulario</a>.</p>
+            </div>
+            <div>
+                <h3>La Matanza</h3>
+                <p>El Centro de Zooantroponosis de la Municipalidad de La Matanza realiza castraciones, vacunación y atención primaria gratuita de las enfermedades zoonóticas durante todo el año en sus consultorios ubicados en <span>Peribebuy 4770, San Justo</span>.</p>
+                <p>Para sacar turno de castraciones en sede debés llamar al <i class="fas fa-phone"></i> 147 Matanza Responde o al 0-800-333-2126, en ámbos teléfonos a las 8 hs. Estos teléfonos corresponden a la central municipal que es la que tiene el sistema de otorgamiento de turnos.</p>
+                <p>La División Veterinaria dispone, además, de un consultorio etológico, es decir, de comportamiento animal, donde se tratan los casos de agresividad con el objetivo de brindar pautas de modificación de conducta o reeducación del animal y así ayudar a disminuir el abandono.</p>
+                <p>La División Humana dispone de consultorio médico para atención de mordidos, enfermería y laboratorio relacionado con el diagnóstico de enfermedades zoonóticas en personas.</p>
+                <p>Zoonosis también realiza operativos móviles de castración animal con turno previo, donde el personal de Centro de Zoonosis brinda gratuitamente vacunas contra la rabia tanto para perros como gatos sin turno. Todos los meses el cronograma de zoonosis es publicado en los medios locales, como así también en las redes oficiales de municipio: <a href="https://www.facebook.com/zoonosislamatanza/?fref=ts" target=”_blank”><i class="fab fa-facebook"></i> /zoonosislamatanza</a> y <a href="https://www.facebook.com/municipiodelamatanza/?fref=ts" target=”_blank”><i class="fab fa-facebook"></i> /municipiodelamatanza</a>. La modalidad de entrega de turnos en los operativos está explicada en cada cronograma.</p>
+            </div>
+        </article>
+        <a href="#goback" class="btn section-btn">Volver</a>
+
+
+        <footer>
+            <nav>
+                <h5>MENÚ</h5>
+                <ul class="bottomnav">
+                    <li><a th:href="@{/}">Home</a></li>
+                    <li><a th:href="@{/#aboutUs}">About us</a></li>
+                    <li><a th:href="@{/#info}">Info</a></li>
+                    <li><a th:href="@{/recursos}">Recursos</a></li>
+                    <li><a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a></li>
+                    
+                  </ul>
+            </nav>
+            <div>
+                <h5>SEGUINOS EN</h5>
+                <div class="social">
+                    <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                <h6>Desarrollado por: </h6>
+                <h6>Miti Gianna</h6>
+                <h6>Pizzera Camila</h6>
+                <h6>Cabrera Tatiana</h6>
+                <h6>Medina Oscar</h6>
+                <h6>Medina Ezequiel</h6>
+                </div>
+            </div>
+        </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+</body>
+</html>

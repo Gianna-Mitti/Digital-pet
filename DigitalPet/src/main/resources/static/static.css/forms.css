@@ -50,13 +50,13 @@
 }
 
 .form-label span {
-	color: #ED5628;
+	color: #DB5F23;
 }
 
 .warn {
 	font-weight: 700;
 	padding: 10px;
-	color: #ED5628;
+	color: #DB5F23;
 }
 
 .form-group-input {
@@ -80,37 +80,23 @@
 }
 
 
+.select-btn {
+	width: 50vw;
+	background-color: #fff;
+	border: #000;
+	color: #000;
+}
+
 ul {
 	list-style:none;
+	width: 50vw;
 }
-.form-select {
-	height: 45px;
-	line-height: 45px;
-	width: 80%;
-	background: #DB5F23;
-	color: #fff;
-	font-weight: bold;
-	text-align: center;
-	padding: 0;
-	margin: auto;
-	border: none;
-	border-radius: 3px;
-	cursor: pointer;
-	transition: .1s ease all;
+
+.form-check-input + label {
+	display: none;
 }
-.form-select:hover {
-	box-shadow: 3px 0px 30px rgba(163, 163, 163, 1);
-}
-.form-select li ul {
-	display:none;
-	position:absolute;
-}
-.form-select li:hover > ul {
-	background-color: #fff;
-	color: #000;
-	display:block;
-	width: 80%;
-	text-align: start;
+.form-check-input:checked + label {
+	display: block;
 }
 
 .form-input-error {
@@ -140,7 +126,7 @@ ul {
 .form-message {
 	height: 45px;
 	line-height: 45px;
-	background: #ED5628;
+	background: #DB5F23;
 	padding: 0 15px;
 	border-radius: 3px;
 	display: none;
@@ -160,28 +146,14 @@ ul {
 	align-items: center;
 }
 
-.form-btn,
-.back-btn {
-	height: 45px;
-	line-height: 45px;
-	width: 30%;
-	background: #000;
-	color: #fff;
-	font-weight: bold;
-	border: none;
-	border-radius: 3px;
-	cursor: pointer;
-	transition: .1s ease all;
+.form-btn {
+	width: 30vw;
 }
 
-.form-btn:hover,
-.backbtn:hover {
-	box-shadow: 3px 0px 30px rgba(163, 163, 163, 1);
-}
 
 .form-message-success {
 	font-size: 2.5vw;
-	color: #119200;
+	color: #B9EDE9;
 	display: none;
 }
 
@@ -190,21 +162,21 @@ ul {
 }
 
 .form-group-right .form-validate-state {
-	color: #1ed12d;
+	color: #B9EDE9;
 	opacity: 1;
 }
 
 .form-group-wrong .form-label {
-	color: #bb2929;
+	color: #DB5F23;
 }
 
 .form-group-wrong .form-validate-state {
-	color: #bb2929;
+	color: #DB5F23;
 	opacity: 1;
 }
 
 .form-group-wrong .form-input {
-	border: 3px solid #bb2929;
+	border: 3px solid #DB5F23;
 }
 
 /*footer forms*/
@@ -228,7 +200,7 @@ ul {
 }
 
 .form-footer a:hover {
-	color: #ED5628;
+	color: #DB5F23;
 }
 
 @media screen and (max-width: 1024px) {

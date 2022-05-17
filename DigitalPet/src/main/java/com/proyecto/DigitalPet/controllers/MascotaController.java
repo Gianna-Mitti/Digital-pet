@@ -76,7 +76,7 @@ public class MascotaController {
     }
 
     @PostMapping("form-mascota-vac/{id}")
-    public String cargarVac(ModelMap model, @PathVariable String id, HttpSession session, @RequestParam(value="fechaApS") List<String> fechasApS, @RequestParam(value="vacAplicada") List<Vacuna> vacAplicadas) throws Exception {
+    public String cargarVac(ModelMap model, @PathVariable String id, HttpSession session, @RequestParam(value="vacAplicada") List<Vacuna> vacAplicadas, @RequestParam(value="fechaApS") List<String> fechasApS) throws Exception {
         try{
             Usuario u = (Usuario) session.getAttribute("usuariosesion");
 
