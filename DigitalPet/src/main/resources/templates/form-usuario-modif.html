@@ -27,7 +27,7 @@
 			</div>
 		</div>
 
-		<form th:action="@{/usuario/modificar/__${session.usuariosesion.id}__}" method="POST" class="form" id="form">
+		<form th:action="@{/usuario/modificar/__${session.usuariosesion.id}__}" method="POST" class="form" id="form" enctype="multipart/form-data">
 			<div class="form-group" id="group-name">
 				<label for="name" class="form-label">Nombre<span class="warn">*</span></label>
 				<div class="form-group-input">
