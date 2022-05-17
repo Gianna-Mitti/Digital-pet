@@ -7,7 +7,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -25,13 +24,11 @@ public class Usuario {
     private String clave;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToOne
-    private Foto foto;
-    
+
     public Usuario() {
     }
 
-    public Usuario(String id, String nombre, String apellido, String mail, Long tel, String clave, Role role, Foto foto) {
+    public Usuario(String id, String nombre, String apellido, String mail, Long tel, String clave, Role role) {
         this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -39,7 +36,6 @@ public class Usuario {
         this.tel = tel;
         this.clave = clave;
         this.role = role;
-        this.foto = foto;
     }
 
     public String getId() {
@@ -98,13 +94,7 @@ public class Usuario {
         this.role = role;
     }
 
-        public Foto getFoto() {
-        return foto;
-    }
-
-    public void setFoto(Foto foto) {
-        this.foto = foto;
-    }
+    
 
 
 }
