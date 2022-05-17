@@ -5,6 +5,7 @@ import com.proyecto.DigitalPet.entidades.Usuario;
 import com.proyecto.DigitalPet.enums.Role;
 import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.repositorios.UsuarioRepo;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -59,7 +60,7 @@ public class UsuarioServ implements UserDetailsService {
     }
 
     @Transactional
-    public Usuario modificar(String id, String nombre, String apellido, String mail, Long tel, String clave, MultipartFile archivo) throws ErrorServicio {
+    public Usuario modificar(String id, String nombre, String apellido, String mail, Long tel, String clave, MultipartFile archivo) throws ErrorServicio, IOException {
         Optional<Usuario> op = usuarioRepo.findById(id);
         Usuario usuario = op.get();
         
