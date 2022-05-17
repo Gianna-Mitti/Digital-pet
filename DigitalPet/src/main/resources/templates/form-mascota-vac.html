@@ -42,17 +42,15 @@
 						</button>
 						<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 							<li>
-								<input type="checkbox" id="vacAplicadas" th:value="NULL" name="vacAplicada">
-								<label for="vacAplicadas" th:text="Ninguna"></label>
+								<label for="vacAplicadas">Ninguna</label>
+								<input type="checkbox" id="vacAplicadas" class="form-check-input" th:value="NULL" name="vacAplicada">
 							</li>
 							<li th:each="vac : ${mascota.vacPendientes}">
 								<label th:for="${vac.tipoVac}" th:text="${vac.tipoVac} + ' (' + ${vac.edadAplicacion} + ')'"></label>
-								<input type="checkbox" th:id="${vac.tipoVac}" class="form-check form-input" th:value="${vac.id}" name="vacAplicada">
+								<input type="checkbox" th:id="${vac.tipoVac}" class="form-check-input" th:value="${vac.id}" name="vacAplicada">
 								<label>
 									Ingrese fecha de aplicación
-									<div th:object="${fechasApS}">
-										<input th:for="${vac.tipoVac}" type="date" class="form-input" name="fechaApS">
-									</div>
+									<input type="date" th:object="${fechasApS}" class="form-input" name="fechaApS">
 								</label>
 							</li>
 						</ul>
@@ -66,11 +64,13 @@
 		</form>
 		<div class="form-footer">
 			<nav>
-				<ul>
+				<ul class="bottomnav">
 					<li><a th:href="@{/}">Home</a></li>
-					<li><a href="#">About us</a></li>
-					<li><a th:href="@{/info}">Info</a></li>
-				</ul>
+					<li><a th:href="@{/#aboutUs}">About us</a></li>
+					<li><a th:href="@{/#info}">Info</a></li>
+					<li><a th:href="@{/recursos}">Recursos</a></li>
+					<li><a sec:authorize="isAuthenticated()" th:href="@{/usuario/perfil/__${session.usuariosesion.id}__}">Mi perfil</a></li>
+				  </ul>
 			</nav>
 			<div>
 				<a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
