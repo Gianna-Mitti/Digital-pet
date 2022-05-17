@@ -13,7 +13,7 @@ public class MainController {
     @GetMapping("/index")
     public String index(@RequestParam(required = false) String login, @RequestParam(required = false) String error, @RequestParam(required = false) String logout, ModelMap model) {
         if (login != null) {
-            model.put("exito", "Ha ingresado exitosamente.");
+            model.put("exito", "Ha ingresado exitosamente. \n Para llevar un control más eficiente de las vacunas de tu/s mascota/s, te sugerimos ingresar con preiodicidad en la sección vacunas de ésta plataforma.");
         }        
         if (error != null) {
             model.put("error", "Usuario/clave incorrectos.");
