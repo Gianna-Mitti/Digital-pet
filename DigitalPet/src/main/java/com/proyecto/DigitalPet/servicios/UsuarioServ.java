@@ -52,17 +52,29 @@ public class UsuarioServ implements UserDetailsService {
     @Transactional
     public Usuario modificar(String id, String nombre, String apellido, String mail, Long tel, String clave) throws ErrorServicio {
         Optional<Usuario> op = usuarioRepo.findById(id);
-        Usuario usuario = op.get();
-        
-        validatorMod(nombre, apellido, mail, clave);
 
-            usuario.setNombre(nombre);
-            usuario.setApellido(apellido);
-            usuario.setTel(tel);
-            usuario.setMail(mail);
-            usuario.setRole(Role.USER);
+        if (op.isPresent()) {
+            Usuario usuario = op.get();
             
-            return usuarioRepo.save(usuario);
+            validatorMod(nombre, apellido, mail, clave);
+
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+            if(encoder.matches(clave, usuario.getClave())) {
+                
+                usuario.setNombre(nombre);
+                usuario.setApellido(apellido);
+                usuario.setTel(tel);
+                usuario.setMail(mail);
+                usuario.setRole(Role.USER);
+                
+                return usuarioRepo.save(usuario);
+            } else {
+                throw new ErrorServicio("La clave es incorrecta.");
+            }
+        } else {
+            throw new ErrorServicio("La clave no se ha modificado correctamente.");
+        }
     }
 
     @Transactional
@@ -71,7 +83,11 @@ public class UsuarioServ implements UserDetailsService {
         if (op.isPresent()) {
             Usuario usuario = op.get();
             validarClave(claveAnterior);
-            if (claveAnterior != claveNueva) {
+
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+            if (encoder.matches(claveAnterior, usuario.getClave())) {
+
                 validarClave(claveNueva);
                 String encriptada = new BCryptPasswordEncoder().encode(claveNueva);
                 usuario.setClave(encriptada);
