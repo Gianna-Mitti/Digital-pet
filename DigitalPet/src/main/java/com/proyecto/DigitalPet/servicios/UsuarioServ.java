@@ -1,9 +1,11 @@
 package com.proyecto.DigitalPet.servicios;
 
+import com.proyecto.DigitalPet.entidades.Foto;
 import com.proyecto.DigitalPet.entidades.Usuario;
 import com.proyecto.DigitalPet.enums.Role;
 import com.proyecto.DigitalPet.errores.ErrorServicio;
 import com.proyecto.DigitalPet.repositorios.UsuarioRepo;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -33,9 +36,12 @@ public class UsuarioServ implements UserDetailsService {
     
     @Autowired
     private NotificacionServ notificacionServ;
+    
+    @Autowired
+    private FotoServ fotoServ;
 
     @Transactional
-    public Usuario registrar(String nombre, String apellido, String mail, Long tel, String clave) throws ErrorServicio {
+    public Usuario registrar(String nombre, String apellido, String mail, Long tel, String clave, MultipartFile archivo) throws ErrorServicio, Exception {
         validator(nombre, apellido, mail, clave);
         Usuario usuario = new Usuario();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -45,33 +51,44 @@ public class UsuarioServ implements UserDetailsService {
         usuario.setMail(mail);
         usuario.setClave(encoder.encode(clave));
         usuario.setRole(Role.USER);
+        
+        Foto foto = fotoServ.save(archivo);
+        usuario.setFoto(foto);
+        
         notificacionServ.notificacionRegistro("¡Gracias por unirte a nuestra comunidad! En nuestra página vas a poder llevar el control de las vacunas aplicadas y pendientes de tu mascota.", " ¡Bienvenidx a DigitalPet!", usuario.getMail());
         return usuarioRepo.save(usuario);
     }
 
     @Transactional
-    public Usuario modificar(String id, String nombre, String apellido, String mail, Long tel, String clave) throws ErrorServicio {
+    public Usuario modificar(String id, String nombre, String apellido, String mail, Long tel, String clave, MultipartFile archivo) throws ErrorServicio, IOException {
         Optional<Usuario> op = usuarioRepo.findById(id);
 
         if (op.isPresent()) {
-            Usuario usuario = op.get();
-            
-            validatorMod(nombre, apellido, mail, clave);
+        Usuario usuario = op.get();
+        
+        validatorMod(nombre, apellido, mail, clave);
 
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 
             if(encoder.matches(clave, usuario.getClave())) {
                 
-                usuario.setNombre(nombre);
-                usuario.setApellido(apellido);
-                usuario.setTel(tel);
-                usuario.setMail(mail);
-                usuario.setRole(Role.USER);
-                
-                return usuarioRepo.save(usuario);
+            usuario.setNombre(nombre);
+            usuario.setApellido(apellido);
+            usuario.setTel(tel);
+            usuario.setMail(mail);
+            usuario.setRole(Role.USER);
+            
+            String idFoto = null;
+            if(usuario.getFoto() != null) {
+                idFoto = usuario.getFoto().getId();
+            }
+            Foto foto = fotoServ.actualizar(idFoto, archivo);
+            usuario.setFoto(foto);
+            
+            return usuarioRepo.save(usuario);
             } else {
                 throw new ErrorServicio("La clave es incorrecta.");
-            }
+    }
         } else {
             throw new ErrorServicio("La clave no se ha modificado correctamente.");
         }
@@ -115,7 +132,7 @@ public class UsuarioServ implements UserDetailsService {
         return usuarioRepo.getById(id);
 
     }
-
+    
 //    public void validarClaveModif(String clave) throws ErrorServicio{
 //        if () {
 //            

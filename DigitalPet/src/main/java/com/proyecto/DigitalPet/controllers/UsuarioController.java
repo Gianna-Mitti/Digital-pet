@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @Controller
@@ -24,7 +25,7 @@ private UsuarioServ usuarioServ;
     public String lista(@PathVariable String id, ModelMap modelo) {
 
         Usuario usuario = usuarioServ.getOne(id);
-
+        
         modelo.addAttribute("usuario", usuario);
 
         return "perfil.html";
@@ -38,9 +39,9 @@ private UsuarioServ usuarioServ;
     }
     
     @PostMapping("/registro")      
-    public String registrar (ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave){
+    public String registrar (ModelMap modelo, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave, MultipartFile archivo){
       try{
-          usuarioServ.registrar(nombre, apellido, mail, tel, clave);
+          usuarioServ.registrar(nombre, apellido, mail, tel, clave, archivo);
           modelo.put("exito", "Registro exitoso");
           return "index.html";
 
@@ -65,11 +66,11 @@ private UsuarioServ usuarioServ;
     }
  
     @PostMapping("/modificar/{id}")
-    public String modificar (ModelMap modelo, @PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave, HttpSession sesion){
+    public String modificar (ModelMap modelo, @PathVariable String id, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String mail,  @RequestParam(required = false) Long tel, @RequestParam String clave, MultipartFile archivo, HttpSession sesion){
         
         if(usuarioServ.getOne(id) != null) {
          try{
-            Usuario u = usuarioServ.modificar(id, nombre, apellido, mail, tel, clave);
+            Usuario u = usuarioServ.modificar(id, nombre, apellido, mail, tel, clave, archivo);
             sesion.setAttribute("usuariosesion", u);
             modelo.put("exito", "Modificó sus datos satisfactoriamente.");
             return "redirect:/usuario/perfil/{id}";
